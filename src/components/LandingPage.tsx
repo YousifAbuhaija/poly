@@ -77,9 +77,9 @@ export default function LandingPage() {
                 <span className="ml-3 text-xs text-gray-500 font-semibold">Your matches</span>
               </div>
               {[
-                { name: 'Jane Smith', office: 'State Senate', match: 87, color: '#6096BA' },
-                { name: 'Carlos Rivera', office: 'City Council', match: 74, color: '#8FA998' },
-                { name: 'Pat Johnson', office: 'School Board', match: 61, color: '#A3CEF1' },
+                { name: 'Jane Smith', office: 'State Senate', match: 87, color: '#274C77' },
+                { name: 'Carlos Rivera', office: 'City Council', match: 74, color: '#6B8E7F' },
+                { name: 'Pat Johnson', office: 'School Board', match: 61, color: '#6096BA' },
               ].map((c) => (
                 <div key={c.name} className="flex items-center gap-4 py-3.5 border-b border-white/20 last:border-0">
                   <div className="w-12 h-12 rounded-full bg-[#274C77] flex items-center justify-center text-white font-bold text-base flex-shrink-0">
@@ -90,7 +90,7 @@ export default function LandingPage() {
                     <p className="text-xs text-gray-500">{c.office}</p>
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                    <span className="text-lg font-bold" style={{ color: c.color }}>{c.match}%</span>
+                    <span className="text-lg font-bold drop-shadow-md" style={{ color: c.color }}>{c.match}%</span>
                     <div className="w-16 h-1.5 rounded-full bg-gray-200 overflow-hidden">
                       <div className="h-full rounded-full" style={{ width: `${c.match}%`, backgroundColor: c.color }} />
                     </div>
