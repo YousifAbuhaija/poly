@@ -5,6 +5,10 @@ interface AppContextValue extends AppState {
   setLocation: (location: LocationResult) => void;
   setIssueProfile: (profile: IssueProfile) => void;
   setChatHistory: (history: ChatMessage[]) => void;
+  quizIndex: number;
+  setQuizIndex: (index: number) => void;
+  quizComplete: boolean;
+  setQuizComplete: (complete: boolean) => void;
 }
 
 const initialState: AppState = {
@@ -18,6 +22,8 @@ const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(initialState);
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [quizComplete, setQuizComplete] = useState(false);
 
   const setLocation = useCallback((location: LocationResult) => {
     setState(prev => ({ ...prev, location, isOnboarded: true }));
@@ -32,7 +38,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, setLocation, setIssueProfile, setChatHistory }}>
+    <AppContext.Provider value={{ ...state, setLocation, setIssueProfile, setChatHistory, quizIndex, setQuizIndex, quizComplete, setQuizComplete }}>
       {children}
     </AppContext.Provider>
   );

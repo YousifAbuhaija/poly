@@ -1,36 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dark gradient palette */
-  --color-poly-dark: #0f0f1a;
-  --color-poly-navy: #1a1a2e;
-  --color-poly-indigo: #16213e;
-  --color-poly-purple: #533483;
-  --color-poly-violet: #7b2ff7;
-  --color-poly-accent: #c084fc;
-  --color-poly-glow: #a855f7;
+  --color-brand-purple: #274C77;
+  --color-brand-violet: #6096BA;
+  --color-brand-lavender: #A3CEF1;
+  --color-brand-accent: #274C77;
+  --color-surface-base: #ffffff;
+  --color-surface-subtle: #E7ECEF;
+  --color-surface-muted: #A3CEF1;
+  --color-surface-border: #6096BA;
+  --color-text-primary: #274C77;
+  --color-text-secondary: #6096BA;
+  --color-text-muted: #8B8C89;
+  --color-agree: #22c55e;
+  --color-disagree: #ef4444;
+  --color-skip: #f59e0b;
+}
 
-  /* Glass / surface tokens */
-  --color-glass-bg: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-glass-hover: rgba(255, 255, 255, 0.08);
-
-  /* Text tokens */
-  --color-text-primary: #f3f4f6;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
-
-  /* Status tokens */
-  --color-agree: #34d399;
-  --color-disagree: #f87171;
-  --color-skip: #fbbf24;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 40%, #16213e 100%);
-  color: var(--color-text-primary);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #E7ECEF;
+  color: #274C77;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
