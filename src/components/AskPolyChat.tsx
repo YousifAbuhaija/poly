@@ -56,37 +56,45 @@ export default function AskPolyChat() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col px-4 py-8">
-      <div className="mx-auto flex w-full max-w-lg flex-1 flex-col">
+    // 1. Changed min-h-dvh to max-h-dvh so it doesn't force a stretch when empty, 
+    // but won't grow off-screen when full.
+    <div className="max-h-dvh flex flex-col px-4 pt-2 pb-6">
+      {/* 2. Removed flex-1 so this wrapper just hugs its content */}
+      <div className="mx-auto flex w-full max-w-lg flex-col min-h-0">
+        
         <h1 className="mb-1 text-center text-2xl font-bold" style={{ color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Ask Poly</h1>
-        <p className="mb-2 text-center text-sm" style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
+        <p className="mb-1 text-center text-sm" style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
           Ask questions about policies, candidates, or civic topics.
         </p>
+        
         {location && (
-          <p className="mb-6 text-center text-xs" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
+          <p className="mb-4 text-center text-xs" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
             Answers informed by your location: {location.city}, {location.state}
           </p>
         )}
 
+        {/* Example prompts */}
         {chatHistory.length === 0 && !loading && (
-          <div className="mb-6 space-y-2">
+          <div className="mb-3 space-y-2">
             <p className="text-xs font-medium" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>Try asking:</p>
             {EXAMPLE_PROMPTS.map((prompt) => (
               <button key={prompt} type="button" onClick={() => handleSend(prompt)}
-                className="block w-full min-h-[44px] rounded-xl bg-white border border-gray-200 px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-50 transition shadow-sm">
+                className="block w-full min-h-[44px] rounded-xl bg-gradient-to-br from-white/75 to-white/55 backdrop-blur-sm border border-white/30 px-4 py-3 text-left text-sm text-gray-700 hover:from-white/85 hover:to-white/65 transition shadow-sm">
                 {prompt}
               </button>
             ))}
           </div>
         )}
 
-        <div className="flex-1 space-y-3 overflow-y-auto pb-4" role="log" aria-live="polite">
+        {/* Chat messages */}
+        {/* 3. Removed flex-1 and added mb-4 to give it a little breathing room above the input */}
+        <div className="space-y-3 overflow-y-auto min-h-0 mb-30" role="log" aria-live="polite">
           {chatHistory.map((msg, i) => (
             <div key={`${msg.timestamp}-${i}`} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[80%] rounded-xl px-4 py-3 text-sm ${
                 msg.role === 'user'
                   ? 'bg-[#6096BA] text-white shadow-md'
-                  : 'bg-white border border-gray-200 text-gray-900 shadow-md'
+                  : 'bg-gradient-to-br from-white/85 to-white/65 backdrop-blur-sm border border-white/30 text-gray-900 shadow-md'
               }`}>
                 {msg.content}
               </div>
@@ -95,7 +103,7 @@ export default function AskPolyChat() {
 
           {loading && (
             <div className="flex justify-start">
-              <div className="max-w-[80%] rounded-xl bg-white border border-gray-200 px-4 py-3 text-sm text-gray-400 shadow-md">
+              <div className="max-w-[80%] rounded-xl bg-gradient-to-br from-white/85 to-white/65 backdrop-blur-sm border border-white/30 px-4 py-3 text-sm text-gray-400 shadow-md">
                 Thinking…
               </div>
             </div>
@@ -113,7 +121,9 @@ export default function AskPolyChat() {
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="flex items-center gap-2 pt-2">
+        {/* Input area */}
+        {/* Added shrink-0 so the input box never gets crushed if the chat history gets too large */}
+        <div className="flex items-center gap-2 shrink-0">
           <input
             ref={inputRef}
             type="text"
@@ -121,13 +131,14 @@ export default function AskPolyChat() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask Poly a question…"
-            className="min-h-[44px] flex-1 rounded-xl bg-white border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6096BA] shadow-sm"
+            className="min-h-[44px] flex-1 rounded-xl bg-gradient-to-br from-white/85 to-white/65 backdrop-blur-sm border border-white/30 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6096BA] shadow-sm"
           />
           <button type="button" onClick={() => handleSend()} disabled={!canSend}
             className="min-h-[44px] min-w-[44px] rounded-xl bg-[#274C77] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#6096BA] disabled:opacity-40 disabled:cursor-not-allowed">
             Send
           </button>
         </div>
+        
       </div>
     </div>
   );

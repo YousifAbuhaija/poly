@@ -14,7 +14,7 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
   const { candidate, matchPercentage, agreements, disagreements } = result;
 
   const matchColor =
-    matchPercentage >= 70 ? '#6096BA' : matchPercentage >= 40 ? '#8FA998' : '#A3CEF1';
+    matchPercentage >= 70 ? '#274C77' : matchPercentage >= 40 ? '#6B8E7F' : '#6096BA';
 
   return (
     <button
@@ -31,9 +31,8 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
           <h3 className="text-sm font-semibold text-gray-900 truncate group-hover:text-[#274C77] transition">{candidate.name}</h3>
           <p className="text-xs text-gray-500 mt-0.5">{candidate.office} · {candidate.district}</p>
         </div>
-        <div className="flex flex-col items-end flex-shrink-0">
-          <span className="text-xl font-bold" style={{ color: matchColor }}>{matchPercentage}%</span>
-          <span className="text-xs text-gray-400">match</span>
+        <div className="flex-shrink-0">
+          <span className="text-xl font-bold drop-shadow-md" style={{ color: matchColor }}>{matchPercentage}%</span>
         </div>
       </div>
       <div className="mt-4 h-1.5 w-full rounded-full bg-gray-100 overflow-hidden">

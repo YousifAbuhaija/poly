@@ -75,7 +75,7 @@ function TopNav() {
           className="flex items-center gap-2 hover:opacity-80 transition"
         >
           <PolyLogo size={28} />
-          <span className="text-xl font-bold text-[#274C77] tracking-tight">Poly</span>
+          <span className="text-xl font-bold text-[#274C77] tracking-tight drop-shadow-sm">Poly</span>
         </button>
 
         {/* Right side — depends on state */}
@@ -85,21 +85,21 @@ function TopNav() {
             <button
               type="button"
               onClick={() => navigate('/signin')}
-              className="px-4 py-2 rounded-lg border border-[#274C77] text-[#274C77] text-sm font-medium hover:bg-[#274C77]/5 transition"
+              className="px-4 py-2 rounded-lg border border-[#274C77] text-[#274C77] text-sm font-semibold hover:bg-[#274C77]/5 transition drop-shadow-sm"
             >
               Sign In
             </button>
             <button
               type="button"
               onClick={handleCta}
-              className="px-6 py-2 rounded-lg bg-[#274C77] text-white text-sm font-semibold hover:bg-[#6096BA] transition shadow-sm"
+              className="px-6 py-2 rounded-lg bg-[#274C77] text-white text-sm font-semibold hover:bg-[#6096BA] transition shadow-md"
             >
               {ctaText}
             </button>
           </div>
         ) : isQuizRoute ? (
           /* State B: quiz progress hint */
-          <span className="text-sm text-gray-500">Vibe Check in progress</span>
+          <span className="text-sm text-gray-700 font-medium drop-shadow-sm">Vibe Check in progress</span>
         ) : (
           /* State C: full tab nav */
           <nav className="flex items-center gap-1" aria-label="Main navigation">
@@ -112,12 +112,12 @@ function TopNav() {
                   onClick={() => !tab.blocked && navigate(tab.path)}
                   disabled={tab.blocked}
                   title={tab.blocked ? 'Complete the quiz first' : undefined}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition drop-shadow-sm ${
                     tab.blocked
                       ? 'text-gray-400 cursor-not-allowed opacity-40'
                       : active
                       ? 'bg-[#A3CEF1]/20 text-[#274C77]'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >
@@ -128,7 +128,7 @@ function TopNav() {
             <button
               type="button"
               onClick={() => { signOut(); navigate('/'); }}
-              className="ml-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-red-50 hover:text-red-600 transition drop-shadow-sm"
             >
               Sign Out
             </button>

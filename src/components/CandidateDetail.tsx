@@ -36,26 +36,27 @@ export default function CandidateDetail() {
     );
   }, [candidate, elections]);
 
-  const { agreements, disagreements } = useMemo(() => {
-    if (!candidate) return { agreements: [] as string[], disagreements: [] as string[] };
+  const { agreements, disagreements, answeredByBoth } = useMemo(() => {
+    if (!candidate) return { agreements: [] as string[], disagreements: [] as string[], answeredByBoth: 0 };
     const ag: string[] = [];
     const dis: string[] = [];
+    let count = 0;
     for (const [issueId, userScore] of Object.entries(issueProfile)) {
       if (userScore === 0) continue;
       const candScore = candidate.positions[issueId];
       if (candScore === undefined || candScore === 0) continue;
+      count++;
       if (userScore === candScore) {
         ag.push(issueId);
       } else {
         dis.push(issueId);
       }
     }
-    return { agreements: ag, disagreements: dis };
+    return { agreements: ag, disagreements: dis, answeredByBoth: count };
   }, [candidate, issueProfile]);
 
-  const answeredCount = Object.values(issueProfile).filter((s) => s !== 0).length;
-  const matchPercentage = answeredCount > 0
-    ? Math.round((agreements.length / answeredCount) * 100)
+  const matchPercentage = answeredByBoth > 0
+    ? Math.round((agreements.length / answeredByBoth) * 100)
     : 0;
 
   if (!candidate) {
