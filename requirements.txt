@@ -1,0 +1,180 @@
+Kiro Build Spec: Poly MVP (Location-Aware Version)
+Build a mobile-friendly React web app called Poly for a hackathon MVP.
+
+Product Goal
+Poly helps Gen Z users understand political issues, simplify legislation, and see which candidates align with their values—based on their actual location and upcoming local elections.
+The app should feel fast, personalized, and immediately relevant to the user’s real ballot.
+
+Core MVP Features
+1. Location-Based Onboarding (ZIP → County → State)
+Start onboarding by collecting:
+    •    ZIP code (required)
+    •    Automatically resolve:
+    ◦    City
+    ◦    County
+    ◦    State
+Use this location to:
+    •    filter candidates shown in the app
+    •    tailor issues (e.g., housing, transit, campus/local policies)
+    •    simulate “upcoming elections” relevant to that area (using mock/local data)
+Display confirmation:
+    •    “Showing elections for: Blacksburg, VA (Montgomery County)”
+Store location in local state.
+
+2. Vibe Check (Issue Preference Builder)
+After location is set, show a swipe/tap interface for issue preferences.
+Each card shows a neutral issue statement:
+    •    Cap annual rent increases
+    •    Expand public transit funding
+    •    Raise the minimum wage
+    •    Increase police funding
+    •    Protect abortion access
+    •    Ban TikTok nationwide
+    •    Increase funding for local schools
+    •    Reduce property taxes
+User selects:
+    •    Agree
+    •    Disagree
+    •    Skip
+Store responses as:
+    •    Agree = 1
+    •    Disagree = -1
+    •    Skip = 0
+At the end, generate a lightweight issue profile.
+
+3. Civic Match (Location-Aware Candidate Matching)
+Using:
+    •    user issue profile
+    •    user location (ZIP → county/state)
+    •    local candidate JSON
+Filter candidates by:
+    •    matching state and/or county
+Compute compatibility score:
+    •    same stance = 1 point
+    •    opposite stance = 0 points
+    •    neutral/unknown = ignore or partial
+Score:
+match % = matching issues / total answered issues
+Display:
+    •    candidate name
+    •    office (e.g., City Council, State Senate)
+    •    district/region
+    •    match percentage
+    •    top 3 agreements
+    •    top 2 disagreements
+Allow user to click into candidate detail.
+
+4. Candidate Detail Page
+Display:
+    •    name
+    •    office + district
+    •    location relevance (e.g., “On your ballot” or “Nearby race”)
+    •    short bio
+    •    issue positions
+    •    why you match
+    •    where you differ
+Make this screen visually clear and trust-building.
+
+5. No-Read Translator (AI Policy Explainer)
+Provide two inputs:
+    •    search bar (bill name, topic, or keyword)
+    •    PDF upload (local law, university policy, etc.)
+Send content to backend.
+Return exactly 3 outputs:
+    •    What it does (plain-English summary)
+    •    Why it matters to you (impact for a 20-something/local resident)
+    •    Who decides (government body or authority)
+Display as clean cards.
+
+6. Ask Poly (Chat Interface)
+Simple chat panel for follow-up questions.
+Example prompts:
+    •    What does this bill actually mean?
+    •    Why did I match with this candidate?
+    •    What elections are coming up in my area?
+    •    Who controls housing policy in my city?
+    •    What does city council do?
+Responses should:
+    •    use user location when relevant
+    •    stay neutral
+    •    reference known data when possible
+
+Tech Stack
+    •    Frontend: React + Tailwind
+    •    Deployment: AWS Amplify
+    •    Backend: API Gateway + Lambda
+    •    AI: Amazon Bedrock (Claude 3.5 Sonnet)
+    •    Data: Local JSON files for MVP
+
+Data Files
+issues.json
+    •    id
+    •    label
+    •    category
+candidates.json
+    •    id
+    •    name
+    •    office
+    •    district
+    •    county
+    •    state
+    •    party
+    •    bio
+    •    issue positions (keyed values)
+elections.json (new)
+    •    office
+    •    district
+    •    county/state mapping
+    •    candidates running
+samplePolicies.json
+    •    mock bills/policies for demo
+
+Matching Logic
+Represent:
+    •    user answers: 1 / -1 / 0
+    •    candidate positions: 1 / -1 / 0
+Score based on alignment.
+Return:
+    •    match percentage
+    •    strongest agreements
+    •    strongest disagreements
+
+Design Direction
+    •    modern, clean UI
+    •    swipe-based onboarding (Tinder-style)
+    •    card-based layout for results
+    •    clear typography and spacing
+    •    Gen Z-friendly but not gimmicky
+    •    neutral tone (not partisan or biased)
+
+Important Product Constraints
+    •    Do not present the app as telling users who to vote for
+    •    Frame as a values-alignment and understanding tool
+    •    Always explain why a match score exists
+    •    Keep summaries neutral and factual
+    •    Clearly tie results to user location
+    •    Use mock/local data for reliability in demo
+
+Demo Flow
+    1    User enters ZIP code
+    2    App resolves location (city/county/state)
+    3    User completes Vibe Check
+    4    App shows local candidate matches
+    5    User taps a candidate to view alignment
+    6    User searches or uploads a policy
+    7    App returns 3-bullet explanation
+    8    User asks a follow-up question in chat
+
+Stretch Goals (If Time Allows)
+    •    “Upcoming elections near you” section
+    •    Trending bills based on location
+    •    Shareable match card (e.g., “I’m an 85% match with X”)
+    •    Save history of viewed policies
+    •    Compare two candidates side-by-side
+
+Final Product Positioning
+Poly is a location-aware political companion that helps users:
+    •    understand issues
+    •    decode policies
+    •    and see which candidates align with their values
+—all based on where they actually live and vote.
