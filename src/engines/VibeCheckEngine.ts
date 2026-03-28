@@ -1,0 +1,35 @@
+import type { IssueStatement, IssueScore, IssueProfile } from '../types';
+import { loadIssues } from '../services/DataLoader';
+
+let issues: IssueStatement[] | null = null;
+let profile: IssueProfile = {};
+
+export function getIssues(): IssueStatement[] {
+  if (!issues) {
+    issues = loadIssues();
+  }
+  return issues;
+}
+
+export function recordResponse(issueId: string, score: IssueScore): void {
+  profile[issueId] = score;
+}
+
+export function getProfile(): IssueProfile {
+  return { ...profile };
+}
+
+export function getRemainingCount(): number {
+  const total = getIssues().length;
+  const answered = Object.keys(profile).length;
+  return total - answered;
+}
+
+export function isComplete(): boolean {
+  return getRemainingCount() === 0 && getIssues().length > 0;
+}
+
+export function reset(): void {
+  issues = null;
+  profile = {};
+}
