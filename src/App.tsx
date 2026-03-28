@@ -160,8 +160,9 @@ export default function App() {
         style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
       />
       {/* App content above the globe */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1, height: '100dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <TopNav />
+      <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
       <AnimatePresence mode="wait">
         <Routes location={routerLocation} key={routerLocation.pathname}>
           <Route path="/" element={
@@ -230,6 +231,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}
             >
               <RequireOnboarding><AskPolyChat /></RequireOnboarding>
             </motion.div>
@@ -247,6 +249,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
+      </div>
       </div>
     </div>
   );
