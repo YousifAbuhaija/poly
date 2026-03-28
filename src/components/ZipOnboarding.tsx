@@ -1,17 +1,19 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
-import { resolve, isValidZip, formatLocation } from '../engines/LocationResolver';
+import { isValidZip, formatLocation } from '../engines/LocationResolver';
+import { fetchCivicData } from '../services/CandidateService';
 import type { LocationResult } from '../types';
 
 export default function ZipOnboarding() {
   const [zip, setZip] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [confirmed, setConfirmed] = useState<LocationResult | null>(null);
-  const { setLocation } = useAppContext();
+  const { setLocation, setCandidates } = useAppContext();
   const navigate = useNavigate();
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError('');
     setConfirmed(null);
@@ -21,14 +23,19 @@ export default function ZipOnboarding() {
       return;
     }
 
-    const result = resolve(zip);
-    if (!result) {
-      setError('ZIP code not recognized. Please try another.');
-      return;
-    }
+    setIsLoading(true);
 
-    setConfirmed(result);
-    setLocation(result);
+    try {
+      const result = await fetchCivicData(zip);
+
+      setCandidates(result.candidates);
+      setLocation(result.location);
+      setConfirmed(result.location);
+    } catch {
+      setError('ZIP code not available yet. Try one of our demo ZIPs like 90210 or 10001.');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function handleContinue() {
@@ -67,7 +74,14 @@ export default function ZipOnboarding() {
             </p>
           )}
 
-          {!confirmed ? (
+          {isLoading ? (
+            <div className="flex justify-center py-3" role="status" aria-label="Loading">
+              <svg className="h-8 w-8 animate-spin text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+            </div>
+          ) : !confirmed ? (
             <button
               type="submit"
               className="w-full min-h-[44px] rounded-lg bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-500 active:scale-[0.98]"

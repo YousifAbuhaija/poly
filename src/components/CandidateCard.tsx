@@ -84,6 +84,23 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
         </div>
       )}
 
+      {/* AI Disclaimer */}
+      {candidate.positionsInferred && (
+        <div className="mt-3 flex items-start gap-1.5 text-text-secondary" data-testid="ai-disclaimer">
+          <svg
+            className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M8 0l2 5h5l-4 3.5 1.5 5L8 10.5 3.5 13.5 5 8.5 1 5h5z" />
+          </svg>
+          <p className="text-[10px] leading-tight">
+            Issue positions were inferred by AI from public information and may not reflect this candidate's actual stated positions.
+          </p>
+        </div>
+      )}
+
     </button>
   );
 }

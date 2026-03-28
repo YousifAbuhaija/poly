@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
-import type { AppState, LocationResult, IssueProfile, ChatMessage } from '../types';
+import type { AppState, LocationResult, IssueProfile, ChatMessage, Candidate } from '../types';
 
 interface AppContextValue extends AppState {
   setLocation: (location: LocationResult) => void;
   setIssueProfile: (profile: IssueProfile) => void;
   setChatHistory: (history: ChatMessage[]) => void;
+  setCandidates: (candidates: Candidate[]) => void;
+  setFallbackMode: (isFallback: boolean) => void;
 }
 
 const initialState: AppState = {
@@ -12,6 +14,8 @@ const initialState: AppState = {
   issueProfile: {},
   chatHistory: [],
   isOnboarded: false,
+  candidates: [],
+  isFallbackMode: false,
 };
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
@@ -31,8 +35,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, chatHistory }));
   }, []);
 
+  const setCandidates = useCallback((candidates: Candidate[]) => {
+    setState(prev => ({ ...prev, candidates }));
+  }, []);
+
+  const setFallbackMode = useCallback((isFallbackMode: boolean) => {
+    setState(prev => ({ ...prev, isFallbackMode }));
+  }, []);
+
   return (
-    <AppContext.Provider value={{ ...state, setLocation, setIssueProfile, setChatHistory }}>
+    <AppContext.Provider value={{ ...state, setLocation, setIssueProfile, setChatHistory, setCandidates, setFallbackMode }}>
       {children}
     </AppContext.Provider>
   );

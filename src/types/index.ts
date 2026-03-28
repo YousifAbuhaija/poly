@@ -25,6 +25,7 @@ export interface Candidate {
   county: string;
   bio: string;
   positions: { [issueId: string]: IssueScore };
+  positionsInferred?: boolean;
 }
 
 export interface MatchResult {
@@ -51,6 +52,8 @@ export interface AppState {
   issueProfile: IssueProfile;
   chatHistory: ChatMessage[];
   isOnboarded: boolean;
+  candidates: Candidate[];
+  isFallbackMode: boolean;
 }
 
 export interface Election {
@@ -70,6 +73,24 @@ export interface Policy {
 }
 
 export interface ApiError {
+  statusCode: number;
+  error: string;
+  message: string;
+}
+
+export interface CivicDataResult {
+  location: LocationResult;
+  candidates: Candidate[];
+  isFallback: boolean;
+}
+
+export interface CivicApiSuccessResponse {
+  location: LocationResult;
+  candidates: Candidate[];
+  source: "api" | "cache";
+}
+
+export interface CivicApiErrorResponse {
   statusCode: number;
   error: string;
   message: string;

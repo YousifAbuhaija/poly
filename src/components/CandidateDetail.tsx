@@ -4,6 +4,7 @@ import { useAppContext } from '../context/AppContext';
 import { loadCandidates, loadElections, loadIssues } from '../services/DataLoader';
 import type { Candidate, Election, IssueStatement, IssueScore } from '../types';
 
+
 function issueLabel(issueId: string, issues: IssueStatement[]): string {
   const issue = issues.find((i) => i.id === issueId);
   return issue ? `${issue.category}: ${issue.text}` : issueId;
@@ -18,9 +19,12 @@ function scoreLabel(score: IssueScore): string {
 export default function CandidateDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { issueProfile, location } = useAppContext();
+  const { issueProfile, location, candidates: contextCandidates } = useAppContext();
 
-  const candidates = useMemo(() => loadCandidates(), []);
+  const candidates = useMemo(
+    () => (contextCandidates && contextCandidates.length > 0 ? contextCandidates : loadCandidates()),
+    [contextCandidates],
+  );
   const elections = useMemo(() => loadElections(), []);
   const issues = useMemo(() => loadIssues(), []);
 
@@ -187,6 +191,26 @@ export default function CandidateDetail() {
           )}
         </div>
 
+        {/* AI Disclaimer Banner */}
+        {candidate.positionsInferred && (
+          <div
+            className="mt-4 flex items-start gap-2 rounded-xl bg-amber-500/10 border border-amber-500/30 p-4"
+            data-testid="ai-disclaimer"
+          >
+            <svg
+              className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-400"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M8 0l2 5h5l-4 3.5 1.5 5L8 10.5 3.5 13.5 5 8.5 1 5h5z" />
+            </svg>
+            <p className="text-xs text-amber-300 leading-relaxed">
+              Issue positions were inferred by AI from public information and may not reflect this candidate's actual stated positions.
+            </p>
+          </div>
+        )}
+
         {/* All issue positions */}
         <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
           <h2 className="text-sm font-semibold text-white mb-2">All Positions</h2>
@@ -194,6 +218,16 @@ export default function CandidateDetail() {
             {Object.entries(candidate.positions).map(([issueId, score]) => (
               <div key={issueId} className="flex items-start justify-between gap-2">
                 <p className="text-xs text-text-secondary flex-1 leading-relaxed">
+                  {candidate.positionsInferred && (
+                    <svg
+                      className="inline-block w-3 h-3 mr-1 text-amber-400 align-text-top"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M8 0l2 5h5l-4 3.5 1.5 5L8 10.5 3.5 13.5 5 8.5 1 5h5z" />
+                    </svg>
+                  )}
                   {issueLabel(issueId, issues)}
                 </p>
                 <span

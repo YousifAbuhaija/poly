@@ -5,16 +5,29 @@ import { computeMatches } from '../engines/CivicMatchEngine';
 import { loadIssues } from '../services/DataLoader';
 import CandidateCard from './CandidateCard';
 
+/**
+ * Returns true when every position value for a candidate is 0 (unknown).
+ */
+function hasAllZeroPositions(positions: Record<string, number>): boolean {
+  const values = Object.values(positions);
+  return values.length === 0 || values.every((v) => v === 0);
+}
+
 export default function CivicMatchResults() {
-  const { location, issueProfile } = useAppContext();
+  const { location, issueProfile, candidates, isFallbackMode } = useAppContext();
   const navigate = useNavigate();
 
   const issues = useMemo(() => loadIssues(), []);
 
   const results = useMemo(() => {
     if (!location) return [];
-    return computeMatches(issueProfile, location);
-  }, [issueProfile, location]);
+    // Pass AppContext candidates to the match engine instead of loading from JSON
+    return computeMatches(
+      issueProfile,
+      location,
+      candidates.length > 0 ? candidates : undefined,
+    );
+  }, [issueProfile, location, candidates]);
 
   const allSkipped = Object.values(issueProfile).every((s) => s === 0);
 
@@ -33,6 +46,15 @@ export default function CivicMatchResults() {
         <p className="mt-1 text-center text-sm text-text-secondary">
           {location.city}, {location.state} · {location.county} County
         </p>
+
+        {/* Fallback mode banner */}
+        {isFallbackMode && (
+          <div className="mt-4 rounded-xl bg-amber-500/10 border border-amber-500/20 px-4 py-3">
+            <p className="text-xs text-amber-400 leading-relaxed">
+              You're viewing demo data. Live data is temporarily unavailable.
+            </p>
+          </div>
+        )}
 
         {/* Disclaimer banner */}
         <div className="mt-4 rounded-xl bg-white/5 border border-glass-border px-4 py-3">
@@ -70,6 +92,14 @@ export default function CivicMatchResults() {
                 issues={issues}
                 onTap={(id) => navigate(`/candidate/${id}`)}
               />
+              {/* Insufficient position data explanation for all-zero candidates */}
+              {hasAllZeroPositions(r.candidate.positions) && (
+                <div className="mt-2 rounded-lg bg-white/5 border border-glass-border px-3 py-2">
+                  <p className="text-xs text-text-muted">
+                    Insufficient position data
+                  </p>
+                </div>
+              )}
             </div>
           ))}
         </div>
