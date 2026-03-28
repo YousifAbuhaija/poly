@@ -1,63 +1,13 @@
 [
   {
-    "id": "candidate-001",
-    "name": "Maria Santos",
-    "office": "State Senate",
-    "district": "District 5",
-    "state": "CA",
-    "county": "Los Angeles",
-    "bio": "Community organizer turned state legislator with a focus on education equity and affordable housing in Los Angeles County.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
-  },
-  {
-    "id": "candidate-002",
-    "name": "James Chen",
-    "office": "City Council",
-    "district": "District 12",
-    "state": "CA",
-    "county": "Los Angeles",
-    "bio": "Small business owner and city council member advocating for economic growth and public safety improvements across LA.",
-    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": 1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": -1 }
-  },
-  {
-    "id": "candidate-003",
-    "name": "Aisha Johnson",
-    "office": "State Senate",
-    "district": "District 5",
-    "state": "CA",
-    "county": "Los Angeles",
-    "bio": "Former public defender committed to criminal justice reform and expanding healthcare access for underserved communities.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
-  },
-  {
-    "id": "candidate-004",
-    "name": "David Park",
-    "office": "State Assembly",
-    "district": "District 28",
-    "state": "NY",
-    "county": "New York",
-    "bio": "Tech entrepreneur and first-generation American focused on modernizing public services and expanding broadband access in NYC.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": -1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 1 }
-  },
-  {
-    "id": "candidate-005",
-    "name": "Rachel Torres",
-    "office": "City Council",
-    "district": "District 3",
-    "state": "NY",
-    "county": "New York",
-    "bio": "Environmental activist and urban planner working to make New York City greener and more affordable for young residents.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
-  },
-  {
     "id": "sen-ca-padilla",
     "name": "Alex Padilla",
     "office": "U.S. Senate",
     "district": "Statewide",
     "state": "CA",
     "county": "Los Angeles",
-    "bio": "The first Latino to represent California in the U.S. Senate. He previously served as California's Secretary of State and focuses heavily on immigration reform, voting rights, and climate legislation.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
+    "bio": "California's first Latino Senator, focusing heavily on immigration reform, voting rights, and federal climate legislation.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 1 }
   },
   {
     "id": "sen-ca-schiff",
@@ -66,8 +16,28 @@
     "district": "Statewide",
     "state": "CA",
     "county": "Los Angeles",
-    "bio": "Former U.S. Representative who assumed his Senate office in 2025. He is known for his prominent roles on intelligence committees and focuses on democratic institution protection, housing affordability, and environmental regulations.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
+    "bio": "Former U.S. Representative known for leading intelligence committees, focusing on democratic institution protection and housing.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 1 }
+  },
+  {
+    "id": "gov-ca-newsom",
+    "name": "Gavin Newsom",
+    "office": "Governor",
+    "district": "Statewide",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "Governor of California pushing progressive climate policies and aggressively challenging local zoning laws to force housing construction.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "may-ca-bass",
+    "name": "Karen Bass",
+    "office": "Mayor",
+    "district": "Los Angeles",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "Mayor of Los Angeles and former U.S. Rep, dedicating her administration to declaring a state of emergency on homelessness.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
   },
   {
     "id": "sen-va-warner",
@@ -76,8 +46,8 @@
     "district": "Statewide",
     "state": "VA",
     "county": "Montgomery",
-    "bio": "A businessman and former Governor of Virginia. He serves as Chairman of the Senate Intelligence Committee and is known as a moderate Democrat focused on technology regulation, national security, and bipartisan economic policies.",
-    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 1, "issue-008": -1, "issue-009": 0, "issue-010": -1 }
+    "bio": "Moderate Democrat and tech entrepreneur focusing on national security, intelligence, and bipartisan economic policies.",
+    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 0, "issue-010": 0 }
   },
   {
     "id": "sen-va-kaine",
@@ -86,7 +56,177 @@
     "district": "Statewide",
     "state": "VA",
     "county": "Montgomery",
-    "bio": "Former Governor of Virginia and 2016 Vice Presidential nominee. His legislative priorities heavily feature armed services support, healthcare expansion, and career/technical education.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 0 }
+    "bio": "Former Governor and VP nominee prioritizing career and technical education, armed services support, and healthcare access.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 }
+  },
+  {
+    "id": "gov-va-youngkin",
+    "name": "Glenn Youngkin",
+    "office": "Governor",
+    "district": "Statewide",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Former private equity CEO who won the governorship focusing on parents' rights in education, tax cuts, and rolling back regulations.",
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": -1, "issue-004": 0, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": 0, "issue-010": 1 }
+  },
+  {
+    "id": "rep-va-griffith",
+    "name": "Morgan Griffith",
+    "office": "U.S. House",
+    "district": "9th District",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Conservative Representative for Southwest Virginia (including Blacksburg), advocating for coal industries and reduced federal spending.",
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+  },
+  {
+    "id": "may-va-hager-smith",
+    "name": "Leslie Hager-Smith",
+    "office": "Mayor",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Long-serving Mayor of Blacksburg, focused on town-gown relations with Virginia Tech, sustainability, and local infrastructure.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 0, "issue-008": 1, "issue-009": 1, "issue-010": 1 }
+  },
+  {
+    "id": "sen-ny-schumer",
+    "name": "Chuck Schumer",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "NY",
+    "county": "New York",
+    "bio": "Senate Majority Leader championing major federal investments in infrastructure, climate, and semiconductor manufacturing.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+  },
+  {
+    "id": "sen-ny-gillibrand",
+    "name": "Kirsten Gillibrand",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "NY",
+    "county": "New York",
+    "bio": "Senator prioritizing paid family leave, military justice reform, and agricultural policies for upstate New York.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+  },
+  {
+    "id": "gov-ny-hochul",
+    "name": "Kathy Hochul",
+    "office": "Governor",
+    "district": "Statewide",
+    "state": "NY",
+    "county": "New York",
+    "bio": "First female Governor of NY, focused on economic recovery, massive housing pacts, and gun control legislation.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "may-ny-adams",
+    "name": "Eric Adams",
+    "office": "Mayor",
+    "district": "New York City",
+    "state": "NY",
+    "county": "New York",
+    "bio": "Former police captain and current Mayor, running on a platform of public safety, business recovery, and the 'City of Yes' zoning reform.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "rep-ny-ocasio-cortez",
+    "name": "Alexandria Ocasio-Cortez",
+    "office": "U.S. House",
+    "district": "14th District",
+    "state": "NY",
+    "county": "New York",
+    "bio": "Progressive icon and author of the Green New Deal, advocating strongly for universal healthcare and tenant rights.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "sen-wa-murray",
+    "name": "Patty Murray",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "WA",
+    "county": "King",
+    "bio": "Senior Senator and President pro tempore, focused heavily on education, labor rights, and veterans affairs.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+  },
+  {
+    "id": "sen-wa-cantwell",
+    "name": "Maria Cantwell",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "WA",
+    "county": "King",
+    "bio": "Senator known for her work on tech regulation, aviation safety, and protecting public lands in the Pacific Northwest.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+  },
+  {
+    "id": "gov-wa-ferguson",
+    "name": "Bob Ferguson",
+    "office": "Governor",
+    "district": "Statewide",
+    "state": "WA",
+    "county": "King",
+    "bio": "Former State Attorney General elected Governor, known for aggressive consumer protection lawsuits and strong environmental defense.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "may-wa-harrell",
+    "name": "Bruce Harrell",
+    "office": "Mayor",
+    "district": "Seattle",
+    "state": "WA",
+    "county": "King",
+    "bio": "Mayor pushing a 'One Seattle' agenda focused on increasing police staffing and clearing unauthorized encampments.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "rep-wa-jayapal",
+    "name": "Pramila Jayapal",
+    "office": "U.S. House",
+    "district": "7th District",
+    "state": "WA",
+    "county": "King",
+    "bio": "Chair of the Congressional Progressive Caucus, leading pushes for Medicare for All and comprehensive immigration reform.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1 }
+  },
+  {
+    "id": "sen-tx-cruz",
+    "name": "Ted Cruz",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "TX",
+    "county": "Travis",
+    "bio": "Outspoken conservative Senator known for strict constitutionalist views, deregulation, and strong opposition to federal overreach.",
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+  },
+  {
+    "id": "sen-tx-cornyn",
+    "name": "John Cornyn",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "TX",
+    "county": "Travis",
+    "bio": "Senior Texas Senator known as a reliable conservative vote who occasionally engages in bipartisan legislation like the CHIPS Act.",
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+  },
+  {
+    "id": "gov-tx-abbott",
+    "name": "Greg Abbott",
+    "office": "Governor",
+    "district": "Statewide",
+    "state": "TX",
+    "county": "Travis",
+    "bio": "Governor of Texas championing massive border security operations, school voucher programs, and broad tax cuts.",
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+  },
+  {
+    "id": "may-tx-watson",
+    "name": "Kirk Watson",
+    "office": "Mayor",
+    "district": "Austin",
+    "state": "TX",
+    "county": "Travis",
+    "bio": "Returning Mayor of Austin, balancing the city's progressive roots with intense infrastructure and housing affordability challenges.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 0, "issue-010": -1 }
   }
 ]

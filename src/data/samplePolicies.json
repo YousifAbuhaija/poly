@@ -13,14 +13,20 @@
   },
   {
     "id": "policy-003",
-    "title": "Affordable Housing Development Program",
-    "text": "This program establishes a public-private partnership to construct 10,000 new affordable housing units over five years. Developers participating in the program receive expedited permitting and tax credits in exchange for reserving 30% of units for households earning below the area median income.",
-    "category": "Housing"
-  },
-  {
-    "id": "policy-004",
     "title": "Federal Algorithmic Transparency Act",
     "text": "This federal legislation requires social media platforms and tech companies to disclose how their algorithms target content to users under 25. It also provides users the right to opt-out of data tracking for targeted advertising and establishes a federal commission to monitor algorithmic bias.",
     "category": "Technology & Privacy"
+  },
+  {
+    "id": "policy-004",
+    "title": "The 'City of Yes' Housing Initiative",
+    "text": "A comprehensive municipal zoning overhaul aimed at stripping away legacy regulations to allow developers to build multi-family homes, accessory dwelling units (ADUs), and high-density apartments in previously restricted urban and suburban neighborhoods.",
+    "category": "Housing"
+  },
+  {
+    "id": "policy-005",
+    "title": "CHIPS and Science Manufacturing Act",
+    "text": "A massive federal package providing tens of billions in subsidies and tax incentives to domestic technology manufacturers to build semiconductor fabrication plants on U.S. soil, strengthening national security and local job markets.",
+    "category": "Economy"
   }
 ]

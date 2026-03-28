@@ -1,34 +1,42 @@
 [
   {
-    "id": "election-001",
-    "name": "2024 General Election",
-    "date": "2024-11-05",
+    "id": "elec-ca-2026",
+    "name": "2026 California Midterm Elections",
+    "date": "2026-11-03",
     "state": "CA",
     "county": "Los Angeles",
-    "offices": ["State Senate", "City Council"]
+    "offices": ["Governor", "U.S. House", "Mayor"]
   },
   {
-    "id": "election-002",
-    "name": "2024 General Election",
-    "date": "2024-11-05",
+    "id": "elec-ny-2025",
+    "name": "2025 NYC Municipal Elections",
+    "date": "2025-11-04",
     "state": "NY",
     "county": "New York",
-    "offices": ["State Assembly", "City Council"]
+    "offices": ["Mayor", "City Council"]
   },
   {
-    "id": "election-003",
-    "name": "2026 Federal Midterm Election",
-    "date": "2026-11-03",
-    "state": "CA",
-    "county": "Los Angeles",
-    "offices": ["U.S. Senate", "U.S. House", "Governor"]
-  },
-  {
-    "id": "election-004",
-    "name": "2026 Federal Midterm Election",
-    "date": "2026-11-03",
+    "id": "elec-va-2025",
+    "name": "2025 Virginia Gubernatorial Election",
+    "date": "2025-11-04",
     "state": "VA",
     "county": "Montgomery",
-    "offices": ["U.S. Senate", "U.S. House"]
+    "offices": ["Governor", "State Delegate"]
+  },
+  {
+    "id": "elec-wa-2025",
+    "name": "2025 Seattle Municipal Elections",
+    "date": "2025-11-04",
+    "state": "WA",
+    "county": "King",
+    "offices": ["Mayor", "City Council"]
+  },
+  {
+    "id": "elec-tx-2026",
+    "name": "2026 Texas Midterm Elections",
+    "date": "2026-11-03",
+    "state": "TX",
+    "county": "Travis",
+    "offices": ["Governor", "U.S. Senate", "U.S. House"]
   }
 ]

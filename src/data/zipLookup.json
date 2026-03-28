@@ -2,16 +2,14 @@
   "90210": { "city": "Beverly Hills", "county": "Los Angeles", "state": "CA" },
   "90001": { "city": "Los Angeles", "county": "Los Angeles", "state": "CA" },
   "90012": { "city": "Los Angeles", "county": "Los Angeles", "state": "CA" },
-  "90024": { "city": "Westwood", "county": "Los Angeles", "state": "CA" },
-  "90036": { "city": "Mid-Wilshire", "county": "Los Angeles", "state": "CA" },
-  "90045": { "city": "Westchester", "county": "Los Angeles", "state": "CA" },
   "91101": { "city": "Pasadena", "county": "Los Angeles", "state": "CA" },
   "10001": { "city": "New York", "county": "New York", "state": "NY" },
   "10002": { "city": "New York", "county": "New York", "state": "NY" },
-  "10003": { "city": "New York", "county": "New York", "state": "NY" },
-  "10010": { "city": "New York", "county": "New York", "state": "NY" },
-  "10016": { "city": "New York", "county": "New York", "state": "NY" },
-  "10019": { "city": "New York", "county": "New York", "state": "NY" },
   "10036": { "city": "New York", "county": "New York", "state": "NY" },
-  "24060": { "city": "Blacksburg", "county": "Montgomery", "state": "VA" }
+  "24060": { "city": "Blacksburg", "county": "Montgomery", "state": "VA" },
+  "98101": { "city": "Seattle", "county": "King", "state": "WA" },
+  "98104": { "city": "Seattle", "county": "King", "state": "WA" },
+  "98109": { "city": "Seattle", "county": "King", "state": "WA" },
+  "78701": { "city": "Austin", "county": "Travis", "state": "TX" },
+  "78704": { "city": "Austin", "county": "Travis", "state": "TX" }
 }
