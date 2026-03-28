@@ -30,11 +30,11 @@ export default function ZipOnboarding() {
       <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#274C77]/15 to-[#6096BA]/10 rounded-full blur-3xl pointer-events-none" />
       
       {/* Top bar */}
-      <header className="relative z-10 bg-white/20 backdrop-blur-xl border-b border-white/20 px-6 py-3 shadow-sm">
+      <header className="relative z-10 bg-white border-b border-gray-200 px-6 py-3 shadow-sm">
         <button
           type="button"
           onClick={() => navigate('/')}
-          className="text-xl font-bold bg-gradient-to-r from-brand-purple to-brand-violet bg-clip-text text-transparent hover:opacity-80 transition"
+          className="text-xl font-bold text-[#274C77] hover:opacity-80 transition"
         >
           Poly
         </button>
@@ -55,23 +55,23 @@ export default function ZipOnboarding() {
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             <div className="flex items-center gap-1.5">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-purple to-brand-violet text-white text-xs flex items-center justify-center font-semibold shadow-sm">1</div>
-              <span className="text-xs font-medium text-brand-purple">Location</span>
+              <div className="w-6 h-6 rounded-full bg-[#274C77] text-white text-xs flex items-center justify-center font-semibold shadow-sm">1</div>
+              <span className="text-xs font-medium text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Location</span>
             </div>
-            <div className="flex-1 h-px bg-gradient-to-r from-surface-border to-transparent" />
+            <div className="flex-1 h-px bg-white/40" />
             <div className="flex items-center gap-1.5">
-              <div className="w-6 h-6 rounded-full bg-surface-border text-text-muted text-xs flex items-center justify-center font-semibold">2</div>
-              <span className="text-xs text-text-muted">Quiz</span>
+              <div className="w-6 h-6 rounded-full bg-white/30 text-white text-xs flex items-center justify-center font-semibold">2</div>
+              <span className="text-xs text-white/70" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Quiz</span>
             </div>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-surface-border" />
+            <div className="flex-1 h-px bg-white/40" />
             <div className="flex items-center gap-1.5">
-              <div className="w-6 h-6 rounded-full bg-surface-border text-text-muted text-xs flex items-center justify-center font-semibold">3</div>
-              <span className="text-xs text-text-muted">Results</span>
+              <div className="w-6 h-6 rounded-full bg-white/30 text-white text-xs flex items-center justify-center font-semibold">3</div>
+              <span className="text-xs text-white/70" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Results</span>
             </div>
           </motion.div>
 
           <motion.div 
-            className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-8 shadow-xl"
+            className="bg-white rounded-2xl border border-surface-border p-8 shadow-xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}

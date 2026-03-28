@@ -52,23 +52,23 @@ export default function VibeCheck() {
       <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-[#274C77]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
       
       {/* Top bar */}
-      <header className="relative z-10 bg-white/20 backdrop-blur-xl border-b border-white/20 px-6 py-3 flex items-center justify-between shadow-sm">
+      <header className="relative z-10 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
         <button
           type="button"
           onClick={() => navigate('/')}
-          className="text-xl font-bold bg-gradient-to-r from-brand-purple to-brand-violet bg-clip-text text-transparent hover:opacity-80 transition"
+          className="text-xl font-bold text-[#274C77] hover:opacity-80 transition"
         >
           Poly
         </button>
-        <span className="text-sm text-text-muted">{remaining} {remaining === 1 ? 'question' : 'questions'} left</span>
+        <span className="text-sm text-gray-500">{remaining} {remaining === 1 ? 'question' : 'questions'} left</span>
       </header>
 
       <div className="relative z-10 flex flex-1 flex-col items-center px-4 py-10">
         {/* Progress */}
         <div className="w-full max-w-xl mb-8">
-          <div className="flex justify-between text-xs text-text-muted mb-2">
-            <span>Question {quizIndex + 1} of {total}</span>
-            <span>{Math.round(progress)}% complete</span>
+          <div className="flex justify-between text-xs mb-2">
+            <span style={{ color: '#fff', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Question {quizIndex + 1} of {total}</span>
+            <span style={{ color: '#fff', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{Math.round(progress)}% complete</span>
           </div>
           <div
             className="h-1.5 w-full rounded-full bg-white/60 backdrop-blur-sm overflow-hidden shadow-sm"

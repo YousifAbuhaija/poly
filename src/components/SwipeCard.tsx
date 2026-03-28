@@ -50,7 +50,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
         y: { duration: 0.2, ease: 'easeOut' }
       }}
     >
-      <div className="relative bg-white/70 backdrop-blur-md rounded-2xl border border-white/30 p-8 shadow-lg">
+      <div className="relative bg-white/92 backdrop-blur-md rounded-2xl border border-white/60 p-8 shadow-xl">
         {/* Swipe overlays */}
         <motion.span
           style={{ opacity: agreeOpacity }}
@@ -77,7 +77,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
           type="button"
           onClick={() => triggerExit('left', -1)}
           aria-label="Disagree"
-          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-[#8B8C89]/40 bg-[#8B8C89]/30 backdrop-blur-sm text-[#274C77] text-sm font-semibold hover:bg-[#8B8C89]/40 hover:shadow-md transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-red-300 bg-white text-red-600 text-sm font-semibold hover:bg-red-50 hover:shadow-md transition-all"
         >
           <span>✕</span> Disagree
         </button>
@@ -85,7 +85,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
           type="button"
           onClick={() => onRespond(0)}
           aria-label="Skip"
-          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-white/40 bg-white/70 backdrop-blur-sm text-text-secondary text-sm font-semibold hover:bg-white/90 hover:shadow-md transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-600 text-sm font-semibold hover:bg-gray-50 hover:shadow-md transition-all"
         >
           Skip
         </button>
@@ -93,7 +93,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
           type="button"
           onClick={() => triggerExit('right', 1)}
           aria-label="Agree"
-          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-[#6096BA]/40 bg-[#6096BA]/30 backdrop-blur-sm text-[#274C77] text-sm font-semibold hover:bg-[#6096BA]/40 hover:shadow-md transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-green-300 bg-white text-green-700 text-sm font-semibold hover:bg-green-50 hover:shadow-md transition-all"
         >
           <span>✓</span> Agree
         </button>
