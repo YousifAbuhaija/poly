@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useAppContext } from './context/AppContext';
 import LandingPage from './components/LandingPage';
 import ZipOnboarding from './components/ZipOnboarding';
@@ -8,90 +9,74 @@ import CandidateDetail from './components/CandidateDetail';
 import NoReadTranslator from './components/NoReadTranslator';
 import AskPolyChat from './components/AskPolyChat';
 
-/** Paths where the bottom nav is hidden */
 const NO_NAV_PATHS = ['/', '/onboarding', '/vibe-check'];
 
 function RequireOnboarding({ children }: { children: React.ReactNode }) {
   const { location } = useAppContext();
-  if (!location) {
-    return <Navigate to="/onboarding" replace />;
-  }
+  if (!location) return <Navigate to="/onboarding" replace />;
   return <>{children}</>;
 }
 
-/** Bottom navigation bar — only visible after onboarding on non-landing routes. */
-function BottomNav() {
-  const { location: appLocation } = useAppContext();
+function RequireQuizComplete({ children }: { children: React.ReactNode }) {
+  const { quizComplete } = useAppContext();
+  if (!quizComplete) return <Navigate to="/vibe-check" replace />;
+  return <>{children}</>;
+}
+
+function TopNav() {
+  const { location: appLocation, quizComplete } = useAppContext();
   const routerLocation = useLocation();
   const navigate = useNavigate();
 
-  // Hide on landing and onboarding, or if not onboarded
   if (!appLocation || NO_NAV_PATHS.includes(routerLocation.pathname)) return null;
 
   const tabs = [
-    { label: 'Results', path: '/results', icon: resultsIcon },
-    { label: 'Translator', path: '/translator', icon: translatorIcon },
-    { label: 'Chat', path: '/chat', icon: chatIcon },
+    { label: 'Results', path: '/results', blocked: !quizComplete },
+    { label: 'Translator', path: '/translator', blocked: false },
+    { label: 'Chat', path: '/chat', blocked: false },
   ] as const;
 
   return (
-    <nav
-      className="fixed bottom-0 inset-x-0 z-50 border-t border-glass-border bg-poly-dark/90 backdrop-blur-lg"
-      aria-label="Main navigation"
-    >
-      <div className="mx-auto flex max-w-lg items-center justify-around py-2">
-        {tabs.map((tab) => {
-          const active = routerLocation.pathname.startsWith(tab.path);
-          return (
-            <button
-              key={tab.path}
-              type="button"
-              onClick={() => navigate(tab.path)}
-              className={`flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-0.5 px-3 py-1 transition ${
-                active ? 'text-poly-accent' : 'text-text-muted hover:text-text-secondary'
-              }`}
-              aria-current={active ? 'page' : undefined}
-            >
-              <tab.icon active={active} />
-              <span className="text-[10px] font-medium">{tab.label}</span>
-            </button>
-          );
-        })}
+    <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        {/* Logo */}
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="text-xl font-bold text-brand-accent tracking-tight hover:opacity-80 transition"
+        >
+          Poly
+        </button>
+
+        {/* Nav links */}
+        <nav className="flex items-center gap-1" aria-label="Main navigation">
+          {tabs.map((tab) => {
+            const active = routerLocation.pathname.startsWith(tab.path);
+            return (
+              <button
+                key={tab.path}
+                type="button"
+                onClick={() => !tab.blocked && navigate(tab.path)}
+                disabled={tab.blocked}
+                title={tab.blocked ? 'Complete the quiz first' : undefined}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  tab.blocked
+                    ? 'text-text-muted cursor-not-allowed opacity-40'
+                    : active
+                    ? 'bg-brand-lavender text-brand-accent'
+                    : 'text-text-secondary hover:bg-surface-muted hover:text-text-primary'
+                }`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }
-
-/* ── Icon components ─────────────────────────────────────────────── */
-
-function resultsIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-      {active && <path d="M9 14l2 2 4-4" />}
-    </svg>
-  );
-}
-
-function translatorIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? '2.2' : '2'} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-    </svg>
-  );
-}
-
-function chatIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? '2.2' : '2'} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-    </svg>
-  );
-}
-
-/* ── Main App ────────────────────────────────────────────────────── */
 
 export default function App() {
   const { location: appLocation } = useAppContext();
@@ -99,54 +84,83 @@ export default function App() {
   const showNav = !!appLocation && !NO_NAV_PATHS.includes(routerLocation.pathname);
 
   return (
-    <div className={`min-h-dvh ${showNav ? 'pb-16' : ''}`}>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/onboarding" element={<ZipOnboarding />} />
-        <Route
-          path="/vibe-check"
-          element={
-            <RequireOnboarding>
-              <VibeCheck />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/results"
-          element={
-            <RequireOnboarding>
-              <CivicMatchResults />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/candidate/:id"
-          element={
-            <RequireOnboarding>
-              <CandidateDetail />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/translator"
-          element={
-            <RequireOnboarding>
-              <NoReadTranslator />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/chat"
-          element={
-            <RequireOnboarding>
-              <AskPolyChat />
-            </RequireOnboarding>
-          }
-        />
-        {/* Catch-all: redirect to landing */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-      <BottomNav />
+    <div className="min-h-dvh bg-surface-subtle">
+      {showNav && <TopNav />}
+      <AnimatePresence mode="wait">
+        <Routes location={routerLocation} key={routerLocation.pathname}>
+          <Route path="/" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <LandingPage />
+            </motion.div>
+          } />
+          <Route path="/onboarding" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ZipOnboarding />
+            </motion.div>
+          } />
+          <Route path="/vibe-check" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><VibeCheck /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/results" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><RequireQuizComplete><CivicMatchResults /></RequireQuizComplete></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/candidate/:id" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><CandidateDetail /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/translator" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><NoReadTranslator /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/chat" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><AskPolyChat /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 }

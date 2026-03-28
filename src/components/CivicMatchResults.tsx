@@ -1,109 +1,116 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
 import { computeMatches } from '../engines/CivicMatchEngine';
 import { loadIssues } from '../services/DataLoader';
 import CandidateCard from './CandidateCard';
 
-/**
- * Returns true when every position value for a candidate is 0 (unknown).
- */
-function hasAllZeroPositions(positions: Record<string, number>): boolean {
-  const values = Object.values(positions);
-  return values.length === 0 || values.every((v) => v === 0);
-}
-
 export default function CivicMatchResults() {
-  const { location, issueProfile, candidates, isFallbackMode } = useAppContext();
+  const { location, issueProfile } = useAppContext();
   const navigate = useNavigate();
-
   const issues = useMemo(() => loadIssues(), []);
-
   const results = useMemo(() => {
     if (!location) return [];
-    // Pass AppContext candidates to the match engine instead of loading from JSON
-    return computeMatches(
-      issueProfile,
-      location,
-      candidates.length > 0 ? candidates : undefined,
-    );
-  }, [issueProfile, location, candidates]);
+    return computeMatches(issueProfile, location);
+  }, [issueProfile, location]);
 
   const allSkipped = Object.values(issueProfile).every((s) => s === 0);
 
   if (!location) {
     return (
-      <div className="min-h-dvh flex items-center justify-center px-4">
-        <p className="text-text-secondary">Please complete onboarding first.</p>
+      <div className="min-h-dvh flex items-center justify-center">
+        <p className="text-text-secondary text-sm">Please complete onboarding first.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4 py-8">
-      <div className="mx-auto max-w-sm">
-        <h1 className="text-2xl font-bold text-white text-center">Your Matches</h1>
-        <p className="mt-1 text-center text-sm text-text-secondary">
-          {location.city}, {location.state} · {location.county} County
-        </p>
-
-        {/* Fallback mode banner */}
-        {isFallbackMode && (
-          <div className="mt-4 rounded-xl bg-amber-500/10 border border-amber-500/20 px-4 py-3">
-            <p className="text-xs text-amber-400 leading-relaxed">
-              You're viewing demo data. Live data is temporarily unavailable.
-            </p>
-          </div>
-        )}
-
-        {/* Disclaimer banner */}
-        <div className="mt-4 rounded-xl bg-white/5 border border-glass-border px-4 py-3">
-          <p className="text-xs text-text-muted leading-relaxed">
-            Match scores reflect issue agreement and are not endorsements. They represent
-            values alignment based on your responses, not voting recommendations.
+    <div className="min-h-dvh bg-gradient-to-br from-[#E7ECEF] via-white to-[#A3CEF1] relative">
+      {/* Decorative gradient orbs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#6096BA]/35 to-[#A3CEF1]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-[#274C77]/30 to-[#6096BA]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+      
+      {/* Mesh gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(96,150,186,0.1),transparent_50%),radial-gradient(circle_at_75%_75%,rgba(163,206,241,0.1),transparent_50%)]" />
+      
+      <motion.div 
+        className="relative z-10 mx-auto max-w-4xl px-6 py-10"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        {/* Page header */}
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          <h1 className="text-3xl font-bold text-text-primary">Your Matches</h1>
+          <p className="mt-1 text-text-secondary text-sm">
+            {location.city}, {location.state} · {location.county} County
           </p>
-        </div>
+        </motion.div>
 
-        {/* Edge case: all issues skipped */}
+        {/* Disclaimer */}
+        <motion.div 
+          className="mb-6 rounded-xl bg-gradient-to-r from-brand-lavender/80 to-purple-100/80 backdrop-blur-sm border border-surface-border px-5 py-4 shadow-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          <p className="text-xs text-brand-accent leading-relaxed">
+            Match scores reflect issue agreement and are not endorsements. They represent values alignment based on your responses, not voting recommendations.
+          </p>
+        </motion.div>
+
         {allSkipped && (
-          <div className="mt-6 rounded-xl bg-skip/10 border border-skip/20 px-4 py-4 text-center">
-            <p className="text-sm text-skip">
-              You skipped all issues, so match scores are 0%. Go back and share your takes for
-              better results.
+          <motion.div 
+            className="mb-6 rounded-xl bg-amber-50 border border-amber-200 px-5 py-4 shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <p className="text-sm text-amber-700">
+              You skipped all questions - match scores are 0%. Retake the quiz to get better results.
             </p>
-          </div>
+            <button
+              type="button"
+              onClick={() => navigate('/vibe-check')}
+              className="mt-2 text-sm font-semibold text-brand-purple hover:underline"
+            >
+              Retake quiz →
+            </button>
+          </motion.div>
         )}
 
-        {/* Edge case: no candidates found */}
         {results.length === 0 && !allSkipped && (
-          <div className="mt-6 rounded-xl bg-white/5 border border-glass-border px-4 py-4 text-center">
-            <p className="text-sm text-text-secondary">
-              No candidates found for your area. We're working on expanding coverage.
-            </p>
-          </div>
+          <motion.div 
+            className="rounded-xl bg-white/80 backdrop-blur-sm border border-surface-border px-5 py-8 text-center shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <p className="text-text-secondary text-sm">No candidates found for your area. We're working on expanding coverage.</p>
+          </motion.div>
         )}
 
-        {/* Candidate list */}
-        <div className="mt-5 flex flex-col gap-4" role="list" aria-label="Candidate matches">
-          {results.map((r) => (
-            <div key={r.candidate.id} role="listitem">
-              <CandidateCard
-                result={r}
-                issues={issues}
-                onTap={(id) => navigate(`/candidate/${id}`)}
-              />
-              {/* Insufficient position data explanation for all-zero candidates */}
-              {hasAllZeroPositions(r.candidate.positions) && (
-                <div className="mt-2 rounded-lg bg-white/5 border border-glass-border px-3 py-2">
-                  <p className="text-xs text-text-muted">
-                    Insufficient position data
-                  </p>
-                </div>
-              )}
-            </div>
+        {/* Results grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" role="list" aria-label="Candidate matches">
+          {results.map((r, index) => (
+            <motion.div 
+              key={r.candidate.id} 
+              role="listitem"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
+            >
+              <CandidateCard result={r} issues={issues} onTap={(id) => navigate(`/candidate/${id}`)} />
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

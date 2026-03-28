@@ -1,12 +1,14 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
-import type { AppState, LocationResult, IssueProfile, ChatMessage, Candidate } from '../types';
+import type { AppState, LocationResult, IssueProfile, ChatMessage } from '../types';
 
 interface AppContextValue extends AppState {
   setLocation: (location: LocationResult) => void;
   setIssueProfile: (profile: IssueProfile) => void;
   setChatHistory: (history: ChatMessage[]) => void;
-  setCandidates: (candidates: Candidate[]) => void;
-  setFallbackMode: (isFallback: boolean) => void;
+  quizIndex: number;
+  setQuizIndex: (index: number) => void;
+  quizComplete: boolean;
+  setQuizComplete: (complete: boolean) => void;
 }
 
 const initialState: AppState = {
@@ -14,14 +16,14 @@ const initialState: AppState = {
   issueProfile: {},
   chatHistory: [],
   isOnboarded: false,
-  candidates: [],
-  isFallbackMode: false,
 };
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(initialState);
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [quizComplete, setQuizComplete] = useState(false);
 
   const setLocation = useCallback((location: LocationResult) => {
     setState(prev => ({ ...prev, location, isOnboarded: true }));
@@ -35,16 +37,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, chatHistory }));
   }, []);
 
-  const setCandidates = useCallback((candidates: Candidate[]) => {
-    setState(prev => ({ ...prev, candidates }));
-  }, []);
-
-  const setFallbackMode = useCallback((isFallbackMode: boolean) => {
-    setState(prev => ({ ...prev, isFallbackMode }));
-  }, []);
-
   return (
-    <AppContext.Provider value={{ ...state, setLocation, setIssueProfile, setChatHistory, setCandidates, setFallbackMode }}>
+    <AppContext.Provider value={{ ...state, setLocation, setIssueProfile, setChatHistory, quizIndex, setQuizIndex, quizComplete, setQuizComplete }}>
       {children}
     </AppContext.Provider>
   );

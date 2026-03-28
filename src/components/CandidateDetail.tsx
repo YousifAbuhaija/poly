@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
 import { loadCandidates, loadElections, loadIssues } from '../services/DataLoader';
 import type { Candidate, Election, IssueStatement, IssueScore } from '../types';
-
 
 function issueLabel(issueId: string, issues: IssueStatement[]): string {
   const issue = issues.find((i) => i.id === issueId);
@@ -19,12 +19,9 @@ function scoreLabel(score: IssueScore): string {
 export default function CandidateDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { issueProfile, location, candidates: contextCandidates } = useAppContext();
+  const { issueProfile, location } = useAppContext();
 
-  const candidates = useMemo(
-    () => (contextCandidates && contextCandidates.length > 0 ? contextCandidates : loadCandidates()),
-    [contextCandidates],
-  );
+  const candidates = useMemo(() => loadCandidates(), []);
   const elections = useMemo(() => loadElections(), []);
   const issues = useMemo(() => loadIssues(), []);
 
@@ -63,13 +60,13 @@ export default function CandidateDetail() {
 
   if (!candidate) {
     return (
-      <div className="min-h-dvh flex items-center justify-center px-4 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900">
+      <div className="min-h-dvh flex items-center justify-center bg-surface-subtle">
         <div className="text-center">
-          <p className="text-text-secondary">Candidate not found.</p>
+          <p className="text-text-secondary text-sm">Candidate not found.</p>
           <button
             type="button"
             onClick={() => navigate('/results')}
-            className="mt-4 rounded-full bg-poly-accent px-6 py-2 text-sm font-medium text-white min-h-[44px] min-w-[44px]"
+            className="mt-4 px-6 py-2 rounded-lg bg-brand-purple text-white text-sm font-semibold hover:bg-brand-accent transition"
           >
             Back to Results
           </button>
@@ -78,177 +75,190 @@ export default function CandidateDetail() {
     );
   }
 
+  const matchColor = matchPercentage >= 70 ? '#22c55e' : matchPercentage >= 40 ? '#f59e0b' : '#ef4444';
+
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4 py-6">
-      <div className="mx-auto max-w-sm">
-        {/* Back navigation */}
-        <button
+    <div className="min-h-dvh bg-gradient-to-br from-[#E7ECEF] via-white to-[#A3CEF1] relative">
+      {/* Decorative gradient orbs */}
+      <div className="absolute top-20 right-10 w-[450px] h-[450px] bg-gradient-to-bl from-[#6096BA]/35 to-[#A3CEF1]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#274C77]/30 to-[#6096BA]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+      
+      {/* Mesh gradient overlay */}
+      <div className="absolute inset-0 bg-radial-gradient(circle_at_30%_20%,rgba(96,150,186,0.1),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(163,206,241,0.1),transparent_50%)]" />
+      
+      <motion.div 
+        className="relative z-10 mx-auto max-w-4xl px-6 py-8"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        {/* Back button */}
+        <motion.button
           type="button"
           onClick={() => navigate('/results')}
-          className="flex items-center gap-1 text-sm text-text-secondary hover:text-white transition min-h-[44px] min-w-[44px]"
+          className="flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition mb-6"
           aria-label="Back to results"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
           Back to Results
-        </button>
+        </motion.button>
 
-        {/* Header: name, office, district, match ring */}
-        <div className="mt-4 flex items-start gap-4">
-          <div className="relative flex-shrink-0" aria-hidden="true">
-            <svg width="72" height="72" viewBox="0 0 72 72">
-              <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
-              <circle
-                cx="36" cy="36" r="30" fill="none"
-                stroke="url(#detailMatchGrad)" strokeWidth="4" strokeLinecap="round"
-                strokeDasharray={2 * Math.PI * 30}
-                strokeDashoffset={2 * Math.PI * 30 - (matchPercentage / 100) * 2 * Math.PI * 30}
-                transform="rotate(-90 36 36)"
-              />
-              <defs>
-                <linearGradient id="detailMatchGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#7b2ff7" />
-                  <stop offset="100%" stopColor="#c084fc" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-base font-bold text-white">
-              {matchPercentage}%
-            </span>
+        {/* Header card */}
+        <motion.div 
+          className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-8 shadow-xl mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          <div className="flex items-start gap-6">
+            {/* Avatar */}
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-violet flex items-center justify-center text-white text-3xl font-bold flex-shrink-0 shadow-lg">
+              {candidate.name[0]}
+            </div>
+
+            {/* Info */}
+            <div className="flex-1 min-w-0">
+              <h1 className="text-3xl font-bold text-text-primary mb-1" data-testid="candidate-name">{candidate.name}</h1>
+              <p className="text-text-secondary text-sm mb-4" data-testid="candidate-office">
+                {candidate.office} · {candidate.district}
+              </p>
+
+              {/* Match badge */}
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gradient-to-r from-surface-subtle to-purple-50/50 border border-surface-border shadow-sm">
+                <span className="text-2xl font-bold" style={{ color: matchColor }}>{matchPercentage}%</span>
+                <div className="flex flex-col">
+                  <span className="text-xs font-semibold text-text-primary">Match Score</span>
+                  <span className="text-xs text-text-muted">Based on {answeredCount} {answeredCount === 1 ? 'issue' : 'issues'}</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex-1 min-w-0 pt-1">
-            <h1 className="text-xl font-bold text-white" data-testid="candidate-name">{candidate.name}</h1>
-            <p className="text-sm text-text-secondary" data-testid="candidate-office">{candidate.office} · {candidate.district}</p>
+
+          {/* Bio */}
+          <div className="mt-6 pt-6 border-t border-surface-border">
+            <h2 className="text-sm font-semibold text-text-primary mb-2">About</h2>
+            <p className="text-sm text-text-secondary leading-relaxed" data-testid="candidate-bio">{candidate.bio}</p>
           </div>
+        </motion.div>
+
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left: Match breakdown */}
+          <motion.div 
+            className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-6 shadow-lg"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <h2 className="text-lg font-semibold text-text-primary mb-1">Where You Align</h2>
+            <p className="text-xs text-text-muted mb-5">
+              Match scores reflect values alignment, not endorsements.
+            </p>
+
+            {agreements.length > 0 && (
+              <div className="mb-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-agree" />
+                  <p className="text-sm font-semibold text-text-primary">You agree ({agreements.length})</p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  {agreements.map((issueId) => (
+                    <div key={issueId} className="rounded-lg bg-green-50 border border-green-200 px-3 py-2.5 shadow-sm">
+                      <p className="text-xs text-green-800 leading-relaxed">{issueLabel(issueId, issues)}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {disagreements.length > 0 && (
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-disagree" />
+                  <p className="text-sm font-semibold text-text-primary">You differ ({disagreements.length})</p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  {disagreements.map((issueId) => (
+                    <div key={issueId} className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 shadow-sm">
+                      <p className="text-xs text-red-800 leading-relaxed">{issueLabel(issueId, issues)}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {agreements.length === 0 && disagreements.length === 0 && (
+              <p className="text-sm text-text-muted">
+                No match data available. Complete the quiz to see how you align.
+              </p>
+            )}
+          </motion.div>
+
+          {/* Right: All positions */}
+          <motion.div 
+            className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-6 shadow-lg"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+          >
+            <h2 className="text-lg font-semibold text-text-primary mb-5">All Positions</h2>
+            <div className="flex flex-col gap-3" data-testid="candidate-positions">
+              {Object.entries(candidate.positions).map(([issueId, score]) => {
+                const issue = issues.find((i) => i.id === issueId);
+                return (
+                  <div key={issueId} className="flex items-start gap-3 pb-3 border-b border-surface-border last:border-0 last:pb-0">
+                    <span
+                      className={`flex-shrink-0 mt-0.5 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-sm ${
+                        score === 1
+                          ? 'bg-green-100 text-agree'
+                          : score === -1
+                            ? 'bg-red-100 text-disagree'
+                            : 'bg-surface-muted text-text-muted'
+                      }`}
+                    >
+                      {score === 1 ? '✓' : score === -1 ? '✕' : '—'}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-brand-accent mb-0.5">{issue?.category ?? issueId}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed">{issue?.text ?? issueId}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
 
-        {/* Bio */}
-        <div className="mt-5 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-          <h2 className="text-sm font-semibold text-white mb-1">About</h2>
-          <p className="text-sm text-text-secondary leading-relaxed" data-testid="candidate-bio">{candidate.bio}</p>
-        </div>
-
-        {/* Location relevance / election context */}
+        {/* Election context */}
         {relevantElections.length > 0 && (
-          <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-            <h2 className="text-sm font-semibold text-white mb-2">Election Context</h2>
+          <motion.div 
+            className="mt-6 bg-gradient-to-r from-brand-lavender/80 to-purple-100/80 backdrop-blur-sm rounded-2xl border border-surface-border p-6 shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+          >
+            <h2 className="text-sm font-semibold text-brand-accent mb-3">Election Context</h2>
             {relevantElections.map((el) => (
-              <div key={el.id} className="mb-2 last:mb-0">
-                <p className="text-sm text-text-secondary">
-                  <span className="text-white font-medium">{el.name}</span> · {el.date}
-                </p>
-                <p className="text-xs text-text-muted">
+              <div key={el.id} className="mb-3 last:mb-0">
+                <p className="text-sm text-text-primary font-medium">{el.name} · {el.date}</p>
+                <p className="text-xs text-text-secondary mt-0.5">
                   {el.county} County, {el.state} · {el.offices.join(', ')}
                 </p>
               </div>
             ))}
             {location && (
-              <p className="mt-2 text-xs text-text-muted">
-                Showing elections for: {location.city}, {location.state} ({location.county} County)
+              <p className="mt-3 pt-3 border-t border-surface-border text-xs text-text-muted">
+                Showing elections for {location.city}, {location.state} ({location.county} County)
               </p>
             )}
-          </div>
+          </motion.div>
         )}
-
-        {/* Match explanation */}
-        <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-          <h2 className="text-sm font-semibold text-white mb-2">Match Breakdown</h2>
-          <p className="text-xs text-text-muted mb-3">
-            Match scores reflect values alignment based on your issue responses. They are not endorsements.
-          </p>
-
-          {agreements.length > 0 && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-agree mb-1">You agree on ({agreements.length})</p>
-              <div className="flex flex-col gap-1.5">
-                {agreements.map((issueId) => (
-                  <span key={issueId} className="rounded-lg bg-agree/10 px-3 py-1.5 text-xs text-agree">
-                    {issueLabel(issueId, issues)}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {disagreements.length > 0 && (
-            <div>
-              <p className="text-xs font-medium text-disagree mb-1">You differ on ({disagreements.length})</p>
-              <div className="flex flex-col gap-1.5">
-                {disagreements.map((issueId) => (
-                  <span key={issueId} className="rounded-lg bg-disagree/10 px-3 py-1.5 text-xs text-disagree">
-                    {issueLabel(issueId, issues)}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {agreements.length === 0 && disagreements.length === 0 && (
-            <p className="text-xs text-text-muted">
-              No match data available. Complete the Vibe Check to see how you align.
-            </p>
-          )}
-        </div>
-
-        {/* AI Disclaimer Banner */}
-        {candidate.positionsInferred && (
-          <div
-            className="mt-4 flex items-start gap-2 rounded-xl bg-amber-500/10 border border-amber-500/30 p-4"
-            data-testid="ai-disclaimer"
-          >
-            <svg
-              className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-400"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M8 0l2 5h5l-4 3.5 1.5 5L8 10.5 3.5 13.5 5 8.5 1 5h5z" />
-            </svg>
-            <p className="text-xs text-amber-300 leading-relaxed">
-              Issue positions were inferred by AI from public information and may not reflect this candidate's actual stated positions.
-            </p>
-          </div>
-        )}
-
-        {/* All issue positions */}
-        <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-          <h2 className="text-sm font-semibold text-white mb-2">All Positions</h2>
-          <div className="flex flex-col gap-2" data-testid="candidate-positions">
-            {Object.entries(candidate.positions).map(([issueId, score]) => (
-              <div key={issueId} className="flex items-start justify-between gap-2">
-                <p className="text-xs text-text-secondary flex-1 leading-relaxed">
-                  {candidate.positionsInferred && (
-                    <svg
-                      className="inline-block w-3 h-3 mr-1 text-amber-400 align-text-top"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 0l2 5h5l-4 3.5 1.5 5L8 10.5 3.5 13.5 5 8.5 1 5h5z" />
-                    </svg>
-                  )}
-                  {issueLabel(issueId, issues)}
-                </p>
-                <span
-                  className={`flex-shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                    score === 1
-                      ? 'bg-agree/15 text-agree'
-                      : score === -1
-                        ? 'bg-disagree/15 text-disagree'
-                        : 'bg-white/10 text-text-muted'
-                  }`}
-                >
-                  {scoreLabel(score)}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom spacer */}
-        <div className="h-8" />
-      </div>
+      </motion.div>
     </div>
   );
 }
