@@ -48,5 +48,55 @@
     "id": "issue-010",
     "text": "Cities should adopt stricter zoning laws to manage urban growth",
     "category": "Housing"
+  },
+  {
+    "id": "issue-011",
+    "text": "Renewable energy projects should receive government subsidies and support",
+    "category": "Environment"
+  },
+  {
+    "id": "issue-012",
+    "text": "Workers should have stronger protections and the right to unionize",
+    "category": "Labor"
+  },
+  {
+    "id": "issue-013",
+    "text": "Local governments should invest in bike lanes and pedestrian infrastructure",
+    "category": "Transportation"
+  },
+  {
+    "id": "issue-014",
+    "text": "Access to reproductive healthcare should be protected and expanded",
+    "category": "Healthcare"
+  },
+  {
+    "id": "issue-015",
+    "text": "Immigration policies should prioritize pathways to citizenship over enforcement",
+    "category": "Immigration"
+  },
+  {
+    "id": "issue-016",
+    "text": "Mental health services should receive equal funding to physical healthcare",
+    "category": "Healthcare"
+  },
+  {
+    "id": "issue-017",
+    "text": "Cities should allow more mixed-use development and reduce single-family zoning",
+    "category": "Housing"
+  },
+  {
+    "id": "issue-018",
+    "text": "Criminal justice reform should focus on rehabilitation over incarceration",
+    "category": "Justice"
+  },
+  {
+    "id": "issue-019",
+    "text": "Local governments should invest in community programs to address homelessness",
+    "category": "Social Services"
+  },
+  {
+    "id": "issue-020",
+    "text": "Corporations should pay higher taxes to fund public services",
+    "category": "Economy"
   }
 ]

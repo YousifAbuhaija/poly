@@ -107,27 +107,28 @@ export default function CandidateDetail() {
 
         {/* Header card */}
         <motion.div 
-          className="bg-white rounded-2xl border border-gray-200 p-8 shadow-xl mb-6"
+          className="bg-white rounded-2xl border border-gray-200 p-8 shadow-xl mb-6 relative"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
+          {/* Match percentage badge - top right */}
+          <div className="absolute top-6 right-6">
+            <div className="flex flex-col items-end">
+              <span className="text-4xl font-bold" style={{ color: matchColor }}>{matchPercentage}%</span>
+              <span className="text-xs text-gray-500 mt-0.5">Match Score</span>
+            </div>
+          </div>
+
           <div className="flex items-start gap-6">
             <div className="w-20 h-20 rounded-full bg-[#274C77] flex items-center justify-center text-white text-3xl font-bold flex-shrink-0 shadow-lg">
               {candidate.name[0]}
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 pr-24">
               <h1 className="text-3xl font-bold text-gray-900 mb-1" data-testid="candidate-name">{candidate.name}</h1>
               <p className="text-gray-500 text-sm mb-4" data-testid="candidate-office">
                 {candidate.office} · {candidate.district}
               </p>
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200 shadow-sm">
-                <span className="text-2xl font-bold" style={{ color: matchColor }}>{matchPercentage}%</span>
-                <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-gray-900">Match Score</span>
-                  <span className="text-xs text-gray-500">Based on {answeredCount} {answeredCount === 1 ? 'issue' : 'issues'}</span>
-                </div>
-              </div>
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-gray-100">
@@ -139,22 +140,22 @@ export default function CandidateDetail() {
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <motion.div 
-            className="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg"
+            className="bg-white rounded-2xl border border-gray-200 p-5 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">Where You Align</h2>
-            <p className="text-xs text-gray-400 mb-5">Match scores reflect values alignment, not endorsements.</p>
+            <h2 className="text-base font-semibold text-gray-900 mb-1">Where You Align</h2>
+            <p className="text-xs text-gray-400 mb-4">Match scores reflect values alignment, not endorsements.</p>
             {agreements.length > 0 && (
-              <div className="mb-5">
-                <div className="flex items-center gap-2 mb-3">
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
                   <p className="text-sm font-semibold text-gray-900">You agree ({agreements.length})</p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                   {agreements.map((issueId) => (
-                    <div key={issueId} className="rounded-lg bg-green-50 border border-green-200 px-3 py-2.5">
+                    <div key={issueId} className="rounded-lg bg-green-50 border border-green-200 px-3 py-2">
                       <p className="text-xs text-green-800 leading-relaxed">{issueLabel(issueId, issues)}</p>
                     </div>
                   ))}
@@ -163,13 +164,13 @@ export default function CandidateDetail() {
             )}
             {disagreements.length > 0 && (
               <div>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                   <p className="text-sm font-semibold text-gray-900">You differ ({disagreements.length})</p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                   {disagreements.map((issueId) => (
-                    <div key={issueId} className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5">
+                    <div key={issueId} className="rounded-lg bg-red-50 border border-red-200 px-3 py-2">
                       <p className="text-xs text-red-800 leading-relaxed">{issueLabel(issueId, issues)}</p>
                     </div>
                   ))}
@@ -182,18 +183,18 @@ export default function CandidateDetail() {
           </motion.div>
 
           <motion.div 
-            className="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg"
+            className="bg-white rounded-2xl border border-gray-200 p-5 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.4 }}
           >
-            <h2 className="text-lg font-semibold text-gray-900 mb-5">All Positions</h2>
-            <div className="flex flex-col gap-3" data-testid="candidate-positions">
+            <h2 className="text-base font-semibold text-gray-900 mb-4">All Positions</h2>
+            <div className="flex flex-col gap-2" data-testid="candidate-positions">
               {Object.entries(candidate.positions).map(([issueId, score]) => {
                 const issue = issues.find((i) => i.id === issueId);
                 return (
-                  <div key={issueId} className="flex items-start gap-3 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
-                    <span className={`flex-shrink-0 mt-0.5 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                  <div key={issueId} className="flex items-start gap-2.5 pb-2 border-b border-gray-100 last:border-0 last:pb-0">
+                    <span className={`flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${
                       score === 1 ? 'bg-green-100 text-green-700' : score === -1 ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-400'
                     }`}>
                       {score === 1 ? '✓' : score === -1 ? '✕' : '—'}

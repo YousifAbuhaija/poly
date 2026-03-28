@@ -50,25 +50,25 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
         y: { duration: 0.2, ease: 'easeOut' }
       }}
     >
-      <div className="relative bg-white/92 backdrop-blur-md rounded-2xl border border-white/60 p-8 shadow-xl">
+      <div className="relative bg-white/92 backdrop-blur-md rounded-2xl border border-white/60 p-12 shadow-xl min-h-[280px] flex flex-col justify-center">
         {/* Swipe overlays */}
         <motion.span
           style={{ opacity: agreeOpacity }}
-          className="absolute top-5 right-5 rounded-lg bg-[#6096BA]/20 border border-[#6096BA]/40 px-3 py-1 text-sm font-bold text-[#274C77]"
+          className="absolute top-6 right-6 rounded-lg bg-[#6096BA]/20 border border-[#6096BA]/40 px-4 py-2 text-base font-bold text-[#274C77]"
         >
           AGREE
         </motion.span>
         <motion.span
           style={{ opacity: disagreeOpacity }}
-          className="absolute top-5 left-5 rounded-lg bg-[#8B8C89]/20 border border-[#8B8C89]/40 px-3 py-1 text-sm font-bold text-[#274C77]"
+          className="absolute top-6 left-6 rounded-lg bg-[#8B8C89]/20 border border-[#8B8C89]/40 px-4 py-2 text-base font-bold text-[#274C77]"
         >
           DISAGREE
         </motion.span>
 
-        <span className="inline-block rounded-full bg-gradient-to-r from-brand-lavender to-purple-100 px-3 py-1 text-xs font-semibold text-brand-accent mb-5">
+        <span className="inline-block rounded-full bg-gradient-to-r from-brand-lavender to-purple-100 px-4 py-1.5 text-sm font-semibold text-brand-accent mb-6">
           {issue.category}
         </span>
-        <p className="text-lg text-text-primary leading-relaxed">{issue.text}</p>
+        <p className="text-xl text-text-primary leading-relaxed">{issue.text}</p>
       </div>
 
       {/* Action buttons */}

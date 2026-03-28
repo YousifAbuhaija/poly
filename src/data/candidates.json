@@ -7,7 +7,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "California's first Latino Senator, focusing heavily on immigration reform, voting rights, and federal climate legislation.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 1, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "sen-ca-schiff",
@@ -17,7 +17,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "Former U.S. Representative known for leading intelligence committees, focusing on democratic institution protection and housing.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "gov-ca-newsom",
@@ -27,7 +27,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "Governor of California pushing progressive climate policies and aggressively challenging local zoning laws to force housing construction.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "may-ca-bass",
@@ -37,7 +37,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "Mayor of Los Angeles and former U.S. Rep, dedicating her administration to declaring a state of emergency on homelessness.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "sen-va-warner",
@@ -47,7 +47,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Moderate Democrat and tech entrepreneur focusing on national security, intelligence, and bipartisan economic policies.",
-    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 0, "issue-010": 0 }
+    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 0, "issue-010": 0, "issue-011": 1, "issue-012": 0, "issue-013": 0, "issue-014": 1, "issue-015": 0, "issue-016": 1, "issue-017": 0, "issue-018": 0, "issue-019": 0, "issue-020": 1 }
   },
   {
     "id": "sen-va-kaine",
@@ -57,7 +57,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Former Governor and VP nominee prioritizing career and technical education, armed services support, and healthcare access.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "gov-va-youngkin",
@@ -67,7 +67,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Former private equity CEO who won the governorship focusing on parents' rights in education, tax cuts, and rolling back regulations.",
-    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": -1, "issue-004": 0, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": 0, "issue-010": 1 }
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": -1, "issue-004": 0, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": 0, "issue-010": 1, "issue-011": -1, "issue-012": -1, "issue-013": -1, "issue-014": -1, "issue-015": -1, "issue-016": 0, "issue-017": -1, "issue-018": -1, "issue-019": 0, "issue-020": -1 }
   },
   {
     "id": "rep-va-griffith",
@@ -77,7 +77,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Conservative Representative for Southwest Virginia (including Blacksburg), advocating for coal industries and reduced federal spending.",
-    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1, "issue-011": -1, "issue-012": -1, "issue-013": -1, "issue-014": -1, "issue-015": -1, "issue-016": -1, "issue-017": -1, "issue-018": -1, "issue-019": -1, "issue-020": -1 }
   },
   {
     "id": "may-va-sutphin",
@@ -87,7 +87,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Mayor since 2025, long-time council member focused on housing affordability, community partnerships, and LGBTQ advocacy. Served on Equality Virginia board and organized pro-marriage equality demonstrations.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 0 },
     "ideology": {
       "stance": "progressive",
       "socialProgressive": 0.88,
@@ -106,7 +106,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Vice Mayor and math professor at Virginia Tech for 40 years. Strong advocate for education, women's rights, and community health. Member of Virginia NOW PAC and Women's Resource Center.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 0 },
     "ideology": {
       "stance": "progressive",
       "socialProgressive": 0.82,
@@ -125,7 +125,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Union activist and community organizer focused on workers' rights and affordable housing. Virginia Tech graduate in Psychology and Natural Resources, strong labor-progressive voice on council.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1 },
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 },
     "ideology": {
       "stance": "progressive",
       "socialProgressive": 0.72,
@@ -144,7 +144,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Small business owner of health and wellness clinics. Focuses on local economy, supporting entrepreneurs, and practical community programs. Bridge-builder with business-oriented perspective.",
-    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 0, "issue-008": 1, "issue-009": 0, "issue-010": 0 },
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 0, "issue-008": 1, "issue-009": 0, "issue-010": 0, "issue-011": 0, "issue-012": 0, "issue-013": 0, "issue-014": 0, "issue-015": 0, "issue-016": 1, "issue-017": 0, "issue-018": 0, "issue-019": 1, "issue-020": 0 },
     "ideology": {
       "stance": "moderate",
       "socialProgressive": 0.55,
@@ -163,7 +163,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "30+ years in public service with expertise in environmental management and planning. Focuses on environmental issues, transportation infrastructure, and outdoor recreation. Process-oriented planner.",
-    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 0, "issue-015": 0, "issue-016": 1, "issue-017": 0, "issue-018": 0, "issue-019": 1, "issue-020": 0 },
     "ideology": {
       "stance": "moderate",
       "socialProgressive": 0.58,
@@ -182,7 +182,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Urban planning advocate focused on transportation, biking infrastructure, and sustainable city design. Strong Towns supporter pushing for housing variety, zoning reform, and public transit access.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 0 },
     "ideology": {
       "stance": "progressive",
       "socialProgressive": 0.66,
@@ -201,7 +201,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Environmental engineer and former Planning Commission chairman. Technical expert focused on infrastructure, environmental engineering, and data-driven land use decisions. Technocratic problem-solver.",
-    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 0, "issue-010": 0 },
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 0, "issue-010": 0, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 0, "issue-015": 0, "issue-016": 1, "issue-017": 0, "issue-018": 0, "issue-019": 0, "issue-020": 0 },
     "ideology": {
       "stance": "moderate",
       "socialProgressive": 0.52,
@@ -220,7 +220,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Anti-development rival who ran against Sutphin for mayor, losing by only 18 votes. Focuses on transparency, accountability, and cautious incremental development. Criticized council's handling of large student housing projects.",
-    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 0, "issue-008": 1, "issue-009": 0, "issue-010": 0 },
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 0, "issue-008": 1, "issue-009": 0, "issue-010": 0, "issue-011": 0, "issue-012": 0, "issue-013": 0, "issue-014": 0, "issue-015": 0, "issue-016": 1, "issue-017": -1, "issue-018": 0, "issue-019": 1, "issue-020": 0 },
     "ideology": {
       "stance": "moderate",
       "socialProgressive": 0.58,
@@ -239,7 +239,7 @@
     "state": "VA",
     "county": "Montgomery",
     "bio": "Ph.D. student and former Democratic congressional staffer. Advocates for more housing, clean energy adaptation, and stronger intergovernmental cooperation. Progressive challenger focused on accelerating development.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 },
     "ideology": {
       "stance": "progressive",
       "socialProgressive": 0.74,
@@ -258,7 +258,7 @@
     "state": "NY",
     "county": "New York",
     "bio": "Senate Majority Leader championing major federal investments in infrastructure, climate, and semiconductor manufacturing.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "sen-ny-gillibrand",
@@ -268,7 +268,7 @@
     "state": "NY",
     "county": "New York",
     "bio": "Senator prioritizing paid family leave, military justice reform, and agricultural policies for upstate New York.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "gov-ny-hochul",
@@ -278,7 +278,7 @@
     "state": "NY",
     "county": "New York",
     "bio": "First female Governor of NY, focused on economic recovery, massive housing pacts, and gun control legislation.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "may-ny-adams",
@@ -288,7 +288,7 @@
     "state": "NY",
     "county": "New York",
     "bio": "Former police captain and current Mayor, running on a platform of public safety, business recovery, and the 'City of Yes' zoning reform.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "rep-ny-ocasio-cortez",
@@ -298,7 +298,7 @@
     "state": "NY",
     "county": "New York",
     "bio": "Progressive icon and author of the Green New Deal, advocating strongly for universal healthcare and tenant rights.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "sen-wa-murray",
@@ -308,7 +308,7 @@
     "state": "WA",
     "county": "King",
     "bio": "Senior Senator and President pro tempore, focused heavily on education, labor rights, and veterans affairs.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "sen-wa-cantwell",
@@ -318,7 +318,7 @@
     "state": "WA",
     "county": "King",
     "bio": "Senator known for her work on tech regulation, aviation safety, and protecting public lands in the Pacific Northwest.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 0, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "gov-wa-ferguson",
@@ -328,7 +328,7 @@
     "state": "WA",
     "county": "King",
     "bio": "Former State Attorney General elected Governor, known for aggressive consumer protection lawsuits and strong environmental defense.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "may-wa-harrell",
@@ -338,7 +338,7 @@
     "state": "WA",
     "county": "King",
     "bio": "Mayor pushing a 'One Seattle' agenda focused on increasing police staffing and clearing unauthorized encampments.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 0, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "rep-wa-jayapal",
@@ -348,7 +348,7 @@
     "state": "WA",
     "county": "King",
     "bio": "Chair of the Congressional Progressive Caucus, leading pushes for Medicare for All and comprehensive immigration reform.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1, "issue-011": 1, "issue-012": 1, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   },
   {
     "id": "sen-tx-cruz",
@@ -358,7 +358,7 @@
     "state": "TX",
     "county": "Travis",
     "bio": "Outspoken conservative Senator known for strict constitutionalist views, deregulation, and strong opposition to federal overreach.",
-    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1, "issue-011": -1, "issue-012": -1, "issue-013": -1, "issue-014": -1, "issue-015": -1, "issue-016": -1, "issue-017": -1, "issue-018": -1, "issue-019": -1, "issue-020": -1 }
   },
   {
     "id": "sen-tx-cornyn",
@@ -368,7 +368,7 @@
     "state": "TX",
     "county": "Travis",
     "bio": "Senior Texas Senator known as a reliable conservative vote who occasionally engages in bipartisan legislation like the CHIPS Act.",
-    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1, "issue-011": -1, "issue-012": -1, "issue-013": -1, "issue-014": -1, "issue-015": -1, "issue-016": -1, "issue-017": -1, "issue-018": -1, "issue-019": -1, "issue-020": -1 }
   },
   {
     "id": "gov-tx-abbott",
@@ -378,7 +378,7 @@
     "state": "TX",
     "county": "Travis",
     "bio": "Governor of Texas championing massive border security operations, school voucher programs, and broad tax cuts.",
-    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1, "issue-011": -1, "issue-012": -1, "issue-013": -1, "issue-014": -1, "issue-015": -1, "issue-016": -1, "issue-017": -1, "issue-018": -1, "issue-019": -1, "issue-020": -1 }
   },
   {
     "id": "may-tx-watson",
@@ -388,6 +388,6 @@
     "state": "TX",
     "county": "Travis",
     "bio": "Returning Mayor of Austin, balancing the city's progressive roots with intense infrastructure and housing affordability challenges.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 0, "issue-010": -1 }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 0, "issue-010": -1, "issue-011": 1, "issue-012": 0, "issue-013": 1, "issue-014": 1, "issue-015": 1, "issue-016": 1, "issue-017": 1, "issue-018": 1, "issue-019": 1, "issue-020": 1 }
   }
 ]
