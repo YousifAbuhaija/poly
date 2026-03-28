@@ -9,11 +9,13 @@ export default function ZipOnboarding() {
   const [step, setStep] = useState<'info' | 'zip'>('info');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [infoError, setInfoError] = useState('');
   const [zip, setZip] = useState('');
   const [zipError, setZipError] = useState('');
   const [confirmed, setConfirmed] = useState<LocationResult | null>(null);
-  const { setLocation, setUserName, setEmail: saveEmail } = useAppContext();
+  const { setLocation, setUserName, setEmail: saveEmail, setPassword: savePassword } = useAppContext();
   const navigate = useNavigate();
 
   function handleInfoSubmit(e: FormEvent) {
@@ -24,8 +26,17 @@ export default function ZipOnboarding() {
       setInfoError('Please enter a valid email address.');
       return;
     }
+    if (password.length < 8) {
+      setInfoError('Password must be at least 8 characters.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setInfoError('Passwords do not match.');
+      return;
+    }
     setUserName(fullName.trim());
     saveEmail(email.trim());
+    savePassword(password);
     setStep('zip');
   }
 
@@ -112,6 +123,28 @@ export default function ZipOnboarding() {
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="jane@example.com"
+                      className="w-full rounded-lg border border-surface-border bg-white px-4 py-2.5 text-text-primary placeholder-text-muted text-sm outline-none focus:ring-2 focus:ring-brand-violet focus:border-transparent transition shadow-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="password-input" className="block text-sm font-medium text-text-primary mb-1.5">Password</label>
+                    <input
+                      id="password-input"
+                      type="password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      placeholder="At least 8 characters"
+                      className="w-full rounded-lg border border-surface-border bg-white px-4 py-2.5 text-text-primary placeholder-text-muted text-sm outline-none focus:ring-2 focus:ring-brand-violet focus:border-transparent transition shadow-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="confirm-password-input" className="block text-sm font-medium text-text-primary mb-1.5">Confirm password</label>
+                    <input
+                      id="confirm-password-input"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={e => setConfirmPassword(e.target.value)}
+                      placeholder="Re-enter your password"
                       className="w-full rounded-lg border border-surface-border bg-white px-4 py-2.5 text-text-primary placeholder-text-muted text-sm outline-none focus:ring-2 focus:ring-brand-violet focus:border-transparent transition shadow-sm"
                     />
                   </div>

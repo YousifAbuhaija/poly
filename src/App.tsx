@@ -11,10 +11,11 @@ import CandidateDetail from './components/CandidateDetail';
 import NoReadTranslator from './components/NoReadTranslator';
 import AskPolyChat from './components/AskPolyChat';
 import ProfilePage from './components/ProfilePage';
+import SignIn from './components/SignIn';
 
 function RequireOnboarding({ children }: { children: React.ReactNode }) {
   const { location } = useAppContext();
-  if (!location) return <Navigate to="/onboarding" replace />;
+  if (!location) return <Navigate to="/" replace />;
   return <>{children}</>;
 }
 
@@ -25,13 +26,14 @@ function RequireQuizComplete({ children }: { children: React.ReactNode }) {
 }
 
 function TopNav() {
-  const { location: appLocation, quizComplete, quizIndex } = useAppContext();
+  const { location: appLocation, quizComplete, quizIndex, signOut } = useAppContext();
   const routerLocation = useLocation();
   const navigate = useNavigate();
 
   const isOnboarded = !!appLocation;
   const isQuizRoute = routerLocation.pathname === '/vibe-check';
   const isOnboardingRoute = routerLocation.pathname === '/onboarding';
+  const isSignInRoute = routerLocation.pathname === '/signin';
 
   // State A: not onboarded — logo + CTA
   // State B: onboarded, on quiz — logo + progress hint
@@ -77,15 +79,24 @@ function TopNav() {
         </button>
 
         {/* Right side — depends on state */}
-        {!isOnboarded || isOnboardingRoute ? (
-          /* State A: CTA button */
-          <button
-            type="button"
-            onClick={handleCta}
-            className="px-6 py-2 rounded-lg bg-[#274C77] text-white text-sm font-semibold hover:bg-[#6096BA] transition shadow-sm"
-          >
-            {ctaText}
-          </button>
+        {!isOnboarded || isOnboardingRoute || isSignInRoute ? (
+          /* State A: CTA + Sign In */
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => navigate('/signin')}
+              className="px-4 py-2 rounded-lg border border-[#274C77] text-[#274C77] text-sm font-medium hover:bg-[#274C77]/5 transition"
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={handleCta}
+              className="px-6 py-2 rounded-lg bg-[#274C77] text-white text-sm font-semibold hover:bg-[#6096BA] transition shadow-sm"
+            >
+              {ctaText}
+            </button>
+          </div>
         ) : isQuizRoute ? (
           /* State B: quiz progress hint */
           <span className="text-sm text-gray-500">Vibe Check in progress</span>
@@ -114,6 +125,13 @@ function TopNav() {
                 </button>
               );
             })}
+            <button
+              type="button"
+              onClick={() => { signOut(); navigate('/'); }}
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
+            >
+              Sign Out
+            </button>
           </nav>
         )}
       </div>
@@ -183,6 +201,16 @@ export default function App() {
               transition={{ duration: 0.3 }}
             >
               <ZipOnboarding />
+            </motion.div>
+          } />
+          <Route path="/signin" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <SignIn />
             </motion.div>
           } />
           <Route path="/vibe-check" element={

@@ -24,7 +24,36 @@ export async function fetchUser(userId: string): Promise<UserRecord | null> {
   }
 }
 
-export async function saveUser(userId: string, data: Omit<UserRecord, 'userId' | 'updatedAt'>): Promise<void> {
+export async function signInWithEmail(email: string, password: string): Promise<{ user: UserRecord | null; error: string | null }> {
+  try {
+    const res = await fetch(`${API_BASE}/auth`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (res.status === 401) {
+      const body = await res.json();
+      return { user: null, error: body.error || 'Invalid email or password.' };
+    }
+    if (!res.ok) throw new Error(`Auth failed: ${res.status}`);
+    const user = await res.json();
+    return { user, error: null };
+  } catch (err) {
+    console.warn('Sign-in failed:', err);
+    return { user: null, error: 'Something went wrong. Please try again.' };
+  }
+}
+
+interface SaveUserData {
+  userName: string;
+  email: string;
+  location: LocationResult | null;
+  issueProfile: IssueProfile;
+  quizComplete: boolean;
+  password?: string;
+}
+
+export async function saveUser(userId: string, data: SaveUserData): Promise<void> {
   try {
     await fetch(`${API_BASE}/user/${userId}`, {
       method: 'PUT',
