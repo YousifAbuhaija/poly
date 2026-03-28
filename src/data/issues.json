@@ -1,52 +1,52 @@
 [
   {
     "id": "issue-001",
-    "text": "The government should increase funding for public schools",
-    "category": "Education"
+    "text": "Should the government increase funding of health care for low income individuals (Medicaid)?",
+    "category": "Healthcare"
   },
   {
     "id": "issue-002",
-    "text": "Local governments should invest more in public transportation infrastructure",
-    "category": "Transportation"
+    "text": "Should the federal government pay for tuition at four-year colleges and universities?",
+    "category": "Education"
   },
   {
     "id": "issue-003",
-    "text": "The minimum wage should be raised to keep up with the cost of living",
+    "text": "Should the U.S. raise taxes on the rich?",
     "category": "Economy"
   },
   {
     "id": "issue-004",
-    "text": "Cities should expand affordable housing programs for low-income residents",
+    "text": "Should the government implement rent control policies to limit the amount landlords can charge for rent?",
     "category": "Housing"
   },
   {
     "id": "issue-005",
-    "text": "The government should strengthen environmental regulations on businesses",
+    "text": "Should the government increase environmental regulations to prevent climate change?",
     "category": "Environment"
   },
   {
     "id": "issue-006",
-    "text": "Law enforcement agencies should receive increased funding for community policing",
+    "text": "Should funding for local police departments be redirected to social and community based programs?",
     "category": "Public Safety"
   },
   {
     "id": "issue-007",
-    "text": "Healthcare coverage should be expanded to include more residents",
-    "category": "Healthcare"
+    "text": "Should the electoral college be abolished?",
+    "category": "Electoral"
   },
   {
     "id": "issue-008",
-    "text": "Local governments should offer tax incentives to attract small businesses",
-    "category": "Economy"
+    "text": "Should there be more restrictions on the current process of purchasing a gun?",
+    "category": "Domestic Policy"
   },
   {
     "id": "issue-009",
-    "text": "Public universities should reduce tuition costs for in-state students",
-    "category": "Education"
+    "text": "Should illegal immigrants have access to government-subsidized healthcare?",
+    "category": "Immigration"
   },
   {
     "id": "issue-010",
-    "text": "Cities should adopt stricter zoning laws to manage urban growth",
-    "category": "Housing"
+    "text": "Do you support the legalization of same sex marriage?",
+    "category": "Social"
   }
 ]

@@ -37,10 +37,18 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
       aria-label={`View details for ${candidate.name}`}
     >
       <div className="flex items-center gap-4">
-        {/* Photo placeholder */}
-        <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-teal/20 border border-teal/30 text-lg font-medium text-cream">
-          {getInitials(candidate.name)}
-        </div>
+        {/* Photo placeholder or real photo */}
+        {candidate.photoUrl ? (
+          <img 
+            src={candidate.photoUrl} 
+            alt={candidate.name}
+            className="flex-shrink-0 w-16 h-16 rounded-full object-cover border border-teal/30"
+          />
+        ) : (
+          <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-teal/20 border border-teal/30 text-lg font-medium text-cream">
+            {getInitials(candidate.name)}
+          </div>
+        )}
 
         {/* Info */}
         <div className="flex-1 min-w-0">

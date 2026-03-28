@@ -1,34 +1,54 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
-import { resolve, isValidZip, formatLocation } from '../engines/LocationResolver';
 import type { LocationResult } from '../types';
+
+// Simple ZIP to location mapping for demo
+const zipDatabase: Record<string, LocationResult> = {
+  '90210': { city: 'Beverly Hills', state: 'CA', county: 'Los Angeles' },
+  '10001': { city: 'New York', state: 'NY', county: 'New York' },
+  '60601': { city: 'Chicago', state: 'IL', county: 'Cook' },
+  '20001': { city: 'Washington', state: 'DC', county: 'District of Columbia' },
+  '02101': { city: 'Boston', state: 'MA', county: 'Suffolk' },
+  '33101': { city: 'Miami', state: 'FL', county: 'Miami-Dade' },
+  '78701': { city: 'Austin', state: 'TX', county: 'Travis' },
+  '98101': { city: 'Seattle', state: 'WA', county: 'King' },
+};
 
 export default function ZipOnboarding() {
   const [zip, setZip] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [confirmed, setConfirmed] = useState<LocationResult | null>(null);
   const { setLocation } = useAppContext();
   const navigate = useNavigate();
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError('');
     setConfirmed(null);
+    setLoading(true);
 
-    if (!isValidZip(zip)) {
+    if (!/^\d{5}$/.test(zip)) {
       setError('Please enter a valid 5-digit ZIP code.');
+      setLoading(false);
       return;
     }
 
-    const result = resolve(zip);
-    if (!result) {
-      setError('ZIP code not recognized. Please try another.');
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    const location = zipDatabase[zip];
+    
+    if (!location) {
+      setError('ZIP code not found. Try: 90210, 10001, 60601, 20001, 02101, 33101, 78701, or 98101');
+      setLoading(false);
       return;
     }
 
-    setConfirmed(result);
-    setLocation(result);
+    setConfirmed(location);
+    setLocation(location);
+    setLoading(false);
   }
 
   function handleContinue() {
@@ -36,51 +56,57 @@ export default function ZipOnboarding() {
   }
 
   return (
-    <div className="min-h-dvh flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white/10 p-8 backdrop-blur-lg">
-        <h1 className="mb-2 text-center text-3xl font-bold text-white">Where do you vote?</h1>
-        <p className="mb-6 text-center text-sm text-slate-300">
-          Enter your ZIP code so we can show candidates on your ballot.
-        </p>
+    <div className="min-h-dvh flex items-center justify-center px-4">
+      <div className="w-full max-w-md">
+        <div className="mb-8 text-center">
+          <h1 className="mb-3 text-4xl font-light tracking-tight text-cream">
+            Where do you vote?
+          </h1>
+          <p className="text-base text-slate leading-relaxed">
+            Enter your ZIP code to see candidates on your ballot
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <label htmlFor="zip-input" className="sr-only">ZIP code</label>
-          <input
-            id="zip-input"
-            type="text"
-            inputMode="numeric"
-            maxLength={5}
-            value={zip}
-            onChange={e => setZip(e.target.value.replace(/\D/g, ''))}
-            placeholder="e.g. 90210"
-            aria-label="ZIP code"
-            className="w-full rounded-lg bg-white/20 px-4 py-3 text-center text-lg text-white placeholder-slate-400 outline-none focus:ring-2 focus:ring-indigo-400"
-          />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="relative">
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength={5}
+              value={zip}
+              onChange={e => setZip(e.target.value.replace(/\D/g, ''))}
+              placeholder="12345"
+              aria-label="ZIP code"
+              disabled={loading}
+              className="w-full rounded-xl border border-glass-border bg-glass-bg px-6 py-4 text-center text-2xl font-light tracking-widest text-cream placeholder-teal/50 outline-none backdrop-blur-sm transition focus:border-lavender/40 focus:bg-glass-hover disabled:opacity-50"
+            />
+          </div>
 
           {error && (
-            <p role="alert" className="text-center text-sm text-red-400">{error}</p>
+            <p role="alert" className="text-center text-sm text-disagree">{error}</p>
           )}
 
           {confirmed && (
-            <p className="text-center text-sm text-emerald-400">
-              {formatLocation(confirmed)}
+            <p className="text-center text-sm font-medium text-agree">
+              ✓ {confirmed.city}, {confirmed.state}
             </p>
           )}
 
           {!confirmed ? (
             <button
               type="submit"
-              className="w-full min-h-[44px] rounded-lg bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-500 active:scale-[0.98]"
+              disabled={loading}
+              className="w-full min-h-[52px] rounded-xl border border-teal/30 bg-teal/20 px-6 py-3.5 font-medium text-cream backdrop-blur-sm transition hover:border-teal/50 hover:bg-teal/30 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Look up my area
+              {loading ? 'Verifying...' : 'Continue'}
             </button>
           ) : (
             <button
               type="button"
               onClick={handleContinue}
-              className="w-full min-h-[44px] rounded-lg bg-emerald-600 py-3 font-semibold text-white transition hover:bg-emerald-500 active:scale-[0.98]"
+              className="w-full min-h-[52px] rounded-xl border border-agree/30 bg-agree/20 px-6 py-3.5 font-medium text-cream backdrop-blur-sm transition hover:border-agree/50 hover:bg-agree/30 active:scale-[0.98]"
             >
-              Continue to Vibe Check
+              Start Vibe Check →
             </button>
           )}
         </form>

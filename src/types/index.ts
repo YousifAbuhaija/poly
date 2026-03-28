@@ -25,6 +25,7 @@ export interface Candidate {
   county: string;
   bio: string;
   positions: { [issueId: string]: IssueScore };
+  photoUrl?: string;
 }
 
 export interface MatchResult {

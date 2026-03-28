@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { motion, useMotionValue, useTransform, type PanInfo } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { IssueStatement, IssueScore } from '../types';
 
 interface SwipeCardProps {
@@ -7,91 +6,60 @@ interface SwipeCardProps {
   onRespond: (score: IssueScore) => void;
 }
 
-const SWIPE_THRESHOLD = 80;
-
 export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
-  const [exiting, setExiting] = useState<'left' | 'right' | null>(null);
-  const x = useMotionValue(0);
-  const rotate = useTransform(x, [-200, 200], [-15, 15]);
-  const agreeOpacity = useTransform(x, [0, SWIPE_THRESHOLD], [0, 1]);
-  const disagreeOpacity = useTransform(x, [-SWIPE_THRESHOLD, 0], [1, 0]);
-
-  function handleDragEnd(_: unknown, info: PanInfo) {
-    if (info.offset.x > SWIPE_THRESHOLD) {
-      triggerExit('right', 1);
-    } else if (info.offset.x < -SWIPE_THRESHOLD) {
-      triggerExit('left', -1);
-    }
-  }
-
-  function triggerExit(dir: 'left' | 'right', score: IssueScore) {
-    setExiting(dir);
-    setTimeout(() => onRespond(score), 250);
-  }
-
   return (
     <motion.div
-      className="absolute inset-0 flex flex-col items-center justify-center touch-none select-none"
-      style={{ x, rotate }}
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.9}
-      onDragEnd={handleDragEnd}
-      animate={
-        exiting
-          ? { x: exiting === 'right' ? 400 : -400, opacity: 0 }
-          : { x: 0, opacity: 1 }
-      }
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="w-full max-w-lg"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
     >
       {/* Card */}
-      <div className="relative w-full max-w-sm rounded-2xl bg-white/10 p-8 backdrop-blur-lg border border-glass-border">
-        {/* Swipe hint overlays */}
-        <motion.span
-          style={{ opacity: agreeOpacity }}
-          className="absolute top-4 right-4 rounded-lg bg-agree/20 px-3 py-1 text-sm font-bold text-agree"
-        >
-          AGREE
-        </motion.span>
-        <motion.span
-          style={{ opacity: disagreeOpacity }}
-          className="absolute top-4 left-4 rounded-lg bg-disagree/20 px-3 py-1 text-sm font-bold text-disagree"
-        >
-          DISAGREE
-        </motion.span>
+      <div className="rounded-2xl border border-glass-border bg-glass-bg p-8 backdrop-blur-md shadow-2xl max-w-lg">
+        <p className="text-xl leading-relaxed text-cream mb-6">{issue.text}</p>
 
-        <span className="mb-4 inline-block rounded-full bg-poly-violet/20 px-3 py-1 text-xs font-medium text-poly-accent">
-          {issue.category}
-        </span>
-        <p className="text-lg leading-relaxed text-text-primary">{issue.text}</p>
-      </div>
+        {/* Multiple choice buttons */}
+        <div className="space-y-3">
+          <button
+            type="button"
+            onClick={() => onRespond(1)}
+            className="w-full min-h-[56px] rounded-xl border-2 border-agree/30 bg-agree/10 px-6 py-4 text-left backdrop-blur-sm transition-all hover:border-agree/50 hover:bg-agree/20 active:scale-[0.98] active:border-agree/60 active:bg-agree/25"
+          >
+            <div className="flex items-center gap-3 pointer-events-none">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-agree/50">
+                <div className="h-3 w-3 rounded-full bg-agree/0" />
+              </div>
+              <span className="text-base font-medium text-cream">For</span>
+            </div>
+          </button>
 
-      {/* Tap buttons */}
-      <div className="mt-6 flex gap-4">
-        <button
-          type="button"
-          onClick={() => triggerExit('left', -1)}
-          aria-label="Disagree"
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-disagree/20 px-5 py-3 font-semibold text-disagree transition hover:bg-disagree/30 active:scale-95"
-        >
-          ✕
-        </button>
-        <button
-          type="button"
-          onClick={() => onRespond(0)}
-          aria-label="Skip"
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-skip/20 px-5 py-3 font-semibold text-skip transition hover:bg-skip/30 active:scale-95"
-        >
-          Skip
-        </button>
-        <button
-          type="button"
-          onClick={() => triggerExit('right', 1)}
-          aria-label="Agree"
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-agree/20 px-5 py-3 font-semibold text-agree transition hover:bg-agree/30 active:scale-95"
-        >
-          ✓
-        </button>
+          <button
+            type="button"
+            onClick={() => onRespond(-1)}
+            className="w-full min-h-[56px] rounded-xl border-2 border-disagree/30 bg-disagree/10 px-6 py-4 text-left backdrop-blur-sm transition-all hover:border-disagree/50 hover:bg-disagree/20 active:scale-[0.98] active:border-disagree/60 active:bg-disagree/25"
+          >
+            <div className="flex items-center gap-3 pointer-events-none">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-disagree/50">
+                <div className="h-3 w-3 rounded-full bg-disagree/0" />
+              </div>
+              <span className="text-base font-medium text-cream">Against</span>
+            </div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onRespond(0)}
+            className="w-full min-h-[56px] rounded-xl border-2 border-slate/30 bg-slate/10 px-6 py-4 text-left backdrop-blur-sm transition-all hover:border-slate/50 hover:bg-slate/20 active:scale-[0.98] active:border-slate/60 active:bg-slate/25"
+          >
+            <div className="flex items-center gap-3 pointer-events-none">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-slate/50">
+                <div className="h-3 w-3 rounded-full bg-slate/0" />
+              </div>
+              <span className="text-base font-medium text-cream">No Opinion</span>
+            </div>
+          </button>
+        </div>
       </div>
     </motion.div>
   );
