@@ -77,7 +77,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
           type="button"
           onClick={() => triggerExit('left', -1)}
           aria-label="Disagree"
-          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-red-300 bg-white text-red-600 text-sm font-semibold hover:bg-red-50 hover:shadow-md transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-red-50 border border-red-200 text-red-500 text-sm font-semibold hover:bg-red-100 transition-all"
         >
           <span>✕</span> Disagree
         </button>
@@ -85,7 +85,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
           type="button"
           onClick={() => onRespond(0)}
           aria-label="Skip"
-          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-600 text-sm font-semibold hover:bg-gray-50 hover:shadow-md transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#E7ECEF] border border-[#A3CEF1] text-[#6096BA] text-sm font-semibold hover:bg-[#A3CEF1]/30 transition-all"
         >
           Skip
         </button>
@@ -93,7 +93,7 @@ export default function SwipeCard({ issue, onRespond }: SwipeCardProps) {
           type="button"
           onClick={() => triggerExit('right', 1)}
           aria-label="Agree"
-          className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-green-300 bg-white text-green-700 text-sm font-semibold hover:bg-green-50 hover:shadow-md transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-green-50 border border-green-200 text-green-600 text-sm font-semibold hover:bg-green-100 transition-all"
         >
           <span>✓</span> Agree
         </button>

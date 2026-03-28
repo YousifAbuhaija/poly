@@ -92,7 +92,8 @@ export default function CandidateDetail() {
         <motion.button
           type="button"
           onClick={() => navigate('/results')}
-          className="flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition mb-6"
+          className="flex items-center gap-1.5 text-sm font-medium mb-6 text-white hover:text-[#A3CEF1] transition"
+          style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
           aria-label="Back to results"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -106,122 +107,100 @@ export default function CandidateDetail() {
 
         {/* Header card */}
         <motion.div 
-          className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-8 shadow-xl mb-6"
+          className="bg-white rounded-2xl border border-gray-200 p-8 shadow-xl mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <div className="flex items-start gap-6">
-            {/* Avatar */}
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-violet flex items-center justify-center text-white text-3xl font-bold flex-shrink-0 shadow-lg">
+            <div className="w-20 h-20 rounded-full bg-[#274C77] flex items-center justify-center text-white text-3xl font-bold flex-shrink-0 shadow-lg">
               {candidate.name[0]}
             </div>
-
-            {/* Info */}
             <div className="flex-1 min-w-0">
-              <h1 className="text-3xl font-bold text-text-primary mb-1" data-testid="candidate-name">{candidate.name}</h1>
-              <p className="text-text-secondary text-sm mb-4" data-testid="candidate-office">
+              <h1 className="text-3xl font-bold text-gray-900 mb-1" data-testid="candidate-name">{candidate.name}</h1>
+              <p className="text-gray-500 text-sm mb-4" data-testid="candidate-office">
                 {candidate.office} · {candidate.district}
               </p>
-
-              {/* Match badge */}
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gradient-to-r from-surface-subtle to-purple-50/50 border border-surface-border shadow-sm">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200 shadow-sm">
                 <span className="text-2xl font-bold" style={{ color: matchColor }}>{matchPercentage}%</span>
                 <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-text-primary">Match Score</span>
-                  <span className="text-xs text-text-muted">Based on {answeredCount} {answeredCount === 1 ? 'issue' : 'issues'}</span>
+                  <span className="text-xs font-semibold text-gray-900">Match Score</span>
+                  <span className="text-xs text-gray-500">Based on {answeredCount} {answeredCount === 1 ? 'issue' : 'issues'}</span>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Bio */}
-          <div className="mt-6 pt-6 border-t border-surface-border">
-            <h2 className="text-sm font-semibold text-text-primary mb-2">About</h2>
-            <p className="text-sm text-text-secondary leading-relaxed" data-testid="candidate-bio">{candidate.bio}</p>
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <h2 className="text-sm font-semibold text-gray-900 mb-2">About</h2>
+            <p className="text-sm text-gray-600 leading-relaxed" data-testid="candidate-bio">{candidate.bio}</p>
           </div>
         </motion.div>
 
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left: Match breakdown */}
           <motion.div 
-            className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-6 shadow-lg"
+            className="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
-            <h2 className="text-lg font-semibold text-text-primary mb-1">Where You Align</h2>
-            <p className="text-xs text-text-muted mb-5">
-              Match scores reflect values alignment, not endorsements.
-            </p>
-
+            <h2 className="text-lg font-semibold text-gray-900 mb-1">Where You Align</h2>
+            <p className="text-xs text-gray-400 mb-5">Match scores reflect values alignment, not endorsements.</p>
             {agreements.length > 0 && (
               <div className="mb-5">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-agree" />
-                  <p className="text-sm font-semibold text-text-primary">You agree ({agreements.length})</p>
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  <p className="text-sm font-semibold text-gray-900">You agree ({agreements.length})</p>
                 </div>
                 <div className="flex flex-col gap-2">
                   {agreements.map((issueId) => (
-                    <div key={issueId} className="rounded-lg bg-green-50 border border-green-200 px-3 py-2.5 shadow-sm">
+                    <div key={issueId} className="rounded-lg bg-green-50 border border-green-200 px-3 py-2.5">
                       <p className="text-xs text-green-800 leading-relaxed">{issueLabel(issueId, issues)}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
-
             {disagreements.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-disagree" />
-                  <p className="text-sm font-semibold text-text-primary">You differ ({disagreements.length})</p>
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                  <p className="text-sm font-semibold text-gray-900">You differ ({disagreements.length})</p>
                 </div>
                 <div className="flex flex-col gap-2">
                   {disagreements.map((issueId) => (
-                    <div key={issueId} className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 shadow-sm">
+                    <div key={issueId} className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5">
                       <p className="text-xs text-red-800 leading-relaxed">{issueLabel(issueId, issues)}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
-
             {agreements.length === 0 && disagreements.length === 0 && (
-              <p className="text-sm text-text-muted">
-                No match data available. Complete the quiz to see how you align.
-              </p>
+              <p className="text-sm text-gray-400">No match data available. Complete the quiz to see how you align.</p>
             )}
           </motion.div>
 
-          {/* Right: All positions */}
           <motion.div 
-            className="bg-white/90 backdrop-blur-sm rounded-2xl border border-surface-border p-6 shadow-lg"
+            className="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.4 }}
           >
-            <h2 className="text-lg font-semibold text-text-primary mb-5">All Positions</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-5">All Positions</h2>
             <div className="flex flex-col gap-3" data-testid="candidate-positions">
               {Object.entries(candidate.positions).map(([issueId, score]) => {
                 const issue = issues.find((i) => i.id === issueId);
                 return (
-                  <div key={issueId} className="flex items-start gap-3 pb-3 border-b border-surface-border last:border-0 last:pb-0">
-                    <span
-                      className={`flex-shrink-0 mt-0.5 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-sm ${
-                        score === 1
-                          ? 'bg-green-100 text-agree'
-                          : score === -1
-                            ? 'bg-red-100 text-disagree'
-                            : 'bg-surface-muted text-text-muted'
-                      }`}
-                    >
+                  <div key={issueId} className="flex items-start gap-3 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
+                    <span className={`flex-shrink-0 mt-0.5 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                      score === 1 ? 'bg-green-100 text-green-700' : score === -1 ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-400'
+                    }`}>
                       {score === 1 ? '✓' : score === -1 ? '✕' : '—'}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-brand-accent mb-0.5">{issue?.category ?? issueId}</p>
-                      <p className="text-xs text-text-secondary leading-relaxed">{issue?.text ?? issueId}</p>
+                      <p className="text-xs font-medium text-[#274C77] mb-0.5">{issue?.category ?? issueId}</p>
+                      <p className="text-xs text-gray-600 leading-relaxed">{issue?.text ?? issueId}</p>
                     </div>
                   </div>
                 );
@@ -230,25 +209,22 @@ export default function CandidateDetail() {
           </motion.div>
         </div>
 
-        {/* Election context */}
         {relevantElections.length > 0 && (
           <motion.div 
-            className="mt-6 bg-gradient-to-r from-brand-lavender/80 to-purple-100/80 backdrop-blur-sm rounded-2xl border border-surface-border p-6 shadow-sm"
+            className="mt-6 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.5 }}
           >
-            <h2 className="text-sm font-semibold text-brand-accent mb-3">Election Context</h2>
+            <h2 className="text-sm font-semibold text-[#274C77] mb-3">Election Context</h2>
             {relevantElections.map((el) => (
               <div key={el.id} className="mb-3 last:mb-0">
-                <p className="text-sm text-text-primary font-medium">{el.name} · {el.date}</p>
-                <p className="text-xs text-text-secondary mt-0.5">
-                  {el.county} County, {el.state} · {el.offices.join(', ')}
-                </p>
+                <p className="text-sm text-gray-900 font-medium">{el.name} · {el.date}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{el.county} County, {el.state} · {el.offices.join(', ')}</p>
               </div>
             ))}
             {location && (
-              <p className="mt-3 pt-3 border-t border-surface-border text-xs text-text-muted">
+              <p className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-400">
                 Showing elections for {location.city}, {location.state} ({location.county} County)
               </p>
             )}

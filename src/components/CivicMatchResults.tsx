@@ -43,20 +43,20 @@ export default function CivicMatchResults() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <h1 className="text-3xl font-bold text-text-primary">Your Matches</h1>
-          <p className="mt-1 text-text-secondary text-sm">
+          <h1 className="text-3xl font-bold" style={{ color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Your Matches</h1>
+          <p className="mt-1 text-sm" style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
             {location.city}, {location.state} · {location.county} County
           </p>
         </motion.div>
 
         {/* Disclaimer */}
         <motion.div 
-          className="mb-6 rounded-xl bg-gradient-to-r from-brand-lavender/80 to-purple-100/80 backdrop-blur-sm border border-surface-border px-5 py-4 shadow-sm"
+          className="mb-6 rounded-xl bg-white border border-gray-200 px-5 py-4 shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
-          <p className="text-xs text-brand-accent leading-relaxed">
+          <p className="text-xs text-gray-600 leading-relaxed">
             Match scores reflect issue agreement and are not endorsements. They represent values alignment based on your responses, not voting recommendations.
           </p>
         </motion.div>
