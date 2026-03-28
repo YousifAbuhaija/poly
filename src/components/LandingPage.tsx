@@ -11,7 +11,9 @@ const features = [
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const { quizIndex, quizComplete, location } = useAppContext();
+  const { quizIndex, quizComplete, location, userName } = useAppContext();
+
+  const firstName = userName?.split(' ')[0] || '';
 
   const handleGetStarted = () => {
     if (!location) navigate('/onboarding');
@@ -27,19 +29,6 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-dvh relative">
-      {/* Solid white nav */}
-      <div className="relative z-50 bg-white border-b border-gray-200 shadow-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <button type="button" onClick={() => navigate('/')}
-            className="text-2xl font-bold text-[#274C77] hover:opacity-80 transition">
-            Poly
-          </button>
-          <button type="button" onClick={handleGetStarted}
-            className="px-6 py-2.5 rounded-lg bg-[#274C77] text-white text-sm font-semibold hover:bg-[#6096BA] transition shadow-sm">
-            {ctaText}
-          </button>
-        </div>
-      </div>
 
       {/* Hero */}
       <section className="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-20">
@@ -52,7 +41,10 @@ export default function LandingPage() {
             </span>
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6"
               style={{ color: '#fff', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
-              Vote with <span style={{ color: '#A3CEF1' }}>confidence</span>
+              {firstName
+                ? <>Welcome back, <span style={{ color: '#A3CEF1' }}>{firstName}</span></>
+                : <>Vote with <span style={{ color: '#A3CEF1' }}>confidence</span></>
+              }
             </h1>
             <p className="text-lg leading-relaxed mb-8"
               style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
@@ -169,7 +161,7 @@ export default function LandingPage() {
       <section className="relative z-10 py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <h2 className="text-4xl font-bold mb-4" style={{ color: '#fff', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
-            Ready to find your match?
+            {firstName ? `Ready to dive back in, ${firstName}?` : 'Ready to find your match?'}
           </h2>
           <p className="text-lg mb-8" style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
             Takes about 3 minutes. No sign-up, no spam — just clarity.

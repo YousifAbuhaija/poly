@@ -7,8 +7,9 @@ import { loadIssues } from '../services/DataLoader';
 import CandidateCard from './CandidateCard';
 
 export default function CivicMatchResults() {
-  const { location, issueProfile } = useAppContext();
+  const { location, issueProfile, userName } = useAppContext();
   const navigate = useNavigate();
+  const firstName = userName?.split(' ')[0] || '';
   const issues = useMemo(() => loadIssues(), []);
   const results = useMemo(() => {
     if (!location) return [];
@@ -43,7 +44,9 @@ export default function CivicMatchResults() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <h1 className="text-3xl font-bold" style={{ color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Your Matches</h1>
+          <h1 className="text-3xl font-bold" style={{ color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+            {firstName ? `${firstName}'s Matches` : 'Your Matches'}
+          </h1>
           <p className="mt-1 text-sm" style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
             {location.city}, {location.state} · {location.county} County
           </p>

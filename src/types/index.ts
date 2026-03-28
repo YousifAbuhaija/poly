@@ -54,6 +54,8 @@ export interface AppState {
   isOnboarded: boolean;
   candidates: Candidate[];
   isFallbackMode: boolean;
+  userName: string;
+  email: string;
 }
 
 export interface Election {

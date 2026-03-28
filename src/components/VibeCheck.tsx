@@ -17,7 +17,6 @@ export default function VibeCheck() {
   }, []);
 
   const total = issues.length;
-  const remaining = total - quizIndex;
   const progress = total > 0 ? (quizIndex / total) * 100 : 0;
   const currentIssue = issues[quizIndex] ?? null;
 
@@ -50,18 +49,6 @@ export default function VibeCheck() {
     <div className="min-h-dvh relative">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#6096BA]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-[#274C77]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
-      
-      {/* Top bar */}
-      <header className="relative z-10 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
-        <button
-          type="button"
-          onClick={() => navigate('/')}
-          className="text-xl font-bold text-[#274C77] hover:opacity-80 transition"
-        >
-          Poly
-        </button>
-        <span className="text-sm text-gray-500">{remaining} {remaining === 1 ? 'question' : 'questions'} left</span>
-      </header>
 
       <div className="relative z-10 flex flex-1 flex-col items-center px-4 py-10">
         {/* Progress */}
