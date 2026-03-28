@@ -51,14 +51,13 @@ export default function LandingPage() {
     : 'Take Quiz';
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-[#E7ECEF] via-white to-[#A3CEF1] relative">
+    <div className="min-h-dvh relative">
       {/* Decorative gradient orbs */}
-      <div className="absolute top-20 right-20 w-[600px] h-[600px] bg-gradient-to-bl from-[#6096BA]/30 to-[#A3CEF1]/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-gradient-to-tr from-[#274C77]/25 to-[#6096BA]/20 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#A3CEF1]/20 via-white/30 to-[#6096BA]/20 rounded-full blur-3xl" />
+      <div className="absolute top-20 right-20 w-[600px] h-[600px] bg-gradient-to-bl from-[#6096BA]/20 to-[#A3CEF1]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-gradient-to-tr from-[#274C77]/15 to-[#6096BA]/10 rounded-full blur-3xl pointer-events-none" />
       
       {/* Top nav - scrolls with page */}
-      <div className="relative z-50 bg-white/50 backdrop-blur-xl border-b border-white/20 shadow-sm">
+      <div className="relative z-50 bg-white/20 backdrop-blur-xl border-b border-white/20 shadow-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <button
             type="button"

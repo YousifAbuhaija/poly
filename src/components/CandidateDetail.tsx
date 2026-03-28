@@ -78,13 +78,9 @@ export default function CandidateDetail() {
   const matchColor = matchPercentage >= 70 ? '#22c55e' : matchPercentage >= 40 ? '#f59e0b' : '#ef4444';
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-[#E7ECEF] via-white to-[#A3CEF1] relative">
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-20 right-10 w-[450px] h-[450px] bg-gradient-to-bl from-[#6096BA]/35 to-[#A3CEF1]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#274C77]/30 to-[#6096BA]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-      
-      {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 bg-radial-gradient(circle_at_30%_20%,rgba(96,150,186,0.1),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(163,206,241,0.1),transparent_50%)]" />
+    <div className="min-h-dvh relative">
+      <div className="absolute top-20 right-10 w-[450px] h-[450px] bg-gradient-to-bl from-[#6096BA]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#274C77]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
       
       <motion.div 
         className="relative z-10 mx-auto max-w-4xl px-6 py-8"

@@ -47,17 +47,12 @@ export default function VibeCheck() {
   }
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-[#E7ECEF] via-white to-[#A3CEF1] relative">
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#6096BA]/35 via-[#A3CEF1]/25 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-[#274C77]/30 via-[#6096BA]/25 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#A3CEF1]/20 via-white/30 to-[#6096BA]/20 rounded-full blur-3xl" />
-      
-      {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,150,186,0.1),transparent_50%),radial-gradient(circle_at_70%_60%,rgba(39,76,119,0.08),transparent_50%),radial-gradient(circle_at_50%_80%,rgba(163,206,241,0.1),transparent_50%)]" />
+    <div className="min-h-dvh relative">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#6096BA]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-[#274C77]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
       
       {/* Top bar */}
-      <header className="relative z-10 bg-white/50 backdrop-blur-xl border-b border-white/20 px-6 py-3 flex items-center justify-between shadow-sm">
+      <header className="relative z-10 bg-white/20 backdrop-blur-xl border-b border-white/20 px-6 py-3 flex items-center justify-between shadow-sm">
         <button
           type="button"
           onClick={() => navigate('/')}

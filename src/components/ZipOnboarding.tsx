@@ -24,16 +24,13 @@ export default function ZipOnboarding() {
   }
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-[#E7ECEF] via-white to-[#A3CEF1] flex flex-col relative">
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-20 right-10 w-[450px] h-[450px] bg-gradient-to-br from-[#6096BA]/35 to-[#A3CEF1]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#274C77]/30 to-[#6096BA]/25 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-      
-      {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(96,150,186,0.08),transparent_50%),radial-gradient(circle_at_80%_70%,rgba(163,206,241,0.08),transparent_50%)]" />
+    <div className="min-h-dvh flex flex-col relative">
+      {/* Decorative orbs */}
+      <div className="absolute top-20 right-10 w-[450px] h-[450px] bg-gradient-to-br from-[#6096BA]/20 to-[#A3CEF1]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#274C77]/15 to-[#6096BA]/10 rounded-full blur-3xl pointer-events-none" />
       
       {/* Top bar */}
-      <header className="relative z-10 bg-white/50 backdrop-blur-xl border-b border-white/20 px-6 py-3 shadow-sm">
+      <header className="relative z-10 bg-white/20 backdrop-blur-xl border-b border-white/20 px-6 py-3 shadow-sm">
         <button
           type="button"
           onClick={() => navigate('/')}

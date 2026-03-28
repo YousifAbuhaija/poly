@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { useAppContext } from './context/AppContext';
 import LandingPage from './components/LandingPage';
 import ZipOnboarding from './components/ZipOnboarding';
@@ -82,9 +83,44 @@ export default function App() {
   const { location: appLocation } = useAppContext();
   const routerLocation = useLocation();
   const showNav = !!appLocation && !NO_NAV_PATHS.includes(routerLocation.pathname);
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<unknown>(null);
+
+  useEffect(() => {
+    const win = window as unknown as Record<string, unknown>;
+    if (!vantaEffect.current && win.VANTA) {
+      const VANTA = win.VANTA as { GLOBE: (opts: unknown) => unknown };
+      vantaEffect.current = VANTA.GLOBE({
+        el: vantaRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x6096ba,
+        color2: 0xa3cef1,
+        backgroundColor: 0x274c77,
+      });
+    }
+    return () => {
+      if (vantaEffect.current) {
+        (vantaEffect.current as { destroy: () => void }).destroy();
+        vantaEffect.current = null;
+      }
+    };
+  }, []);
 
   return (
-    <div className="min-h-dvh bg-surface-subtle">
+    <div style={{ position: 'relative', minHeight: '100dvh' }}>
+      {/* Fixed Vanta globe background */}
+      <div
+        ref={vantaRef}
+        style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
+      />
+      {/* App content above the globe */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
       {showNav && <TopNav />}
       <AnimatePresence mode="wait">
         <Routes location={routerLocation} key={routerLocation.pathname}>
@@ -161,6 +197,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
+      </div>
     </div>
   );
 }
