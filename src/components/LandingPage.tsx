@@ -52,7 +52,7 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <button type="button" onClick={handleGetStarted}
-                className="px-8 py-3.5 rounded-xl bg-white text-[#274C77] font-semibold text-base hover:shadow-lg hover:scale-105 transition-all">
+                className="px-8 py-3.5 rounded-xl bg-gradient-to-br from-white/75 to-white/55 backdrop-blur-sm border border-white/30 text-[#274C77] font-semibold text-base hover:shadow-lg hover:scale-105 transition-all">
                 {ctaText}
               </button>
               <span className="text-sm flex items-center gap-2" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
@@ -64,10 +64,10 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Right: solid white card */}
+          {/* Right: gradient card */}
           <motion.div className="flex-1 w-full max-w-lg"
             initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <div className="rounded-2xl bg-white border border-gray-200 p-6 shadow-2xl">
+            <div className="rounded-2xl bg-gradient-to-br from-white/75 to-white/55 backdrop-blur-sm border border-white/30 p-6 shadow-2xl">
               <div className="flex items-center gap-2 mb-6">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -77,11 +77,11 @@ export default function LandingPage() {
                 <span className="ml-3 text-xs text-gray-500 font-semibold">Your matches</span>
               </div>
               {[
-                { name: 'Jane Smith', office: 'State Senate', match: 87, color: '#22c55e' },
-                { name: 'Carlos Rivera', office: 'City Council', match: 74, color: '#f59e0b' },
-                { name: 'Pat Johnson', office: 'School Board', match: 61, color: '#f59e0b' },
+                { name: 'Jane Smith', office: 'State Senate', match: 87, color: '#6096BA' },
+                { name: 'Carlos Rivera', office: 'City Council', match: 74, color: '#8FA998' },
+                { name: 'Pat Johnson', office: 'School Board', match: 61, color: '#A3CEF1' },
               ].map((c) => (
-                <div key={c.name} className="flex items-center gap-4 py-3.5 border-b border-gray-100 last:border-0">
+                <div key={c.name} className="flex items-center gap-4 py-3.5 border-b border-white/20 last:border-0">
                   <div className="w-12 h-12 rounded-full bg-[#274C77] flex items-center justify-center text-white font-bold text-base flex-shrink-0">
                     {c.name[0]}
                   </div>
@@ -116,7 +116,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <motion.div key={f.title}
-                className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all group"
+                className="bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-sm rounded-xl border border-white/30 p-6 hover:shadow-lg transition-all group"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}>
                 <div className="w-12 h-12 rounded-lg bg-[#A3CEF1] flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
@@ -146,7 +146,7 @@ export default function LandingPage() {
               { step: '3', title: 'See your matches', body: 'Get personalized match scores and explore candidate positions.' },
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="w-14 h-14 rounded-full bg-white text-[#274C77] text-xl font-bold flex items-center justify-center mx-auto mb-4 shadow-md">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm text-[#274C77] text-xl font-bold flex items-center justify-center mx-auto mb-4 shadow-md border border-white/30">
                   {item.step}
                 </div>
                 <h3 className="text-lg font-semibold mb-2" style={{ color: '#fff', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>{item.title}</h3>
@@ -167,7 +167,7 @@ export default function LandingPage() {
             Takes about 3 minutes. No sign-up, no spam — just clarity.
           </p>
           <button type="button" onClick={handleGetStarted}
-            className="px-10 py-4 rounded-xl bg-white text-[#274C77] font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all">
+            className="px-10 py-4 rounded-xl bg-gradient-to-br from-white/75 to-white/55 backdrop-blur-sm border border-white/30 text-[#274C77] font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all">
             {ctaText}
           </button>
         </div>

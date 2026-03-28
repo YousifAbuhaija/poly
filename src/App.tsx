@@ -66,7 +66,7 @@ function TopNav() {
   ] as const;
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         {/* Logo — always present */}
         <button

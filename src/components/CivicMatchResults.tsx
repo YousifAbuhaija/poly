@@ -54,7 +54,7 @@ export default function CivicMatchResults() {
 
         {/* Disclaimer */}
         <motion.div 
-          className="mb-6 rounded-xl bg-white border border-gray-200 px-5 py-4 shadow-sm"
+          className="mb-6 rounded-xl bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-sm border border-white/30 px-5 py-4 shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}

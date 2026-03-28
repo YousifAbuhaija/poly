@@ -85,8 +85,8 @@ export default function AskPolyChat() {
             <div key={`${msg.timestamp}-${i}`} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[80%] rounded-xl px-4 py-3 text-sm ${
                 msg.role === 'user'
-                  ? 'bg-[#274C77] text-white'
-                  : 'bg-white border border-gray-200 text-gray-900 shadow-sm'
+                  ? 'bg-[#6096BA] text-white shadow-md'
+                  : 'bg-white border border-gray-200 text-gray-900 shadow-md'
               }`}>
                 {msg.content}
               </div>
@@ -95,7 +95,7 @@ export default function AskPolyChat() {
 
           {loading && (
             <div className="flex justify-start">
-              <div className="max-w-[80%] rounded-xl bg-white border border-gray-200 px-4 py-3 text-sm text-gray-400 shadow-sm">
+              <div className="max-w-[80%] rounded-xl bg-white border border-gray-200 px-4 py-3 text-sm text-gray-400 shadow-md">
                 Thinking…
               </div>
             </div>

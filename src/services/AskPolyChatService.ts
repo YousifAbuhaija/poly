@@ -9,6 +9,10 @@ const CURRENTS_API_URL = 'https://api.currentsapi.services/v1/search';
 const newsCache = new Map<string, { result: string; timestamp: number }>();
 const CACHE_TTL = 1000 * 60 * 30; // 30 minutes
 
+// Rate limiting: track last request time
+let lastRequestTime = 0;
+const MIN_REQUEST_INTERVAL = 2000; // 2 seconds between requests
+
 // Only fetch news for civic/political questions, not every message
 function isCivicQuestion(question: string): boolean {
   const keywords = ['law', 'bill', 'election', 'vote', 'ballot', 'candidate', 'policy',
@@ -64,6 +68,15 @@ export async function sendMessage(
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) throw new Error('Configuration error: API key is missing.');
 
+  // Rate limiting check
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastRequestTime;
+  if (timeSinceLastRequest < MIN_REQUEST_INTERVAL) {
+    const waitTime = MIN_REQUEST_INTERVAL - timeSinceLastRequest;
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+  }
+  lastRequestTime = Date.now();
+
   const newsContext = await fetchNewsContext(question, location);
 
   const systemPrompt = `You are Poly, a civic assistant for Gen Z users. The user is in ${location.city}, ${location.state}.
@@ -95,7 +108,9 @@ ${newsContext ? `Use the following recent news to inform your answer if relevant
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    if (response.status === 429) throw new Error('Poly is receiving too many requests. Please try again in a moment.');
+    if (response.status === 429) {
+      throw new Error('Rate limit reached. Please wait 60 seconds before trying again.');
+    }
     throw new Error(errorData?.error?.message || 'Could not generate a response. Please try again.');
   }
 
