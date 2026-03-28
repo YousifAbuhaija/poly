@@ -6,12 +6,17 @@ import { loadCandidates } from '../services/DataLoader';
  * - Filters candidates by state and county matching the user's location
  * - Computes match percentage excluding skipped issues (score 0)
  * - Returns results sorted by matchPercentage descending
+ *
+ * @param profile - The user's issue profile
+ * @param location - The user's resolved location
+ * @param candidatesOverride - Optional candidates array; if provided, used instead of loadCandidates()
  */
 export function computeMatches(
   profile: IssueProfile,
   location: LocationResult,
+  candidatesOverride?: Candidate[],
 ): MatchResult[] {
-  const candidates = loadCandidates();
+  const candidates = candidatesOverride ?? loadCandidates();
 
   // Filter candidates by location (case-insensitive)
   const localCandidates = candidates.filter(

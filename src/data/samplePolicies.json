@@ -16,5 +16,11 @@
     "title": "Affordable Housing Development Program",
     "text": "This program establishes a public-private partnership to construct 10,000 new affordable housing units over five years. Developers participating in the program receive expedited permitting and tax credits in exchange for reserving 30% of units for households earning below the area median income.",
     "category": "Housing"
+  },
+  {
+    "id": "policy-004",
+    "title": "Federal Algorithmic Transparency Act",
+    "text": "This federal legislation requires social media platforms and tech companies to disclose how their algorithms target content to users under 25. It also provides users the right to opt-out of data tracking for targeted advertising and establishes a federal commission to monitor algorithmic bias.",
+    "category": "Technology & Privacy"
   }
 ]

@@ -1,5 +1,8 @@
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { useAppContext } from './context/AppContext';
+import PolyLogo from './components/PolyLogo';
 import LandingPage from './components/LandingPage';
 import ZipOnboarding from './components/ZipOnboarding';
 import VibeCheck from './components/VibeCheck';
@@ -7,146 +10,275 @@ import CivicMatchResults from './components/CivicMatchResults';
 import CandidateDetail from './components/CandidateDetail';
 import NoReadTranslator from './components/NoReadTranslator';
 import AskPolyChat from './components/AskPolyChat';
-
-/** Paths where the bottom nav is hidden */
-const NO_NAV_PATHS = ['/', '/onboarding', '/vibe-check'];
+import ProfilePage from './components/ProfilePage';
+import SignIn from './components/SignIn';
 
 function RequireOnboarding({ children }: { children: React.ReactNode }) {
   const { location } = useAppContext();
-  if (!location) {
-    return <Navigate to="/onboarding" replace />;
-  }
+  if (!location) return <Navigate to="/" replace />;
   return <>{children}</>;
 }
 
-/** Bottom navigation bar — only visible after onboarding on non-landing routes. */
-function BottomNav() {
-  const { location: appLocation } = useAppContext();
+function RequireQuizComplete({ children }: { children: React.ReactNode }) {
+  const { quizComplete } = useAppContext();
+  if (!quizComplete) return <Navigate to="/vibe-check" replace />;
+  return <>{children}</>;
+}
+
+function TopNav() {
+  const { location: appLocation, quizComplete, quizIndex, signOut } = useAppContext();
   const routerLocation = useLocation();
   const navigate = useNavigate();
 
-  // Hide on landing and onboarding, or if not onboarded
-  if (!appLocation || NO_NAV_PATHS.includes(routerLocation.pathname)) return null;
+  const isOnboarded = !!appLocation;
+  const isQuizRoute = routerLocation.pathname === '/vibe-check';
+  const isOnboardingRoute = routerLocation.pathname === '/onboarding';
+  const isSignInRoute = routerLocation.pathname === '/signin';
+
+  // State A: not onboarded — logo + CTA
+  // State B: onboarded, on quiz — logo + progress hint
+  // State C: onboarded, anywhere else — logo + tabs
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  const handleCta = () => {
+    if (!isOnboarded) navigate('/onboarding');
+    else if (quizIndex > 0 && !quizComplete) navigate('/vibe-check');
+    else if (quizComplete) navigate('/results');
+    else navigate('/vibe-check');
+  };
+
+  const ctaText = !isOnboarded
+    ? 'Get Started'
+    : quizIndex > 0 && !quizComplete
+    ? 'Resume Quiz'
+    : quizComplete
+    ? 'View Results'
+    : 'Take Quiz';
 
   const tabs = [
-    { label: 'Results', path: '/results', icon: resultsIcon },
-    { label: 'Translator', path: '/translator', icon: translatorIcon },
-    { label: 'Chat', path: '/chat', icon: chatIcon },
+    { label: 'Results', path: '/results', blocked: !quizComplete },
+    { label: 'Translator', path: '/translator', blocked: false },
+    { label: 'Chat', path: '/chat', blocked: false },
+    { label: 'Profile', path: '/profile', blocked: false },
   ] as const;
 
   return (
-    <nav
-      className="fixed bottom-0 inset-x-0 z-50 border-t border-glass-border bg-poly-dark/90 backdrop-blur-lg"
-      aria-label="Main navigation"
-    >
-      <div className="mx-auto flex max-w-lg items-center justify-around py-2">
-        {tabs.map((tab) => {
-          const active = routerLocation.pathname.startsWith(tab.path);
-          return (
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        {/* Logo — always present */}
+        <button
+          type="button"
+          onClick={handleLogoClick}
+          className="flex items-center gap-2 hover:opacity-80 transition"
+        >
+          <PolyLogo size={28} />
+          <span className="text-xl font-bold text-[#274C77] tracking-tight">Poly</span>
+        </button>
+
+        {/* Right side — depends on state */}
+        {!isOnboarded || isOnboardingRoute || isSignInRoute ? (
+          /* State A: CTA + Sign In */
+          <div className="flex items-center gap-3">
             <button
-              key={tab.path}
               type="button"
-              onClick={() => navigate(tab.path)}
-              className={`flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-0.5 px-3 py-1 transition ${
-                active ? 'text-poly-accent' : 'text-text-muted hover:text-text-secondary'
-              }`}
-              aria-current={active ? 'page' : undefined}
+              onClick={() => navigate('/signin')}
+              className="px-4 py-2 rounded-lg border border-[#274C77] text-[#274C77] text-sm font-medium hover:bg-[#274C77]/5 transition"
             >
-              <tab.icon active={active} />
-              <span className="text-[10px] font-medium">{tab.label}</span>
+              Sign In
             </button>
-          );
-        })}
+            <button
+              type="button"
+              onClick={handleCta}
+              className="px-6 py-2 rounded-lg bg-[#274C77] text-white text-sm font-semibold hover:bg-[#6096BA] transition shadow-sm"
+            >
+              {ctaText}
+            </button>
+          </div>
+        ) : isQuizRoute ? (
+          /* State B: quiz progress hint */
+          <span className="text-sm text-gray-500">Vibe Check in progress</span>
+        ) : (
+          /* State C: full tab nav */
+          <nav className="flex items-center gap-1" aria-label="Main navigation">
+            {tabs.map((tab) => {
+              const active = routerLocation.pathname.startsWith(tab.path);
+              return (
+                <button
+                  key={tab.path}
+                  type="button"
+                  onClick={() => !tab.blocked && navigate(tab.path)}
+                  disabled={tab.blocked}
+                  title={tab.blocked ? 'Complete the quiz first' : undefined}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                    tab.blocked
+                      ? 'text-gray-400 cursor-not-allowed opacity-40'
+                      : active
+                      ? 'bg-[#A3CEF1]/20 text-[#274C77]'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              onClick={() => { signOut(); navigate('/'); }}
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
+            >
+              Sign Out
+            </button>
+          </nav>
+        )}
       </div>
-    </nav>
+    </header>
   );
 }
-
-/* ── Icon components ─────────────────────────────────────────────── */
-
-function resultsIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-      {active && <path d="M9 14l2 2 4-4" />}
-    </svg>
-  );
-}
-
-function translatorIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? '2.2' : '2'} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-    </svg>
-  );
-}
-
-function chatIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? '2.2' : '2'} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-    </svg>
-  );
-}
-
-/* ── Main App ────────────────────────────────────────────────────── */
 
 export default function App() {
-  const { location: appLocation } = useAppContext();
   const routerLocation = useLocation();
-  const showNav = !!appLocation && !NO_NAV_PATHS.includes(routerLocation.pathname);
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<unknown>(null);
+
+  useEffect(() => {
+    const win = window as unknown as Record<string, unknown>;
+    if (!vantaEffect.current && win.VANTA) {
+      const VANTA = win.VANTA as { GLOBE: (opts: unknown) => unknown };
+      vantaEffect.current = VANTA.GLOBE({
+        el: vantaRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x6096ba,
+        color2: 0xa3cef1,
+        backgroundColor: 0x274c77,
+      });
+    }
+    return () => {
+      if (vantaEffect.current) {
+        (vantaEffect.current as { destroy: () => void }).destroy();
+        vantaEffect.current = null;
+      }
+    };
+  }, []);
 
   return (
-    <div className={`min-h-dvh ${showNav ? 'pb-16' : ''}`}>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/onboarding" element={<ZipOnboarding />} />
-        <Route
-          path="/vibe-check"
-          element={
-            <RequireOnboarding>
-              <VibeCheck />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/results"
-          element={
-            <RequireOnboarding>
-              <CivicMatchResults />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/candidate/:id"
-          element={
-            <RequireOnboarding>
-              <CandidateDetail />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/translator"
-          element={
-            <RequireOnboarding>
-              <NoReadTranslator />
-            </RequireOnboarding>
-          }
-        />
-        <Route
-          path="/chat"
-          element={
-            <RequireOnboarding>
-              <AskPolyChat />
-            </RequireOnboarding>
-          }
-        />
-        {/* Catch-all: redirect to landing */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-      <BottomNav />
+    <div style={{ position: 'relative', minHeight: '100dvh' }}>
+      {/* Fixed Vanta globe background */}
+      <div
+        ref={vantaRef}
+        style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
+      />
+      {/* App content above the globe */}
+      <div style={{ position: 'relative', zIndex: 1, height: '100dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <TopNav />
+      <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
+      <AnimatePresence mode="wait">
+        <Routes location={routerLocation} key={routerLocation.pathname}>
+          <Route path="/" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <LandingPage />
+            </motion.div>
+          } />
+          <Route path="/onboarding" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ZipOnboarding />
+            </motion.div>
+          } />
+          <Route path="/signin" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <SignIn />
+            </motion.div>
+          } />
+          <Route path="/vibe-check" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><VibeCheck /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/results" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><RequireQuizComplete><CivicMatchResults /></RequireQuizComplete></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/candidate/:id" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><CandidateDetail /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/translator" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><NoReadTranslator /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/chat" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}
+            >
+              <RequireOnboarding><AskPolyChat /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="/profile" element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RequireOnboarding><ProfilePage /></RequireOnboarding>
+            </motion.div>
+          } />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AnimatePresence>
+      </div>
+      </div>
     </div>
   );
 }
