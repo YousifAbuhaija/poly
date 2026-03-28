@@ -76,7 +76,7 @@ export default function CandidateDetail() {
 
   return (
     <div className="min-h-dvh bg-gradient-to-br from-deep via-charcoal to-deep px-4 py-6">
-      <div className="mx-auto max-w-sm">
+      <div className="mx-auto max-w-6xl">
         {/* Back navigation */}
         <button
           type="button"
@@ -128,67 +128,69 @@ export default function CandidateDetail() {
                 <p className="text-sm text-slate">
                   <span className="text-cream font-medium">{el.name}</span> · {el.date}
                 </p>
-                <p className="text-xs text-teal">
+                <p className="text-xs text-lavender">
                   {el.county} County, {el.state} · {el.offices.join(', ')}
                 </p>
               </div>
             ))}
             {location && (
-              <p className="mt-2 text-xs text-teal">
+              <p className="mt-2 text-xs text-lavender">
                 Showing elections for: {location.city}, {location.state} ({location.county} County)
               </p>
             )}
           </div>
         )}
 
-        {/* Match explanation with Pros/Cons */}
+        {/* Match explanation with Pros/Cons - Horizontal Layout */}
         <div className="mt-4 rounded-xl bg-glass-bg border border-glass-border p-4 backdrop-blur-lg">
           <h2 className="text-sm font-semibold text-cream mb-2">Why This Match?</h2>
-          <p className="text-xs text-teal mb-3">
+          <p className="text-xs text-lavender mb-4">
             Based on your responses, here's how you align with {candidate.name}.
           </p>
 
-          {/* Pros */}
-          {agreements.length > 0 && (
-            <div className="mb-4">
-              <p className="text-xs font-medium text-agree mb-2 flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Pros - You agree on ({agreements.length})
-              </p>
-              <div className="flex flex-col gap-1.5">
-                {agreements.map((issueId) => (
-                  <span key={issueId} className="rounded-lg bg-agree/10 px-3 py-1.5 text-xs text-agree">
-                    {issueLabel(issueId, issues)}
-                  </span>
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Pros */}
+            {agreements.length > 0 && (
+              <div>
+                <p className="text-xs font-medium text-agree mb-2 flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  Pros - You agree on ({agreements.length})
+                </p>
+                <div className="flex flex-col gap-1.5">
+                  {agreements.map((issueId) => (
+                    <span key={issueId} className="rounded-lg bg-agree/10 px-3 py-1.5 text-xs text-agree">
+                      {issueLabel(issueId, issues)}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Cons */}
-          {disagreements.length > 0 && (
-            <div>
-              <p className="text-xs font-medium text-disagree mb-2 flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                Cons - You differ on ({disagreements.length})
-              </p>
-              <div className="flex flex-col gap-1.5">
-                {disagreements.map((issueId) => (
-                  <span key={issueId} className="rounded-lg bg-disagree/10 px-3 py-1.5 text-xs text-disagree">
-                    {issueLabel(issueId, issues)}
-                  </span>
-                ))}
+            {/* Cons */}
+            {disagreements.length > 0 && (
+              <div>
+                <p className="text-xs font-medium text-disagree mb-2 flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                  Cons - You differ on ({disagreements.length})
+                </p>
+                <div className="flex flex-col gap-1.5">
+                  {disagreements.map((issueId) => (
+                    <span key={issueId} className="rounded-lg bg-disagree/10 px-3 py-1.5 text-xs text-disagree">
+                      {issueLabel(issueId, issues)}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {agreements.length === 0 && disagreements.length === 0 && (
-            <p className="text-xs text-teal">
+            <p className="text-xs text-lavender">
               No match data available. Complete the Vibe Check to see how you align.
             </p>
           )}
@@ -209,7 +211,7 @@ export default function CandidateDetail() {
                       ? 'bg-agree/15 text-agree'
                       : score === -1
                         ? 'bg-disagree/15 text-disagree'
-                        : 'bg-glass-bg text-teal'
+                        : 'bg-lavender/10 text-lavender'
                   }`}
                 >
                   {scoreLabel(score)}

@@ -102,30 +102,161 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features — solid white cards */}
+      {/* Top 3 Facts with Animated Charts */}
       <section className="relative z-10 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-3" style={{ color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-              Everything you need to vote informed
+              Gen Z: The Missing Voters
             </h2>
             <p style={{ color: '#E7ECEF', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }} className="max-w-2xl mx-auto">
-              Poly brings clarity to the voting process with tools designed to help you understand candidates and issues without the noise.
+              Young voters have the power to shape policy, but many don't show up
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((f, i) => (
-              <motion.div key={f.title}
-                className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all group"
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <div className="w-12 h-12 rounded-lg bg-[#A3CEF1] flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                  {f.icon}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Fact 1: Gen Z Turnout */}
+            <motion.div
+              className="bg-transparent rounded-2xl p-8 text-center"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}>
+              <div className="relative w-48 h-48 mx-auto mb-6">
+                <svg viewBox="0 0 100 100" className="transform -rotate-90 drop-shadow-lg">
+                  <defs>
+                    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#ef4444" />
+                      <stop offset="100%" stopColor="#dc2626" />
+                    </linearGradient>
+                    <filter id="shadow">
+                      <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+                    </filter>
+                  </defs>
+                  {/* Background circle with subtle inner shadow */}
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="12" />
+                  {/* Animated arc for 48% */}
+                  <motion.circle
+                    cx="50" cy="50" r="42" fill="none"
+                    stroke="url(#redGradient)" strokeWidth="12" strokeLinecap="round"
+                    filter="url(#shadow)"
+                    strokeDasharray={`${2 * Math.PI * 42}`}
+                    initial={{ strokeDashoffset: 2 * Math.PI * 42 }}
+                    animate={{ strokeDashoffset: 2 * Math.PI * 42 * (1 - 0.48) }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <motion.span 
+                    className="text-5xl font-bold bg-gradient-to-br from-red-500 to-red-600 bg-clip-text text-transparent"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 1.2, type: "spring", bounce: 0.4 }}>
+                    48%
+                  </motion.span>
+                  <motion.span 
+                    className="text-xs text-gray-300 mt-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 1.6 }}>
+                    turnout
+                  </motion.span>
                 </div>
-                <h3 className="text-base font-semibold text-gray-900 mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{f.body}</p>
-              </motion.div>
-            ))}
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-center" style={{ color: '#fff', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>Gen Z Turnout (2020)</h3>
+              <p className="text-sm leading-relaxed text-center mx-auto max-w-xs" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>Only 48% of eligible Gen Z voters cast a ballot - the lowest of any generation.</p>
+            </motion.div>
+
+            {/* Fact 2: Policies Affecting Gen Z */}
+            <motion.div
+              className="bg-transparent rounded-2xl p-8 text-center"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}>
+              <div className="relative w-48 h-48 mx-auto mb-6">
+                <svg viewBox="0 0 100 100" className="transform -rotate-90 drop-shadow-lg">
+                  <defs>
+                    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#3b82f6" />
+                      <stop offset="100%" stopColor="#2563eb" />
+                    </linearGradient>
+                  </defs>
+                  {/* Background circle */}
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="12" />
+                  {/* Animated arc for 85% */}
+                  <motion.circle
+                    cx="50" cy="50" r="42" fill="none"
+                    stroke="url(#blueGradient)" strokeWidth="12" strokeLinecap="round"
+                    filter="url(#shadow)"
+                    strokeDasharray={`${2 * Math.PI * 42}`}
+                    initial={{ strokeDashoffset: 2 * Math.PI * 42 }}
+                    animate={{ strokeDashoffset: 2 * Math.PI * 42 * (1 - 0.85) }}
+                    transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <motion.span 
+                    className="text-5xl font-bold bg-gradient-to-br from-blue-500 to-blue-600 bg-clip-text text-transparent"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 1.4, type: "spring", bounce: 0.4 }}>
+                    85%
+                  </motion.span>
+                  <motion.span 
+                    className="text-xs text-gray-300 mt-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 1.8 }}>
+                    impact
+                  </motion.span>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-center" style={{ color: '#fff', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>Policies Impact Gen Z</h3>
+              <p className="text-sm leading-relaxed text-center mx-auto max-w-xs" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>85% of current policies directly affect Gen Z's future - from climate to student debt.</p>
+            </motion.div>
+
+            {/* Fact 3: Non-Gen Z Voters */}
+            <motion.div
+              className="bg-transparent rounded-2xl p-8 text-center"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}>
+              <div className="relative w-48 h-48 mx-auto mb-6">
+                <svg viewBox="0 0 100 100" className="transform -rotate-90 drop-shadow-lg">
+                  <defs>
+                    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#7c3aed" />
+                    </linearGradient>
+                  </defs>
+                  {/* Background circle */}
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="12" />
+                  {/* Animated arc for 78% */}
+                  <motion.circle
+                    cx="50" cy="50" r="42" fill="none"
+                    stroke="url(#purpleGradient)" strokeWidth="12" strokeLinecap="round"
+                    filter="url(#shadow)"
+                    strokeDasharray={`${2 * Math.PI * 42}`}
+                    initial={{ strokeDashoffset: 2 * Math.PI * 42 }}
+                    animate={{ strokeDashoffset: 2 * Math.PI * 42 * (1 - 0.78) }}
+                    transition={{ duration: 2, ease: "easeInOut", delay: 0.4 }}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <motion.span 
+                    className="text-5xl font-bold bg-gradient-to-br from-purple-500 to-purple-600 bg-clip-text text-transparent"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 1.6, type: "spring", bounce: 0.4 }}>
+                    78%
+                  </motion.span>
+                  <motion.span 
+                    className="text-xs text-gray-300 mt-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 2.0 }}>
+                    turnout
+                  </motion.span>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-center" style={{ color: '#fff', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>Older Voters Show Up</h3>
+              <p className="text-sm leading-relaxed text-center mx-auto max-w-xs" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>78% of voters 65+ cast ballots - they're deciding your future while you sit out.</p>
+            </motion.div>
           </div>
         </div>
       </section>

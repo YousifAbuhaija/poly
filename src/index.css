@@ -19,9 +19,9 @@
   --color-text-secondary: #ACBDBA;
   --color-text-muted: #A599B5;
 
-  /* Status tokens */
-  --color-agree: #ACBDBA;
-  --color-disagree: #d97777;
+  /* Status tokens - softer colors */
+  --color-agree: #8FB5A8;
+  --color-disagree: #C89B9B;
   --color-skip: #A599B5;
 }
 
