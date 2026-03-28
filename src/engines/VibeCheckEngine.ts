@@ -2,7 +2,7 @@ import type { IssueStatement, IssueScore, IssueProfile } from '../types';
 import { loadIssues } from '../services/DataLoader';
 
 let issues: IssueStatement[] | null = null;
-let profile: IssueProfile = {};
+let profile: IssueProfile = Object.create(null);
 
 export function getIssues(): IssueStatement[] {
   if (!issues) {
@@ -31,5 +31,5 @@ export function isComplete(): boolean {
 
 export function reset(): void {
   issues = null;
-  profile = {};
+  profile = Object.create(null);
 }

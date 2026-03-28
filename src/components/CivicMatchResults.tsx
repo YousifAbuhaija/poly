@@ -37,8 +37,8 @@ export default function CivicMatchResults() {
         {/* Disclaimer banner */}
         <div className="mt-4 rounded-xl bg-white/5 border border-glass-border px-4 py-3">
           <p className="text-xs text-text-muted leading-relaxed">
-            Match scores reflect values alignment based on your issue responses. They are not voting
-            recommendations or endorsements of any candidate.
+            Match scores reflect issue agreement and are not endorsements. They represent
+            values alignment based on your responses, not voting recommendations.
           </p>
         </div>
 
