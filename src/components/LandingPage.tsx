@@ -56,7 +56,7 @@ export default function LandingPage() {
                 {ctaText}
               </button>
               <span className="text-sm flex items-center gap-2" style={{ color: '#E7ECEF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
-                <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 text-[#A3CEF1]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 Free · No account needed
@@ -70,9 +70,9 @@ export default function LandingPage() {
             <div className="rounded-2xl bg-gradient-to-br from-white/75 to-white/55 backdrop-blur-sm border border-white/30 p-6 shadow-2xl">
               <div className="flex items-center gap-2 mb-6">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                  <div className="w-3 h-3 rounded-full bg-[#E7ECEF]" />
+                  <div className="w-3 h-3 rounded-full bg-[#A3CEF1]" />
+                  <div className="w-3 h-3 rounded-full bg-[#6096BA]" />
                 </div>
                 <span className="ml-3 text-xs text-gray-500 font-semibold">Your matches</span>
               </div>
@@ -123,8 +123,8 @@ export default function LandingPage() {
                 <svg viewBox="0 0 100 100" className="transform -rotate-90 drop-shadow-lg">
                   <defs>
                     <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#ef4444" />
-                      <stop offset="100%" stopColor="#dc2626" />
+                      <stop offset="0%" stopColor="#A3CEF1" />
+                      <stop offset="100%" stopColor="#6096BA" />
                     </linearGradient>
                     <filter id="shadow">
                       <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
@@ -173,8 +173,8 @@ export default function LandingPage() {
                 <svg viewBox="0 0 100 100" className="transform -rotate-90 drop-shadow-lg">
                   <defs>
                     <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#3b82f6" />
-                      <stop offset="100%" stopColor="#2563eb" />
+                      <stop offset="0%" stopColor="#6096BA" />
+                      <stop offset="100%" stopColor="#274C77" />
                     </linearGradient>
                   </defs>
                   <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="12" />
@@ -220,8 +220,8 @@ export default function LandingPage() {
                 <svg viewBox="0 0 100 100" className="transform -rotate-90 drop-shadow-lg">
                   <defs>
                     <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#7c3aed" />
+                      <stop offset="0%" stopColor="#8FA998" />
+                      <stop offset="100%" stopColor="#6B8E7F" />
                     </linearGradient>
                   </defs>
                   <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="12" />
