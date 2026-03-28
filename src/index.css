@@ -1,41 +1,82 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dark gradient palette */
-  --color-poly-dark: #0f0f1a;
-  --color-poly-navy: #1a1a2e;
-  --color-poly-indigo: #16213e;
-  --color-poly-purple: #533483;
-  --color-poly-violet: #7b2ff7;
-  --color-poly-accent: #c084fc;
-  --color-poly-glow: #a855f7;
+  /* ── Core palette ─────────────────────────────────────────────── */
+  --color-poly-dark: #0a0a12;
+  --color-poly-navy: #12121e;
+  --color-poly-surface: #1a1a28;
+  --color-poly-elevated: #222234;
 
-  /* Glass / surface tokens */
-  --color-glass-bg: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-glass-hover: rgba(255, 255, 255, 0.08);
+  /* Brand — restrained, not neon */
+  --color-poly-primary: #6366f1;
+  --color-poly-primary-hover: #5558e6;
+  --color-poly-primary-subtle: rgba(99, 102, 241, 0.12);
+  --color-poly-accent: #a5b4fc;
 
-  /* Text tokens */
-  --color-text-primary: #f3f4f6;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
+  /* Borders & surfaces */
+  --color-border-default: rgba(255, 255, 255, 0.06);
+  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-surface-card: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.06);
+  --color-surface-input: rgba(255, 255, 255, 0.05);
 
-  /* Status tokens */
+  /* Text — proper hierarchy */
+  --color-text-primary: #f0f0f5;
+  --color-text-secondary: #a0a0b8;
+  --color-text-muted: #6b6b80;
+  --color-text-inverse: #0a0a12;
+
+  /* Semantic */
   --color-agree: #34d399;
+  --color-agree-subtle: rgba(52, 211, 153, 0.1);
   --color-disagree: #f87171;
+  --color-disagree-subtle: rgba(248, 113, 113, 0.1);
   --color-skip: #fbbf24;
+  --color-skip-subtle: rgba(251, 191, 36, 0.1);
+
+  /* Radii — consistent system */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 }
+
+/* ── Base ────────────────────────────────────────────────────────── */
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 40%, #16213e 100%);
+  background: var(--color-poly-dark);
   color: var(--color-text-primary);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
 }
 
 #root {
   min-height: 100dvh;
+}
+
+/* ── Utility classes ─────────────────────────────────────────────── */
+
+.card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+}
+
+.card-elevated {
+  background: var(--color-poly-elevated);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+}
+
+/* Subtle focus ring for inputs */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-poly-primary);
+  box-shadow: 0 0 0 3px var(--color-poly-primary-subtle);
 }

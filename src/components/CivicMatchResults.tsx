@@ -20,31 +20,31 @@ export default function CivicMatchResults() {
 
   if (!location) {
     return (
-      <div className="min-h-dvh flex items-center justify-center px-4">
-        <p className="text-text-secondary">Please complete onboarding first.</p>
+      <div className="min-h-dvh flex items-center justify-center px-6">
+        <p className="text-text-secondary text-sm">Please complete onboarding first.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4 py-8">
+    <div className="min-h-dvh px-6 pt-12 pb-24">
       <div className="mx-auto max-w-sm">
-        <h1 className="text-2xl font-bold text-white text-center">Your Matches</h1>
+        <p className="mb-1 text-center text-xs font-medium tracking-widest uppercase text-text-muted">
+          Step 3 of 3
+        </p>
+        <h1 className="text-xl font-semibold text-text-primary text-center">Your Matches</h1>
         <p className="mt-1 text-center text-sm text-text-secondary">
           {location.city}, {location.state} · {location.county} County
         </p>
 
-        {/* Disclaimer banner */}
-        <div className="mt-4 rounded-xl bg-white/5 border border-glass-border px-4 py-3">
-          <p className="text-xs text-text-muted leading-relaxed">
-            Match scores reflect issue agreement and are not endorsements. They represent
-            values alignment based on your responses, not voting recommendations.
-          </p>
-        </div>
+        {/* Disclaimer */}
+        <p className="mt-4 text-xs text-text-muted leading-relaxed text-center">
+          Match scores reflect issue agreement and are not endorsements.
+        </p>
 
         {/* Edge case: all issues skipped */}
         {allSkipped && (
-          <div className="mt-6 rounded-xl bg-skip/10 border border-skip/20 px-4 py-4 text-center">
+          <div className="mt-6 card px-4 py-4 text-center">
             <p className="text-sm text-skip">
               You skipped all issues, so match scores are 0%. Go back and share your takes for
               better results.
@@ -54,15 +54,15 @@ export default function CivicMatchResults() {
 
         {/* Edge case: no candidates found */}
         {results.length === 0 && !allSkipped && (
-          <div className="mt-6 rounded-xl bg-white/5 border border-glass-border px-4 py-4 text-center">
+          <div className="mt-6 card px-4 py-4 text-center">
             <p className="text-sm text-text-secondary">
-              No candidates found for your area. We're working on expanding coverage.
+              No candidates found for your area.
             </p>
           </div>
         )}
 
         {/* Candidate list */}
-        <div className="mt-5 flex flex-col gap-4" role="list" aria-label="Candidate matches">
+        <div className="mt-6 flex flex-col gap-3" role="list" aria-label="Candidate matches">
           {results.map((r) => (
             <div key={r.candidate.id} role="listitem">
               <CandidateCard

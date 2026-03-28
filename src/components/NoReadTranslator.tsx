@@ -49,29 +49,33 @@ export default function NoReadTranslator() {
   const cards: { icon: string; title: string; key: keyof PolicyExplanation }[] = [
     { icon: '📋', title: 'What it does', key: 'whatItDoes' },
     { icon: '💡', title: 'Why it matters', key: 'whyItMatters' },
-    { icon: '🏛️', title: 'Who decides', key: 'whoDecides' },
+    { icon: '🏛', title: 'Who decides', key: 'whoDecides' },
   ];
 
   return (
-    <div className="min-h-dvh flex flex-col px-4 py-8">
-      <div className="mx-auto w-full max-w-lg">
-        <h1 className="mb-1 text-center text-2xl font-bold text-white">No-Read Translator</h1>
-        <p className="mb-2 text-center text-sm text-text-secondary">
-          Paste policy text or upload a PDF to get a plain-language breakdown.
+    <div className="min-h-dvh flex flex-col px-6 pt-12 pb-24">
+      <div className="mx-auto w-full max-w-sm">
+        <h1 className="text-xl font-semibold text-text-primary text-center">Translator</h1>
+        <p className="mt-1 mb-2 text-center text-sm text-text-secondary">
+          Paste policy text or upload a PDF for a plain-language breakdown.
         </p>
         {location && (
           <p className="mb-6 text-center text-xs text-text-muted">
-            Results tailored for {location.city}, {location.state} ({location.county} County)
+            Tailored for {location.city}, {location.state}
           </p>
         )}
 
         {/* Text input */}
+        <label htmlFor="policy-text" className="block text-xs font-medium text-text-muted mb-1.5">
+          Policy text
+        </label>
         <textarea
+          id="policy-text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Paste policy text here…"
           rows={5}
-          className="w-full rounded-xl bg-white/10 backdrop-blur-lg border border-glass-border p-4 text-sm text-text-primary placeholder-text-muted resize-none focus:outline-none focus:border-poly-violet"
+          className="w-full rounded-[var(--radius-md)] bg-surface-input border border-border-default p-4 text-sm text-text-primary placeholder-text-muted resize-none transition"
         />
 
         {/* File upload */}
@@ -79,7 +83,7 @@ export default function NoReadTranslator() {
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="min-h-[44px] min-w-[44px] rounded-xl bg-white/10 backdrop-blur-lg border border-glass-border px-4 py-2 text-sm text-text-secondary hover:bg-glass-hover transition"
+            className="min-h-[44px] rounded-[var(--radius-md)] bg-surface-input border border-border-default px-4 py-2 text-sm text-text-secondary hover:bg-surface-hover transition"
           >
             {file ? file.name : 'Upload PDF'}
           </button>
@@ -97,7 +101,7 @@ export default function NoReadTranslator() {
               className="text-xs text-text-muted hover:text-text-secondary min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Remove file"
             >
-              ✕
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
           )}
         </div>
@@ -107,19 +111,19 @@ export default function NoReadTranslator() {
           type="button"
           onClick={handleSubmit}
           disabled={isEmpty || loading}
-          className="mt-4 w-full min-h-[44px] rounded-xl bg-poly-violet text-white font-semibold text-sm py-3 transition hover:bg-poly-purple disabled:opacity-40 disabled:cursor-not-allowed"
+          className="mt-4 w-full min-h-[48px] rounded-[var(--radius-md)] bg-poly-primary text-white text-sm font-medium py-3 transition-colors hover:bg-poly-primary-hover disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          {loading ? 'Analyzing…' : 'Explain This Policy'}
+          {loading ? 'Analyzing…' : 'Explain this policy'}
         </button>
 
         {/* Error */}
         {error && (
-          <div className="mt-4 rounded-xl bg-disagree/15 border border-disagree/30 p-4 text-sm text-disagree">
-            <p>{error}</p>
+          <div className="mt-4 card bg-disagree-subtle border-disagree/20 p-4">
+            <p className="text-sm text-disagree">{error}</p>
             <button
               type="button"
               onClick={handleRetry}
-              className="mt-2 min-h-[44px] min-w-[44px] rounded-lg bg-disagree/20 px-4 py-2 text-xs font-medium text-disagree hover:bg-disagree/30 transition"
+              className="mt-2 min-h-[44px] rounded-[var(--radius-sm)] bg-disagree-subtle px-4 py-2 text-xs font-medium text-disagree hover:bg-disagree/20 transition"
             >
               Retry
             </button>
@@ -128,7 +132,7 @@ export default function NoReadTranslator() {
 
         {/* Explanation cards */}
         {(loading || result) && (
-          <div className="mt-6 space-y-4">
+          <div className="mt-6 space-y-3">
             {cards.map((card) => (
               <ExplanationCard
                 key={card.key}

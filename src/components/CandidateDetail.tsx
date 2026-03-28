@@ -59,13 +59,13 @@ export default function CandidateDetail() {
 
   if (!candidate) {
     return (
-      <div className="min-h-dvh flex items-center justify-center px-4 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900">
+      <div className="min-h-dvh flex items-center justify-center px-6">
         <div className="text-center">
-          <p className="text-text-secondary">Candidate not found.</p>
+          <p className="text-text-secondary text-sm">Candidate not found.</p>
           <button
             type="button"
             onClick={() => navigate('/results')}
-            className="mt-4 rounded-full bg-poly-accent px-6 py-2 text-sm font-medium text-white min-h-[44px] min-w-[44px]"
+            className="mt-4 rounded-[var(--radius-md)] bg-poly-primary px-6 py-2.5 text-sm font-medium text-white min-h-[44px]"
           >
             Back to Results
           </button>
@@ -75,91 +75,73 @@ export default function CandidateDetail() {
   }
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4 py-6">
+    <div className="min-h-dvh px-6 pt-6 pb-24">
       <div className="mx-auto max-w-sm">
         {/* Back navigation */}
         <button
           type="button"
           onClick={() => navigate('/results')}
-          className="flex items-center gap-1 text-sm text-text-secondary hover:text-white transition min-h-[44px] min-w-[44px]"
+          className="flex items-center gap-1.5 text-sm text-text-muted hover:text-text-secondary transition min-h-[44px]"
           aria-label="Back to results"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
-          Back to Results
+          Back
         </button>
 
-        {/* Header: name, office, district, match ring */}
-        <div className="mt-4 flex items-start gap-4">
-          <div className="relative flex-shrink-0" aria-hidden="true">
-            <svg width="72" height="72" viewBox="0 0 72 72">
-              <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
-              <circle
-                cx="36" cy="36" r="30" fill="none"
-                stroke="url(#detailMatchGrad)" strokeWidth="4" strokeLinecap="round"
-                strokeDasharray={2 * Math.PI * 30}
-                strokeDashoffset={2 * Math.PI * 30 - (matchPercentage / 100) * 2 * Math.PI * 30}
-                transform="rotate(-90 36 36)"
-              />
-              <defs>
-                <linearGradient id="detailMatchGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#7b2ff7" />
-                  <stop offset="100%" stopColor="#c084fc" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-base font-bold text-white">
-              {matchPercentage}%
-            </span>
+        {/* Header */}
+        <div className="mt-4 flex items-center gap-4">
+          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-poly-primary-subtle">
+            <span className="text-xl font-semibold text-poly-accent">{matchPercentage}%</span>
           </div>
-          <div className="flex-1 min-w-0 pt-1">
-            <h1 className="text-xl font-bold text-white" data-testid="candidate-name">{candidate.name}</h1>
-            <p className="text-sm text-text-secondary" data-testid="candidate-office">{candidate.office} · {candidate.district}</p>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-xl font-semibold text-text-primary" data-testid="candidate-name">{candidate.name}</h1>
+            <p className="text-sm text-text-muted" data-testid="candidate-office">{candidate.office} · {candidate.district}</p>
           </div>
         </div>
 
         {/* Bio */}
-        <div className="mt-5 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-          <h2 className="text-sm font-semibold text-white mb-1">About</h2>
+        <section className="mt-6">
+          <h2 className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">About</h2>
           <p className="text-sm text-text-secondary leading-relaxed" data-testid="candidate-bio">{candidate.bio}</p>
-        </div>
+        </section>
 
-        {/* Location relevance / election context */}
+        {/* Election context */}
         {relevantElections.length > 0 && (
-          <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-            <h2 className="text-sm font-semibold text-white mb-2">Election Context</h2>
-            {relevantElections.map((el) => (
-              <div key={el.id} className="mb-2 last:mb-0">
-                <p className="text-sm text-text-secondary">
-                  <span className="text-white font-medium">{el.name}</span> · {el.date}
+          <section className="mt-6">
+            <h2 className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">Election</h2>
+            <div className="card p-4 space-y-2">
+              {relevantElections.map((el) => (
+                <div key={el.id}>
+                  <p className="text-sm text-text-primary font-medium">{el.name}</p>
+                  <p className="text-xs text-text-muted">
+                    {el.date} · {el.county} County, {el.state}
+                  </p>
+                </div>
+              ))}
+              {location && (
+                <p className="text-xs text-text-muted pt-1 border-t border-border-subtle">
+                  Showing elections for {location.city}, {location.state}
                 </p>
-                <p className="text-xs text-text-muted">
-                  {el.county} County, {el.state} · {el.offices.join(', ')}
-                </p>
-              </div>
-            ))}
-            {location && (
-              <p className="mt-2 text-xs text-text-muted">
-                Showing elections for: {location.city}, {location.state} ({location.county} County)
-              </p>
-            )}
-          </div>
+              )}
+            </div>
+          </section>
         )}
 
-        {/* Match explanation */}
-        <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-          <h2 className="text-sm font-semibold text-white mb-2">Match Breakdown</h2>
+        {/* Match breakdown */}
+        <section className="mt-6">
+          <h2 className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">Match Breakdown</h2>
           <p className="text-xs text-text-muted mb-3">
-            Match scores reflect values alignment based on your issue responses. They are not endorsements.
+            Based on your issue responses. Not an endorsement.
           </p>
 
           {agreements.length > 0 && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-agree mb-1">You agree on ({agreements.length})</p>
+            <div className="mb-4">
+              <p className="text-xs font-medium text-agree mb-2">Agree ({agreements.length})</p>
               <div className="flex flex-col gap-1.5">
                 {agreements.map((issueId) => (
-                  <span key={issueId} className="rounded-lg bg-agree/10 px-3 py-1.5 text-xs text-agree">
+                  <span key={issueId} className="rounded-[var(--radius-sm)] bg-agree-subtle px-3 py-2 text-xs text-agree leading-relaxed">
                     {issueLabel(issueId, issues)}
                   </span>
                 ))}
@@ -169,10 +151,10 @@ export default function CandidateDetail() {
 
           {disagreements.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-disagree mb-1">You differ on ({disagreements.length})</p>
+              <p className="text-xs font-medium text-disagree mb-2">Disagree ({disagreements.length})</p>
               <div className="flex flex-col gap-1.5">
                 {disagreements.map((issueId) => (
-                  <span key={issueId} className="rounded-lg bg-disagree/10 px-3 py-1.5 text-xs text-disagree">
+                  <span key={issueId} className="rounded-[var(--radius-sm)] bg-disagree-subtle px-3 py-2 text-xs text-disagree leading-relaxed">
                     {issueLabel(issueId, issues)}
                   </span>
                 ))}
@@ -182,27 +164,27 @@ export default function CandidateDetail() {
 
           {agreements.length === 0 && disagreements.length === 0 && (
             <p className="text-xs text-text-muted">
-              No match data available. Complete the Vibe Check to see how you align.
+              Complete the Vibe Check to see how you align.
             </p>
           )}
-        </div>
+        </section>
 
-        {/* All issue positions */}
-        <div className="mt-4 rounded-xl bg-white/10 border border-glass-border p-4 backdrop-blur-lg">
-          <h2 className="text-sm font-semibold text-white mb-2">All Positions</h2>
-          <div className="flex flex-col gap-2" data-testid="candidate-positions">
+        {/* All positions */}
+        <section className="mt-6">
+          <h2 className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">All Positions</h2>
+          <div className="card divide-y divide-border-subtle" data-testid="candidate-positions">
             {Object.entries(candidate.positions).map(([issueId, score]) => (
-              <div key={issueId} className="flex items-start justify-between gap-2">
+              <div key={issueId} className="flex items-start justify-between gap-3 px-4 py-3">
                 <p className="text-xs text-text-secondary flex-1 leading-relaxed">
                   {issueLabel(issueId, issues)}
                 </p>
                 <span
-                  className={`flex-shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${
+                  className={`flex-shrink-0 rounded-[var(--radius-sm)] px-2 py-0.5 text-[11px] font-medium ${
                     score === 1
-                      ? 'bg-agree/15 text-agree'
+                      ? 'bg-agree-subtle text-agree'
                       : score === -1
-                        ? 'bg-disagree/15 text-disagree'
-                        : 'bg-white/10 text-text-muted'
+                        ? 'bg-disagree-subtle text-disagree'
+                        : 'bg-surface-hover text-text-muted'
                   }`}
                 >
                   {scoreLabel(score)}
@@ -210,10 +192,7 @@ export default function CandidateDetail() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Bottom spacer */}
-        <div className="h-8" />
+        </section>
       </div>
     </div>
   );

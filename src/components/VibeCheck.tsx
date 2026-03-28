@@ -19,7 +19,7 @@ export default function VibeCheck() {
 
   const total = issues.length;
   const remaining = total - currentIndex;
-  const progress = total > 0 ? ((currentIndex) / total) * 100 : 0;
+  const progress = total > 0 ? (currentIndex / total) * 100 : 0;
   const currentIssue = issues[currentIndex] ?? null;
 
   const handleRespond = useCallback(
@@ -40,32 +40,43 @@ export default function VibeCheck() {
 
   if (total === 0) {
     return (
-      <div className="min-h-dvh flex items-center justify-center px-4">
-        <p className="text-text-secondary">Loading issues…</p>
+      <div className="min-h-dvh flex items-center justify-center px-6">
+        <p className="text-text-secondary text-sm">Loading issues…</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4 py-8">
+    <div className="min-h-dvh flex flex-col items-center px-6 pt-12 pb-8">
       {/* Header */}
       <div className="w-full max-w-sm">
-        <h1 className="mb-1 text-center text-2xl font-bold text-white">Vibe Check</h1>
-        <p className="mb-4 text-center text-sm text-text-secondary">
-          Swipe or tap to share your take — {remaining} left
+        <p className="mb-1 text-center text-xs font-medium tracking-widest uppercase text-text-muted">
+          Step 2 of 3
+        </p>
+        <h1 className="text-xl font-semibold text-text-primary text-center">
+          Vibe Check
+        </h1>
+        <p className="mt-1 mb-6 text-center text-sm text-text-secondary">
+          {remaining} {remaining === 1 ? 'question' : 'questions'} remaining
         </p>
 
         {/* Progress bar */}
-        <div className="h-2 w-full overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuenow={currentIndex} aria-valuemin={0} aria-valuemax={total}>
+        <div
+          className="h-1 w-full overflow-hidden rounded-[var(--radius-full)] bg-border-default"
+          role="progressbar"
+          aria-valuenow={currentIndex}
+          aria-valuemin={0}
+          aria-valuemax={total}
+        >
           <div
-            className="h-full rounded-full bg-poly-violet transition-all duration-300"
+            className="h-full rounded-[var(--radius-full)] bg-poly-primary transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
       {/* Card area */}
-      <div className="relative mt-8 flex w-full max-w-sm flex-1 items-center justify-center">
+      <div className="relative mt-10 flex w-full max-w-sm flex-1 items-center justify-center">
         <AnimatePresence mode="wait">
           {currentIssue && (
             <SwipeCard key={currentIssue.id} issue={currentIssue} onRespond={handleRespond} />

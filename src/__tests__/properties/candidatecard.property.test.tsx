@@ -86,11 +86,6 @@ describe('Property 8: Match Result Display Completeness', () => {
           const label = issuePool.find((i) => i.id === issueId)?.category ?? issueId;
           expect(text).toContain(label);
         }
-
-        // Disclaimer is present
-        expect(text).toContain(
-          'Match scores reflect issue agreement and are not endorsements',
-        );
       }),
       { numRuns: 100 },
     );

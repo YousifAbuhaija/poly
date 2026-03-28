@@ -36,39 +36,52 @@ export default function ZipOnboarding() {
   }
 
   return (
-    <div className="min-h-dvh flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white/10 p-8 backdrop-blur-lg">
-        <h1 className="mb-2 text-center text-3xl font-bold text-white">Where do you vote?</h1>
-        <p className="mb-6 text-center text-sm text-slate-300">
-          Enter your ZIP code so we can show candidates on your ballot.
+    <div className="min-h-dvh flex items-center justify-center px-6">
+      <div className="w-full max-w-sm">
+        {/* Step indicator */}
+        <p className="mb-8 text-center text-xs font-medium tracking-widest uppercase text-text-muted">
+          Step 1 of 3
+        </p>
+
+        <h1 className="text-2xl font-semibold text-text-primary text-center">
+          Where do you vote?
+        </h1>
+        <p className="mt-2 mb-8 text-center text-sm text-text-secondary">
+          We'll show candidates and elections on your ballot.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            inputMode="numeric"
-            maxLength={5}
-            value={zip}
-            onChange={e => setZip(e.target.value.replace(/\D/g, ''))}
-            placeholder="e.g. 90210"
-            aria-label="ZIP code"
-            className="w-full rounded-lg bg-white/20 px-4 py-3 text-center text-lg text-white placeholder-slate-400 outline-none focus:ring-2 focus:ring-indigo-400"
-          />
+          <div>
+            <label htmlFor="zip-input" className="block text-xs font-medium text-text-muted mb-1.5">
+              ZIP Code
+            </label>
+            <input
+              id="zip-input"
+              type="text"
+              inputMode="numeric"
+              maxLength={5}
+              value={zip}
+              onChange={e => setZip(e.target.value.replace(/\D/g, ''))}
+              placeholder="e.g. 90210"
+              aria-label="ZIP code"
+              className="w-full rounded-[var(--radius-md)] bg-surface-input border border-border-default px-4 py-3 text-base text-text-primary placeholder-text-muted transition"
+            />
+          </div>
 
           {error && (
-            <p role="alert" className="text-center text-sm text-red-400">{error}</p>
+            <p role="alert" className="text-sm text-disagree">{error}</p>
           )}
 
           {confirmed && (
-            <p className="text-center text-sm text-emerald-400">
-              {formatLocation(confirmed)}
-            </p>
+            <div className="rounded-[var(--radius-md)] bg-agree-subtle border border-agree/20 px-4 py-3">
+              <p className="text-sm text-agree">{formatLocation(confirmed)}</p>
+            </div>
           )}
 
           {!confirmed ? (
             <button
               type="submit"
-              className="w-full min-h-[44px] rounded-lg bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-500 active:scale-[0.98]"
+              className="w-full min-h-[48px] rounded-[var(--radius-md)] bg-poly-primary py-3 text-sm font-medium text-white transition-colors hover:bg-poly-primary-hover active:scale-[0.99]"
             >
               Look up my area
             </button>
@@ -76,9 +89,9 @@ export default function ZipOnboarding() {
             <button
               type="button"
               onClick={handleContinue}
-              className="w-full min-h-[44px] rounded-lg bg-emerald-600 py-3 font-semibold text-white transition hover:bg-emerald-500 active:scale-[0.98]"
+              className="w-full min-h-[48px] rounded-[var(--radius-md)] bg-poly-primary py-3 text-sm font-medium text-white transition-colors hover:bg-poly-primary-hover active:scale-[0.99]"
             >
-              Continue to Vibe Check
+              Continue
             </button>
           )}
         </form>
