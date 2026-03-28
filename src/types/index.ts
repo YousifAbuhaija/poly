@@ -16,6 +16,16 @@ export interface IssueProfile {
   [issueId: string]: IssueScore;
 }
 
+export interface Ideology {
+  stance: "progressive" | "moderate" | "conservative";
+  socialProgressive: number;
+  laborLeft: number;
+  proHousingGrowth: number;
+  environmentalism: number;
+  reproRightsSupport: number;
+  antiHardlineImmigration: number;
+}
+
 export interface Candidate {
   id: string;
   name: string;
@@ -26,6 +36,7 @@ export interface Candidate {
   bio: string;
   positions: { [issueId: string]: IssueScore };
   positionsInferred?: boolean;
+  ideology?: Ideology;
 }
 
 export interface MatchResult {
