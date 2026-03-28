@@ -1,0 +1,102 @@
+[
+  {
+    "id": "issue-001",
+    "text": "Should Virginia Tech receive increased state funding for research and development?",
+    "category": "Education"
+  },
+  {
+    "id": "issue-002",
+    "text": "Should the town of Blacksburg invest more in affordable housing for students and faculty?",
+    "category": "Housing"
+  },
+  {
+    "id": "issue-003",
+    "text": "Should Virginia Tech expand its campus and facilities in downtown Blacksburg?",
+    "category": "Development"
+  },
+  {
+    "id": "issue-004",
+    "text": "Should the government increase funding for public transportation between campus and town?",
+    "category": "Transportation"
+  },
+  {
+    "id": "issue-005",
+    "text": "Should Virginia Tech prioritize in-state student admissions over out-of-state students?",
+    "category": "Education"
+  },
+  {
+    "id": "issue-006",
+    "text": "Should Blacksburg implement stricter noise ordinances in student housing areas?",
+    "category": "Public Safety"
+  },
+  {
+    "id": "issue-007",
+    "text": "Should Virginia Tech invest more in renewable energy and sustainability initiatives on campus?",
+    "category": "Environment"
+  },
+  {
+    "id": "issue-008",
+    "text": "Should the town increase funding for mental health services for college students?",
+    "category": "Healthcare"
+  },
+  {
+    "id": "issue-009",
+    "text": "Should Virginia Tech freeze or reduce tuition costs for Virginia residents?",
+    "category": "Education"
+  },
+  {
+    "id": "issue-010",
+    "text": "Should Blacksburg invest in more entertainment and cultural venues to serve the student population?",
+    "category": "Community"
+  },
+  {
+    "id": "issue-011",
+    "text": "Should the town limit the number of students allowed to live in single-family neighborhoods?",
+    "category": "Housing"
+  },
+  {
+    "id": "issue-012",
+    "text": "Should Virginia Tech increase funding for local business partnerships and internship programs?",
+    "category": "Economy"
+  },
+  {
+    "id": "issue-013",
+    "text": "Should Blacksburg expand bike lanes and pedestrian infrastructure throughout the town?",
+    "category": "Transportation"
+  },
+  {
+    "id": "issue-014",
+    "text": "Should the town implement rent control policies to protect students from rising housing costs?",
+    "category": "Housing"
+  },
+  {
+    "id": "issue-015",
+    "text": "Should Virginia Tech require all new buildings to meet green building standards?",
+    "category": "Environment"
+  },
+  {
+    "id": "issue-016",
+    "text": "Should Virginia protect abortion rights and access to reproductive healthcare?",
+    "category": "Social"
+  },
+  {
+    "id": "issue-017",
+    "text": "Should local law enforcement cooperate with ICE (Immigration and Customs Enforcement)?",
+    "category": "Immigration"
+  },
+  {
+    "id": "issue-018",
+    "text": "Should Blacksburg pass ordinances protecting LGBTQ+ residents from discrimination in housing and employment?",
+    "category": "Civil Rights"
+  },
+  {
+    "id": "issue-019",
+    "text": "Should Virginia Tech provide sanctuary and support services for undocumented students?",
+    "category": "Immigration"
+  },
+  {
+    "id": "issue-020",
+    "text": "Should the town fund programs and resources specifically for LGBTQ+ youth and community members?",
+    "category": "Social"
+  }
+]

@@ -9,9 +9,10 @@ import type { Candidate, MatchResult } from '../types';
 export default function CivicMatchResults() {
   const { location, issueProfile } = useAppContext();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'matches' | 'learn'>('matches');
+  const [activeTab, setActiveTab] = useState<'top' | 'all' | 'learn'>('top');
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(true);
+  const [filterStance, setFilterStance] = useState<'all' | 'progressive' | 'moderate' | 'conservative'>('all');
 
   const issues = useMemo(() => loadIssues(), []);
 
@@ -47,15 +48,9 @@ export default function CivicMatchResults() {
   const results = useMemo(() => {
     if (!location || candidates.length === 0) return [];
     
-    // Filter candidates by location
-    const localCandidates = candidates.filter(
-      (c) =>
-        c.state.toLowerCase() === location.state.toLowerCase() &&
-        c.county.toLowerCase() === location.county.toLowerCase(),
-    );
-
+    // Candidates are already filtered by location in useEffect, so use them directly
     // Compute matches
-    return localCandidates
+    return candidates
       .map((candidate): MatchResult => {
         const agreements: string[] = [];
         const disagreements: string[] = [];
@@ -88,6 +83,38 @@ export default function CivicMatchResults() {
       .sort((a, b) => b.matchPercentage - a.matchPercentage);
   }, [candidates, issueProfile, location]);
 
+  const topResults = useMemo(() => results.slice(0, 5), [results]);
+
+  // Filter results based on political stance using ideology data
+  const filteredResults = useMemo(() => {
+    if (filterStance === 'all') return results;
+    
+    return results.filter(result => {
+      const candidate = result.candidate;
+      
+      // Use ideology.stance if available, otherwise calculate from positions
+      if (candidate.ideology?.stance) {
+        return candidate.ideology.stance === filterStance;
+      }
+      
+      // Fallback: calculate from positions
+      const positions = Object.values(candidate.positions);
+      const supportCount = positions.filter(p => p === 1).length;
+      const totalPositions = positions.length;
+      const progressiveScore = supportCount / totalPositions;
+      
+      if (filterStance === 'progressive') {
+        return progressiveScore >= 0.7;
+      } else if (filterStance === 'moderate') {
+        return progressiveScore >= 0.4 && progressiveScore < 0.7;
+      } else if (filterStance === 'conservative') {
+        return progressiveScore < 0.4;
+      }
+      
+      return true;
+    });
+  }, [results, filterStance]);
+
   const learningRecs = useMemo(() => {
     return generateLearningRecommendations(issueProfile, issues);
   }, [issueProfile, issues]);
@@ -116,26 +143,171 @@ export default function CivicMatchResults() {
         {/* Tabs */}
         <div className="mb-6 flex gap-2 border-b border-glass-border">
           <button
-            onClick={() => setActiveTab('matches')}
+            onClick={() => setActiveTab('top')}
             className={`px-4 py-3 text-sm font-medium transition-all ${
-              activeTab === 'matches'
-                ? 'border-b-2 border-teal text-cream bg-teal/10'
+              activeTab === 'top'
+                ? 'border-b-2 border-slate text-cream bg-slate/10'
                 : 'text-slate hover:text-cream hover:bg-glass-bg'
             }`}
           >
-            Candidate Matches
+            Top Matches
+          </button>
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`px-4 py-3 text-sm font-medium transition-all ${
+              activeTab === 'all'
+                ? 'border-b-2 border-slate text-cream bg-slate/10'
+                : 'text-slate hover:text-cream hover:bg-glass-bg'
+            }`}
+          >
+            All Politicians
           </button>
           <button
             onClick={() => setActiveTab('learn')}
             className={`px-4 py-3 text-sm font-medium transition-all ${
               activeTab === 'learn'
-                ? 'border-b-2 border-teal text-cream bg-teal/10'
+                ? 'border-b-2 border-slate text-cream bg-slate/10'
                 : 'text-slate hover:text-cream hover:bg-glass-bg'
             }`}
           >
             Learn More
           </button>
         </div>
+
+        {/* Top Matches Tab */}
+        {activeTab === 'top' && (
+          <div>
+            {/* Disclaimer banner */}
+            <div className="mb-6 rounded-xl border border-glass-border bg-glass-bg px-4 py-3 backdrop-blur-sm">
+              <p className="text-xs leading-relaxed text-slate">
+                Match scores reflect issue agreement and are not endorsements. They represent
+                values alignment based on your responses, not voting recommendations.
+              </p>
+            </div>
+
+            {/* Edge case: all issues skipped */}
+            {allSkipped && (
+              <div className="mb-6 rounded-xl border border-slate/30 bg-slate/10 px-4 py-4 text-center backdrop-blur-sm">
+                <p className="text-sm text-slate">
+                  You skipped all issues, so match scores are 0%. Go back and share your takes for
+                  better results.
+                </p>
+              </div>
+            )}
+
+            {/* Edge case: no candidates found */}
+            {topResults.length === 0 && !allSkipped && (
+              <div className="mb-6 rounded-xl border border-glass-border bg-glass-bg px-4 py-4 text-center backdrop-blur-sm">
+                <p className="text-sm text-slate">
+                  No candidates found for your area. We're working on expanding coverage.
+                </p>
+              </div>
+            )}
+
+            {/* Candidate list */}
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <p className="text-slate">Loading candidates...</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4" role="list" aria-label="Top candidate matches">
+                {topResults.map((r) => (
+                  <div key={r.candidate.id} role="listitem">
+                    <CandidateCard
+                      result={r}
+                      issues={issues}
+                      onTap={(id) => navigate(`/candidate/${id}`)}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* All Politicians Tab */}
+        {activeTab === 'all' && (
+          <div>
+            <p className="text-sm text-slate mb-4">
+              All politicians in your area, sorted by match score.
+            </p>
+
+            {/* Filter Section */}
+            <div className="mb-6 rounded-xl border border-glass-border bg-glass-bg px-4 py-4 backdrop-blur-sm">
+              <h3 className="text-sm font-medium text-cream mb-3">Filter by Political Stance</h3>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setFilterStance('all')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    filterStance === 'all'
+                      ? 'bg-slate/20 text-slate border-2 border-slate'
+                      : 'bg-glass-bg text-slate border border-glass-border hover:border-slate/50'
+                  }`}
+                >
+                  All ({results.length})
+                </button>
+                <button
+                  onClick={() => setFilterStance('progressive')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    filterStance === 'progressive'
+                      ? 'bg-slate/20 text-slate border-2 border-slate'
+                      : 'bg-glass-bg text-slate border border-glass-border hover:border-slate/50'
+                  }`}
+                >
+                  Progressive
+                </button>
+                <button
+                  onClick={() => setFilterStance('moderate')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    filterStance === 'moderate'
+                      ? 'bg-slate/20 text-slate border-2 border-slate'
+                      : 'bg-glass-bg text-slate border border-glass-border hover:border-slate/50'
+                  }`}
+                >
+                  Moderate
+                </button>
+                <button
+                  onClick={() => setFilterStance('conservative')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    filterStance === 'conservative'
+                      ? 'bg-slate/20 text-slate border-2 border-slate'
+                      : 'bg-glass-bg text-slate border border-glass-border hover:border-slate/50'
+                  }`}
+                >
+                  Conservative
+                </button>
+              </div>
+              <p className="text-xs text-slate mt-3">
+                Filters based on overall policy positions. Progressive = supports most initiatives, Conservative = opposes most initiatives, Moderate = mixed positions.
+              </p>
+            </div>
+
+            {/* Candidate list */}
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <p className="text-slate">Loading candidates...</p>
+              </div>
+            ) : filteredResults.length === 0 ? (
+              <div className="rounded-xl border border-glass-border bg-glass-bg px-4 py-8 text-center backdrop-blur-sm">
+                <p className="text-sm text-slate">
+                  No politicians match this filter. Try selecting a different stance.
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4" role="list" aria-label="All politicians">
+                {filteredResults.map((r) => (
+                  <div key={r.candidate.id} role="listitem">
+                    <CandidateCard
+                      result={r}
+                      issues={issues}
+                      onTap={(id) => navigate(`/candidate/${id}`)}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Matches Tab */}
         {activeTab === 'matches' && (
@@ -206,7 +378,7 @@ export default function CivicMatchResults() {
                     key={index}
                     className={`rounded-xl border backdrop-blur-sm p-5 transition hover:scale-[1.01] ${
                       rec.priority === 'high'
-                        ? 'border-teal/40 bg-teal/10'
+                        ? 'border-slate/40 bg-slate/10'
                         : rec.priority === 'medium'
                         ? 'border-lavender/30 bg-lavender/5'
                         : 'border-glass-border bg-glass-bg'
@@ -216,7 +388,7 @@ export default function CivicMatchResults() {
                       <h3 className="text-xl font-medium text-cream">{rec.category}</h3>
                       <span className={`text-xs px-3 py-1 rounded-full font-medium ${
                         rec.priority === 'high'
-                          ? 'bg-teal/20 text-teal border border-teal/30'
+                          ? 'bg-slate/20 text-slate border border-slate/30'
                           : rec.priority === 'medium'
                           ? 'bg-lavender/20 text-lavender border border-lavender/30'
                           : 'bg-slate/20 text-slate border border-slate/30'
@@ -228,7 +400,7 @@ export default function CivicMatchResults() {
                     <div className="space-y-2">
                       {rec.topics.map((topic, i) => (
                         <div key={i} className="flex items-start gap-3 text-sm text-cream">
-                          <span className="text-teal mt-1 flex-shrink-0">→</span>
+                          <span className="text-slate mt-1 flex-shrink-0">→</span>
                           <span>{topic}</span>
                         </div>
                       ))}

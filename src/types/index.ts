@@ -26,6 +26,15 @@ export interface Candidate {
   bio: string;
   positions: { [issueId: string]: IssueScore };
   photoUrl?: string;
+  ideology?: {
+    stance: 'progressive' | 'moderate' | 'conservative';
+    socialProgressive: number;
+    laborLeft: number;
+    proHousingGrowth: number;
+    environmentalism: number;
+    reproRightsSupport: number;
+    antiHardlineImmigration: number;
+  };
 }
 
 export interface MatchResult {

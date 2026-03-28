@@ -42,10 +42,10 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
           <img 
             src={candidate.photoUrl} 
             alt={candidate.name}
-            className="flex-shrink-0 w-16 h-16 rounded-full object-cover border border-teal/30"
+            className="flex-shrink-0 w-16 h-16 rounded-full object-cover border border-slate/30"
           />
         ) : (
-          <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-teal/20 border border-teal/30 text-lg font-medium text-cream">
+          <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-slate/20 border border-slate/30 text-lg font-medium text-cream">
             {getInitials(candidate.name)}
           </div>
         )}
@@ -59,10 +59,10 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
         {/* Animated match ring */}
         <div className="relative flex-shrink-0" aria-hidden="true">
           <svg width="76" height="76" viewBox="0 0 76 76">
-            <circle cx="38" cy="38" r={radius} fill="none" stroke="rgba(172,176,189,0.15)" strokeWidth="4" />
+            <circle cx="38" cy="38" r={radius} fill="none" stroke="rgba(172,189,186,0.15)" strokeWidth="4" />
             <motion.circle
               cx="38" cy="38" r={radius} fill="none"
-              stroke="#416165" strokeWidth="4" strokeLinecap="round"
+              stroke="#ACBDBA" strokeWidth="4" strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={circumference}
               transform="rotate(-90 38 38)"
@@ -111,7 +111,7 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
       )}
 
       {/* Disclaimer */}
-      <p className="mt-4 text-[10px] leading-tight text-teal">
+      <p className="mt-4 text-[10px] leading-tight text-lavender">
         Match scores reflect issue agreement and are not endorsements.
       </p>
     </button>

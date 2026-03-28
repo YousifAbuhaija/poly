@@ -2,31 +2,32 @@
 
 @theme {
   /* Custom palette */
-  --color-cream: #D9DBF1;
-  --color-lavender: #D0CDD7;
-  --color-slate: #ACB0BD;
-  --color-teal: #416165;
-  --color-deep: #0B3948;
+  --color-cream: #CDDDDD;
+  --color-lavender: #A599B5;
+  --color-slate: #ACBDBA;
+  --color-teal: #ACBDBA;
+  --color-deep: #051014;
+  --color-charcoal: #2E2F2F;
 
   /* Derived tokens */
-  --color-glass-bg: rgba(208, 205, 215, 0.08);
-  --color-glass-border: rgba(208, 205, 215, 0.15);
-  --color-glass-hover: rgba(208, 205, 215, 0.12);
+  --color-glass-bg: rgba(165, 153, 181, 0.08);
+  --color-glass-border: rgba(165, 153, 181, 0.15);
+  --color-glass-hover: rgba(165, 153, 181, 0.12);
 
   /* Text tokens */
-  --color-text-primary: #D9DBF1;
-  --color-text-secondary: #ACB0BD;
-  --color-text-muted: #416165;
+  --color-text-primary: #CDDDDD;
+  --color-text-secondary: #ACBDBA;
+  --color-text-muted: #A599B5;
 
   /* Status tokens */
-  --color-agree: #5fb3a1;
+  --color-agree: #ACBDBA;
   --color-disagree: #d97777;
-  --color-skip: #ACB0BD;
+  --color-skip: #A599B5;
 }
 
 body {
   margin: 0;
-  background: linear-gradient(160deg, #1a1a2e 0%, #2d3748 50%, #4a5568 100%);
+  background: linear-gradient(160deg, #051014 0%, #2E2F2F 50%, #051014 100%);
   color: var(--color-text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100dvh;

@@ -4,6 +4,7 @@ import { generateRealCandidates, inferPositionsFromParty } from './CandidateGene
 
 import candidatesData from '../data/candidates.json';
 import issuesData from '../data/issues.json';
+import issuesBlacksburgData from '../data/issues-blacksburg.json';
 import electionsData from '../data/elections.json';
 import policiesData from '../data/samplePolicies.json';
 import zipLookupData from '../data/zipLookup.json';
@@ -93,8 +94,12 @@ export function loadCandidates(): Candidate[] {
   }
 }
 
-export function loadIssues(): IssueStatement[] {
+export function loadIssues(location?: LocationResult | null): IssueStatement[] {
   try {
+    // Use Blacksburg-specific questions if location is Blacksburg
+    if (location?.city === 'Blacksburg' && location?.state === 'VA') {
+      return issuesBlacksburgData as IssueStatement[];
+    }
     return issuesData as IssueStatement[];
   } catch (error) {
     throw new Error(`Failed to load issues.json: ${error instanceof Error ? error.message : String(error)}`);

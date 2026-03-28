@@ -9,13 +9,13 @@ import SwipeCard from './SwipeCard';
 export default function VibeCheck() {
   const [issues, setIssues] = useState<IssueStatement[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { setIssueProfile } = useAppContext();
+  const { setIssueProfile, location } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     reset();
-    setIssues(getIssues());
-  }, []);
+    setIssues(getIssues(location));
+  }, [location]);
 
   const total = issues.length;
   const remaining = total - currentIndex;
@@ -49,21 +49,21 @@ export default function VibeCheck() {
   return (
     <div className="min-h-dvh flex flex-col px-4 py-6 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-teal/5 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-32 h-32 bg-slate/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-lavender/5 rounded-full blur-3xl" />
       
-      {/* Progress dots - 11 total (10 questions + 1 for completion) */}
+      {/* Progress dots - 21 total (20 questions + 1 for completion) */}
       <div className="w-full max-w-md mx-auto mb-8 relative z-10">
         <div className="flex gap-2 justify-center">
-          {Array.from({ length: 11 }).map((_, index) => (
+          {Array.from({ length: 21 }).map((_, index) => (
             <div
               key={index}
               className={`h-2 flex-1 rounded-full transition-all duration-300`}
               style={{
                 backgroundColor: index < currentIndex
-                  ? '#416165'
+                  ? '#ACBDBA'
                   : index === currentIndex
-                  ? 'rgba(65, 97, 101, 0.6)'
+                  ? 'rgba(172, 189, 186, 0.6)'
                   : '#E8E8E8'
               }}
             />

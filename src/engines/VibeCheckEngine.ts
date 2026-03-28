@@ -1,12 +1,12 @@
-import type { IssueStatement, IssueScore, IssueProfile } from '../types';
+import type { IssueStatement, IssueScore, IssueProfile, LocationResult } from '../types';
 import { loadIssues } from '../services/DataLoader';
 
 let issues: IssueStatement[] | null = null;
 let profile: IssueProfile = Object.create(null);
 
-export function getIssues(): IssueStatement[] {
+export function getIssues(location?: LocationResult | null): IssueStatement[] {
   if (!issues) {
-    issues = loadIssues();
+    issues = loadIssues(location);
   }
   return issues;
 }
