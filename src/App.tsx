@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useAppContext } from './context/AppContext';
+import PolyLogo from './components/PolyLogo';
 import LandingPage from './components/LandingPage';
 import ZipOnboarding from './components/ZipOnboarding';
 import VibeCheck from './components/VibeCheck';
@@ -69,9 +70,10 @@ function TopNav() {
         <button
           type="button"
           onClick={handleLogoClick}
-          className="text-xl font-bold text-[#274C77] tracking-tight hover:opacity-80 transition"
+          className="flex items-center gap-2 hover:opacity-80 transition"
         >
-          Poly
+          <PolyLogo size={28} />
+          <span className="text-xl font-bold text-[#274C77] tracking-tight">Poly</span>
         </button>
 
         {/* Right side — depends on state */}
