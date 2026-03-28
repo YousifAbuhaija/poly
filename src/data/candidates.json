@@ -1,0 +1,107 @@
+[
+  {
+    "id": "candidate-001",
+    "name": "Maria Santos",
+    "office": "State Senate",
+    "district": "District 5",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "Community organizer turned state legislator with a focus on education equity and affordable housing in Los Angeles County.",
+    "positions": {
+      "issue-001": 1,
+      "issue-002": 1,
+      "issue-003": 1,
+      "issue-004": 1,
+      "issue-005": 1,
+      "issue-006": -1,
+      "issue-007": 1,
+      "issue-008": -1,
+      "issue-009": 1,
+      "issue-010": 1
+    }
+  },
+  {
+    "id": "candidate-002",
+    "name": "James Chen",
+    "office": "City Council",
+    "district": "District 12",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "Small business owner and city council member advocating for economic growth and public safety improvements across LA.",
+    "positions": {
+      "issue-001": -1,
+      "issue-002": -1,
+      "issue-003": -1,
+      "issue-004": 1,
+      "issue-005": -1,
+      "issue-006": 1,
+      "issue-007": -1,
+      "issue-008": 1,
+      "issue-009": -1,
+      "issue-010": -1
+    }
+  },
+  {
+    "id": "candidate-003",
+    "name": "Aisha Johnson",
+    "office": "State Senate",
+    "district": "District 5",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "Former public defender committed to criminal justice reform and expanding healthcare access for underserved communities.",
+    "positions": {
+      "issue-001": 1,
+      "issue-002": 1,
+      "issue-003": 1,
+      "issue-004": 1,
+      "issue-005": 1,
+      "issue-006": -1,
+      "issue-007": 1,
+      "issue-008": 1,
+      "issue-009": 1,
+      "issue-010": -1
+    }
+  },
+  {
+    "id": "candidate-004",
+    "name": "David Park",
+    "office": "State Assembly",
+    "district": "District 28",
+    "state": "NY",
+    "county": "New York",
+    "bio": "Tech entrepreneur and first-generation American focused on modernizing public services and expanding broadband access in NYC.",
+    "positions": {
+      "issue-001": 1,
+      "issue-002": 1,
+      "issue-003": -1,
+      "issue-004": 1,
+      "issue-005": 1,
+      "issue-006": 1,
+      "issue-007": 1,
+      "issue-008": 1,
+      "issue-009": 1,
+      "issue-010": 1
+    }
+  },
+  {
+    "id": "candidate-005",
+    "name": "Rachel Torres",
+    "office": "City Council",
+    "district": "District 3",
+    "state": "NY",
+    "county": "New York",
+    "bio": "Environmental activist and urban planner working to make New York City greener and more affordable for young residents.",
+    "positions": {
+      "issue-001": 1,
+      "issue-002": 1,
+      "issue-003": 1,
+      "issue-004": 1,
+      "issue-005": 1,
+      "issue-006": -1,
+      "issue-007": 1,
+      "issue-008": -1,
+      "issue-009": 1,
+      "issue-010": 1
+    }
+  }
+]

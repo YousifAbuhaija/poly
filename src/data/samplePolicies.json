@@ -1,0 +1,20 @@
+[
+  {
+    "id": "policy-001",
+    "title": "Education Funding Reform Act",
+    "text": "This act proposes a 15% increase in state funding for K-12 public schools, with allocations directed toward teacher salaries, classroom technology, and after-school programs. Funding would be distributed based on student enrollment and district need assessments conducted annually by the state education board.",
+    "category": "Education"
+  },
+  {
+    "id": "policy-002",
+    "title": "Clean Transit Expansion Initiative",
+    "text": "This initiative authorizes $2.5 billion in bonds to expand electric bus fleets, build new light rail lines, and upgrade existing transit stations for ADA compliance. The measure includes a 0.25% sales tax increase to fund ongoing operations and maintenance over a 20-year period.",
+    "category": "Transportation"
+  },
+  {
+    "id": "policy-003",
+    "title": "Affordable Housing Development Program",
+    "text": "This program establishes a public-private partnership to construct 10,000 new affordable housing units over five years. Developers participating in the program receive expedited permitting and tax credits in exchange for reserving 30% of units for households earning below the area median income.",
+    "category": "Housing"
+  }
+]

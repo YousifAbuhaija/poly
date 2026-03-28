@@ -1,0 +1,52 @@
+[
+  {
+    "id": "issue-001",
+    "text": "The government should increase funding for public schools",
+    "category": "Education"
+  },
+  {
+    "id": "issue-002",
+    "text": "Local governments should invest more in public transportation infrastructure",
+    "category": "Transportation"
+  },
+  {
+    "id": "issue-003",
+    "text": "The minimum wage should be raised to keep up with the cost of living",
+    "category": "Economy"
+  },
+  {
+    "id": "issue-004",
+    "text": "Cities should expand affordable housing programs for low-income residents",
+    "category": "Housing"
+  },
+  {
+    "id": "issue-005",
+    "text": "The government should strengthen environmental regulations on businesses",
+    "category": "Environment"
+  },
+  {
+    "id": "issue-006",
+    "text": "Law enforcement agencies should receive increased funding for community policing",
+    "category": "Public Safety"
+  },
+  {
+    "id": "issue-007",
+    "text": "Healthcare coverage should be expanded to include more residents",
+    "category": "Healthcare"
+  },
+  {
+    "id": "issue-008",
+    "text": "Local governments should offer tax incentives to attract small businesses",
+    "category": "Economy"
+  },
+  {
+    "id": "issue-009",
+    "text": "Public universities should reduce tuition costs for in-state students",
+    "category": "Education"
+  },
+  {
+    "id": "issue-010",
+    "text": "Cities should adopt stricter zoning laws to manage urban growth",
+    "category": "Housing"
+  }
+]

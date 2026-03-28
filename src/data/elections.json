@@ -1,0 +1,26 @@
+[
+  {
+    "id": "election-001",
+    "name": "2024 General Election",
+    "date": "2024-11-05",
+    "state": "CA",
+    "county": "Los Angeles",
+    "offices": ["State Senate", "City Council"]
+  },
+  {
+    "id": "election-002",
+    "name": "2024 General Election",
+    "date": "2024-11-05",
+    "state": "NY",
+    "county": "New York",
+    "offices": ["State Assembly", "City Council"]
+  },
+  {
+    "id": "election-003",
+    "name": "2025 Local Primary",
+    "date": "2025-06-10",
+    "state": "CA",
+    "county": "Los Angeles",
+    "offices": ["City Council"]
+  }
+]
