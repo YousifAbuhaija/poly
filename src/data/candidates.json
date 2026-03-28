@@ -80,14 +80,175 @@
     "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": -1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": 1 }
   },
   {
-    "id": "may-va-hager-smith",
-    "name": "Leslie Hager-Smith",
+    "id": "may-va-sutphin",
+    "name": "Michael Sutphin",
     "office": "Mayor",
     "district": "Blacksburg",
     "state": "VA",
     "county": "Montgomery",
-    "bio": "Long-serving Mayor of Blacksburg, focused on town-gown relations with Virginia Tech, sustainability, and local infrastructure.",
-    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 0, "issue-008": 1, "issue-009": 1, "issue-010": 1 }
+    "bio": "Mayor since 2025, long-time council member focused on housing affordability, community partnerships, and LGBTQ advocacy. Served on Equality Virginia board and organized pro-marriage equality demonstrations.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "ideology": {
+      "stance": "progressive",
+      "socialProgressive": 0.88,
+      "laborLeft": 0.45,
+      "proHousingGrowth": 0.75,
+      "environmentalism": 0.65,
+      "reproRightsSupport": 0.75,
+      "antiHardlineImmigration": 0.85
+    }
+  },
+  {
+    "id": "council-va-anderson",
+    "name": "Susan Anderson",
+    "office": "Town Council",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Vice Mayor and math professor at Virginia Tech for 40 years. Strong advocate for education, women's rights, and community health. Member of Virginia NOW PAC and Women's Resource Center.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "ideology": {
+      "stance": "progressive",
+      "socialProgressive": 0.82,
+      "laborLeft": 0.40,
+      "proHousingGrowth": 0.65,
+      "environmentalism": 0.60,
+      "reproRightsSupport": 0.80,
+      "antiHardlineImmigration": 0.65
+    }
+  },
+  {
+    "id": "council-va-campbell",
+    "name": "Darryl Campbell",
+    "office": "Town Council",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Union activist and community organizer focused on workers' rights and affordable housing. Virginia Tech graduate in Psychology and Natural Resources, strong labor-progressive voice on council.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": -1 },
+    "ideology": {
+      "stance": "progressive",
+      "socialProgressive": 0.72,
+      "laborLeft": 0.90,
+      "proHousingGrowth": 0.72,
+      "environmentalism": 0.55,
+      "reproRightsSupport": 0.70,
+      "antiHardlineImmigration": 0.70
+    }
+  },
+  {
+    "id": "council-va-colliver",
+    "name": "Lauren Colliver",
+    "office": "Town Council",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Small business owner of health and wellness clinics. Focuses on local economy, supporting entrepreneurs, and practical community programs. Bridge-builder with business-oriented perspective.",
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 0, "issue-008": 1, "issue-009": 0, "issue-010": 0 },
+    "ideology": {
+      "stance": "moderate",
+      "socialProgressive": 0.55,
+      "laborLeft": 0.30,
+      "proHousingGrowth": 0.50,
+      "environmentalism": 0.62,
+      "reproRightsSupport": 0.55,
+      "antiHardlineImmigration": 0.50
+    }
+  },
+  {
+    "id": "council-va-ford",
+    "name": "Jerry R. Ford Jr.",
+    "office": "Town Council",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "30+ years in public service with expertise in environmental management and planning. Focuses on environmental issues, transportation infrastructure, and outdoor recreation. Process-oriented planner.",
+    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "ideology": {
+      "stance": "moderate",
+      "socialProgressive": 0.58,
+      "laborLeft": 0.32,
+      "proHousingGrowth": 0.55,
+      "environmentalism": 0.72,
+      "reproRightsSupport": 0.60,
+      "antiHardlineImmigration": 0.55
+    }
+  },
+  {
+    "id": "council-va-goodhart",
+    "name": "Joel Goodhart",
+    "office": "Town Council",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Urban planning advocate focused on transportation, biking infrastructure, and sustainable city design. Strong Towns supporter pushing for housing variety, zoning reform, and public transit access.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "ideology": {
+      "stance": "progressive",
+      "socialProgressive": 0.66,
+      "laborLeft": 0.42,
+      "proHousingGrowth": 0.82,
+      "environmentalism": 0.78,
+      "reproRightsSupport": 0.65,
+      "antiHardlineImmigration": 0.60
+    }
+  },
+  {
+    "id": "council-va-kassoff",
+    "name": "Andrew Kassoff",
+    "office": "Town Council",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Environmental engineer and former Planning Commission chairman. Technical expert focused on infrastructure, environmental engineering, and data-driven land use decisions. Technocratic problem-solver.",
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 0, "issue-010": 0 },
+    "ideology": {
+      "stance": "moderate",
+      "socialProgressive": 0.52,
+      "laborLeft": 0.25,
+      "proHousingGrowth": 0.55,
+      "environmentalism": 0.80,
+      "reproRightsSupport": 0.50,
+      "antiHardlineImmigration": 0.50
+    }
+  },
+  {
+    "id": "rival-va-macedo",
+    "name": "Peter Macedo",
+    "office": "Town Council Candidate",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Anti-development rival who ran against Sutphin for mayor, losing by only 18 votes. Focuses on transparency, accountability, and cautious incremental development. Criticized council's handling of large student housing projects.",
+    "positions": { "issue-001": 0, "issue-002": 0, "issue-003": 0, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 0, "issue-008": 1, "issue-009": 0, "issue-010": 0 },
+    "ideology": {
+      "stance": "moderate",
+      "socialProgressive": 0.58,
+      "laborLeft": 0.28,
+      "proHousingGrowth": 0.48,
+      "environmentalism": 0.58,
+      "reproRightsSupport": 0.55,
+      "antiHardlineImmigration": 0.55
+    }
+  },
+  {
+    "id": "rival-va-harder",
+    "name": "James Harder",
+    "office": "Town Council Candidate",
+    "district": "Blacksburg",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Ph.D. student and former Democratic congressional staffer. Advocates for more housing, clean energy adaptation, and stronger intergovernmental cooperation. Progressive challenger focused on accelerating development.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": 0, "issue-007": 1, "issue-008": 0, "issue-009": 1, "issue-010": 0 },
+    "ideology": {
+      "stance": "progressive",
+      "socialProgressive": 0.74,
+      "laborLeft": 0.48,
+      "proHousingGrowth": 0.76,
+      "environmentalism": 0.74,
+      "reproRightsSupport": 0.75,
+      "antiHardlineImmigration": 0.70
+    }
   },
   {
     "id": "sen-ny-schumer",
