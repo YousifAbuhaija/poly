@@ -17,10 +17,18 @@
   },
   {
     "id": "election-003",
-    "name": "2025 Local Primary",
-    "date": "2025-06-10",
+    "name": "2026 Federal Midterm Election",
+    "date": "2026-11-03",
     "state": "CA",
     "county": "Los Angeles",
-    "offices": ["City Council"]
+    "offices": ["U.S. Senate", "U.S. House", "Governor"]
+  },
+  {
+    "id": "election-004",
+    "name": "2026 Federal Midterm Election",
+    "date": "2026-11-03",
+    "state": "VA",
+    "county": "Montgomery",
+    "offices": ["U.S. Senate", "U.S. House"]
   }
 ]

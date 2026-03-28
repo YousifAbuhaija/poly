@@ -1,14 +1,58 @@
 import type { ChatMessage, LocationResult } from '../types';
 
-const API_URL = '/api/chat';
+const GEMINI_API_URL =
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
-function getErrorMessage(status: number): string {
-  switch (status) {
-    case 429:
-      return 'Please try again in a moment.';
-    case 500:
-    default:
-      return 'Could not generate a response. Please try again.';
+const CURRENTS_API_URL = 'https://api.currentsapi.services/v1/search';
+
+// Cache news results to avoid burning through the 20/day limit
+const newsCache = new Map<string, { result: string; timestamp: number }>();
+const CACHE_TTL = 1000 * 60 * 30; // 30 minutes
+
+// Only fetch news for civic/political questions, not every message
+function isCivicQuestion(question: string): boolean {
+  const keywords = ['law', 'bill', 'election', 'vote', 'ballot', 'candidate', 'policy',
+    'congress', 'senate', 'mayor', 'council', 'tax', 'housing', 'transit', 'budget',
+    'proposition', 'measure', 'governor', 'president', 'legislation', 'news'];
+  const q = question.toLowerCase();
+  return keywords.some((k) => q.includes(k));
+}
+
+async function fetchNewsContext(question: string, location: LocationResult): Promise<string> {
+  const apiKey = import.meta.env.VITE_CURRENTS_API_KEY;
+  if (!apiKey || apiKey === 'your_currents_key_here') return '';
+  if (!isCivicQuestion(question)) return '';
+
+  // Use a simplified cache key based on key terms + location
+  const cacheKey = `${question.slice(0, 40)}-${location.state}`;
+  const cached = newsCache.get(cacheKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) return cached.result;
+
+  try {
+    const params = new URLSearchParams({
+      keywords: `${question} ${location.state}`,
+      language: 'en',
+      limit: '3',
+      type: '1',
+    });
+
+    const res = await fetch(`${CURRENTS_API_URL}?${params}`, {
+      headers: { Authorization: apiKey },
+    });
+
+    if (!res.ok) return '';
+    const data = await res.json();
+    if (!data.news?.length) return '';
+
+    const summaries = data.news
+      .map((a: { title: string; description: string }) => `- ${a.title}: ${a.description}`)
+      .join('\n');
+
+    const result = `\nRecent news for context:\n${summaries}\n`;
+    newsCache.set(cacheKey, { result, timestamp: Date.now() });
+    return result;
+  } catch {
+    return '';
   }
 }
 
@@ -17,20 +61,46 @@ export async function sendMessage(
   location: LocationResult,
   history: ChatMessage[],
 ): Promise<ChatMessage> {
-  const response = await fetch(API_URL, {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey) throw new Error('Configuration error: API key is missing.');
+
+  const newsContext = await fetchNewsContext(question, location);
+
+  const systemPrompt = `You are Poly, a civic assistant for Gen Z users. The user is in ${location.city}, ${location.state}.
+Keep responses short, simple, and conversational — like texting a knowledgeable friend.
+- No long paragraphs. Use 2-3 sentences max per point.
+- Avoid markdown formatting like bold or headers. Plain text only.
+- Skip the disclaimers and filler. Get to the point.
+- Stay neutral and factual. Never tell users who to vote for.
+${newsContext ? `Use the following recent news to inform your answer if relevant:${newsContext}` : ''}`;
+
+  const mappedHistory = history.map((msg) => ({
+    role: msg.role === 'user' ? 'user' : 'model',
+    parts: [{ text: msg.content }],
+  }));
+
+  const contents = [
+    ...mappedHistory,
+    { role: 'user', parts: [{ text: question }] },
+  ];
+
+  const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question, location, history }),
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents,
+    }),
   });
 
   if (!response.ok) {
-    throw new Error(getErrorMessage(response.status));
+    const errorData = await response.json().catch(() => ({}));
+    if (response.status === 429) throw new Error('Poly is receiving too many requests. Please try again in a moment.');
+    throw new Error(errorData?.error?.message || 'Could not generate a response. Please try again.');
   }
 
   const data = await response.json();
-  return {
-    role: 'assistant',
-    content: data.content,
-    timestamp: data.timestamp ?? Date.now(),
-  };
+  const content = data.candidates?.[0]?.content?.parts?.[0]?.text ?? 'No response received.';
+
+  return { role: 'assistant', content, timestamp: Date.now() };
 }

@@ -7,18 +7,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "Community organizer turned state legislator with a focus on education equity and affordable housing in Los Angeles County.",
-    "positions": {
-      "issue-001": 1,
-      "issue-002": 1,
-      "issue-003": 1,
-      "issue-004": 1,
-      "issue-005": 1,
-      "issue-006": -1,
-      "issue-007": 1,
-      "issue-008": -1,
-      "issue-009": 1,
-      "issue-010": 1
-    }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
   },
   {
     "id": "candidate-002",
@@ -28,18 +17,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "Small business owner and city council member advocating for economic growth and public safety improvements across LA.",
-    "positions": {
-      "issue-001": -1,
-      "issue-002": -1,
-      "issue-003": -1,
-      "issue-004": 1,
-      "issue-005": -1,
-      "issue-006": 1,
-      "issue-007": -1,
-      "issue-008": 1,
-      "issue-009": -1,
-      "issue-010": -1
-    }
+    "positions": { "issue-001": -1, "issue-002": -1, "issue-003": -1, "issue-004": 1, "issue-005": -1, "issue-006": 1, "issue-007": -1, "issue-008": 1, "issue-009": -1, "issue-010": -1 }
   },
   {
     "id": "candidate-003",
@@ -49,18 +27,7 @@
     "state": "CA",
     "county": "Los Angeles",
     "bio": "Former public defender committed to criminal justice reform and expanding healthcare access for underserved communities.",
-    "positions": {
-      "issue-001": 1,
-      "issue-002": 1,
-      "issue-003": 1,
-      "issue-004": 1,
-      "issue-005": 1,
-      "issue-006": -1,
-      "issue-007": 1,
-      "issue-008": 1,
-      "issue-009": 1,
-      "issue-010": -1
-    }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": -1 }
   },
   {
     "id": "candidate-004",
@@ -70,18 +37,7 @@
     "state": "NY",
     "county": "New York",
     "bio": "Tech entrepreneur and first-generation American focused on modernizing public services and expanding broadband access in NYC.",
-    "positions": {
-      "issue-001": 1,
-      "issue-002": 1,
-      "issue-003": -1,
-      "issue-004": 1,
-      "issue-005": 1,
-      "issue-006": 1,
-      "issue-007": 1,
-      "issue-008": 1,
-      "issue-009": 1,
-      "issue-010": 1
-    }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": -1, "issue-004": 1, "issue-005": 1, "issue-006": 1, "issue-007": 1, "issue-008": 1, "issue-009": 1, "issue-010": 1 }
   },
   {
     "id": "candidate-005",
@@ -91,17 +47,46 @@
     "state": "NY",
     "county": "New York",
     "bio": "Environmental activist and urban planner working to make New York City greener and more affordable for young residents.",
-    "positions": {
-      "issue-001": 1,
-      "issue-002": 1,
-      "issue-003": 1,
-      "issue-004": 1,
-      "issue-005": 1,
-      "issue-006": -1,
-      "issue-007": 1,
-      "issue-008": -1,
-      "issue-009": 1,
-      "issue-010": 1
-    }
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
+  },
+  {
+    "id": "sen-ca-padilla",
+    "name": "Alex Padilla",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "The first Latino to represent California in the U.S. Senate. He previously served as California's Secretary of State and focuses heavily on immigration reform, voting rights, and climate legislation.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
+  },
+  {
+    "id": "sen-ca-schiff",
+    "name": "Adam Schiff",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "CA",
+    "county": "Los Angeles",
+    "bio": "Former U.S. Representative who assumed his Senate office in 2025. He is known for his prominent roles on intelligence committees and focuses on democratic institution protection, housing affordability, and environmental regulations.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 1, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 1 }
+  },
+  {
+    "id": "sen-va-warner",
+    "name": "Mark Warner",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "A businessman and former Governor of Virginia. He serves as Chairman of the Senate Intelligence Committee and is known as a moderate Democrat focused on technology regulation, national security, and bipartisan economic policies.",
+    "positions": { "issue-001": 1, "issue-002": 0, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": 1, "issue-007": 1, "issue-008": -1, "issue-009": 0, "issue-010": -1 }
+  },
+  {
+    "id": "sen-va-kaine",
+    "name": "Tim Kaine",
+    "office": "U.S. Senate",
+    "district": "Statewide",
+    "state": "VA",
+    "county": "Montgomery",
+    "bio": "Former Governor of Virginia and 2016 Vice Presidential nominee. His legislative priorities heavily feature armed services support, healthcare expansion, and career/technical education.",
+    "positions": { "issue-001": 1, "issue-002": 1, "issue-003": 1, "issue-004": 1, "issue-005": 0, "issue-006": -1, "issue-007": 1, "issue-008": -1, "issue-009": 1, "issue-010": 0 }
   }
 ]
