@@ -66,7 +66,9 @@ export default function NoReadTranslator() {
         )}
 
         {/* Text input */}
+        <label htmlFor="policy-text" className="sr-only">Policy text</label>
         <textarea
+          id="policy-text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Paste policy text here…"

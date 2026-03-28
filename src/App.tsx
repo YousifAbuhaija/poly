@@ -9,7 +9,7 @@ import NoReadTranslator from './components/NoReadTranslator';
 import AskPolyChat from './components/AskPolyChat';
 
 /** Paths where the bottom nav is hidden */
-const NO_NAV_PATHS = ['/', '/onboarding'];
+const NO_NAV_PATHS = ['/', '/onboarding', '/vibe-check'];
 
 function RequireOnboarding({ children }: { children: React.ReactNode }) {
   const { location } = useAppContext();

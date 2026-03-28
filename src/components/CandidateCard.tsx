@@ -84,10 +84,6 @@ export default function CandidateCard({ result, issues, onTap }: CandidateCardPr
         </div>
       )}
 
-      {/* Disclaimer */}
-      <p className="mt-3 text-[10px] text-text-muted leading-tight">
-        Match scores reflect issue agreement and are not endorsements.
-      </p>
     </button>
   );
 }

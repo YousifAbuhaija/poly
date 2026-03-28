@@ -19,7 +19,7 @@ export default function VibeCheck() {
 
   const total = issues.length;
   const remaining = total - currentIndex;
-  const progress = total > 0 ? ((currentIndex) / total) * 100 : 0;
+  const progress = total > 0 ? (currentIndex / total) * 100 : 0;
   const currentIssue = issues[currentIndex] ?? null;
 
   const handleRespond = useCallback(
@@ -52,7 +52,7 @@ export default function VibeCheck() {
       <div className="w-full max-w-sm">
         <h1 className="mb-1 text-center text-2xl font-bold text-white">Vibe Check</h1>
         <p className="mb-4 text-center text-sm text-text-secondary">
-          Swipe or tap to share your take — {remaining} left
+          Swipe or tap to share your take — {remaining} {remaining === 1 ? 'question' : 'questions'} left
         </p>
 
         {/* Progress bar */}

@@ -44,7 +44,9 @@ export default function ZipOnboarding() {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          <label htmlFor="zip-input" className="sr-only">ZIP code</label>
           <input
+            id="zip-input"
             type="text"
             inputMode="numeric"
             maxLength={5}
