@@ -1,73 +1,86 @@
-# React + TypeScript + Vite
+# Poly
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Politics, in plain English.**
 
-Currently, two official plugins are available:
+Poly is a mobile-first web app that helps Gen Z voters understand political issues, simplify legislation, and discover which candidates align with their values. Built for clarity and trust, Poly transforms complex civic information into an engaging, location-aware experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What It Does
 
-## React Compiler
+- **Vibe Check**: Swipe through political issues to build your values profile without needing deep political knowledge
+- **Civic Match**: See which local candidates align with your values based on issue agreement, not party affiliation
+- **No-Read Translator**: Paste or upload policy documents and get AI-powered explanations in plain language
+- **Ask Poly Chat**: Ask follow-up questions about policies, candidates, or civic topics in a conversational interface
+- **Location-Aware**: Enter your ZIP code to see candidates and elections relevant to where you actually vote
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Key Features
 
-## Expanding the ESLint configuration
+- Interactive 3D-style U.S. map landing experience
+- Neutral, factual framing focused on values alignment rather than voting recommendations
+- Mobile-optimized swipe and tap interactions
+- AI-powered policy explanations via Amazon Bedrock
+- Local JSON data architecture for reliable demos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: React 19, TypeScript, Tailwind CSS, Framer Motion
+- **Build Tool**: Vite
+- **Backend**: AWS Lambda, API Gateway, Amazon Bedrock
+- **Data**: DynamoDB, local JSON files
+- **Testing**: Vitest, Testing Library, Fast-check (property-based testing)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run linter
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+poly/
+├── src/
+│   ├── components/       # React components (VibeCheck, CandidateCard, etc.)
+│   ├── services/         # Business logic and API services
+│   ├── engines/          # Matching and location resolution logic
+│   ├── context/          # React context providers
+│   ├── data/             # Local JSON data files
+│   ├── types/            # TypeScript type definitions
+│   └── lambda/           # AWS Lambda functions
+├── public/               # Static assets
+└── __tests__/            # Unit and property-based tests
+```
+
+## Design Philosophy
+
+Poly is built on three core principles:
+
+1. **Neutral & Trustworthy**: Present information factually without political bias
+2. **Location-First**: Tie all content to the user's actual voting jurisdiction
+3. **Gen Z Native**: Fast, mobile-friendly, and conversational without being gimmicky
+
+## Development
+
+This project uses:
+
+- TypeScript for type safety
+- ESLint for code quality
+- Vitest for unit testing
+- Fast-check for property-based testing
+- Tailwind CSS for styling
+
+## License
+
+MIT
